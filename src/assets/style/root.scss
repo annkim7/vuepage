@@ -1,0 +1,18 @@
+:root {
+    --default-bg: #F5F5F5;
+    --default-color: #5A5A5A;
+}
+
+@mixin text{
+    font-family: 'Pretendard-Regular';
+    font-size: 1rem;
+    font-weight: 500;
+    color: #5A5A5A;
+}
+
+@mixin center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+

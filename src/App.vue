@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrap">
+    <Header :menuList = "menuList"/>
+
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header'
+import MenuList from './assets/data/menu.js'
 
 export default {
   name: 'App',
+  data(){
+    return {
+      menuList : MenuList,
+    }
+  },
   components: {
-    HelloWorld
+    Header,
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" >
+@import './assets/style/common.scss';
+@import './assets/style/font.scss';
+@import './assets/style/root.scss';
+
+.wrap{
+  overflow:hidden;
+  position:relative;
+  width:100%;
+  height:100vh;
+  background: var(--default-bg);
+  @include text;
 }
+
+
+
 </style>
