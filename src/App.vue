@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <Header :menuList = "menuList"/>
+    <Header :menuList = "menuList" :nav="nav" @open="open = $event"/>
 
 
   </div>
@@ -15,7 +15,30 @@ export default {
   data(){
     return {
       menuList : MenuList,
+      nav : true,
     }
+  },
+  methods: {
+    isRespon() {
+        if( screen.width <= 1023 ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+    open() {
+      this.nav = true;
+      console.log('open');
+    }
+  },
+  created() {
+      if (this.isRespon()) {
+          this.nav = false
+      }
+      else {
+          this.nav = true
+      }
   },
   components: {
     Header,

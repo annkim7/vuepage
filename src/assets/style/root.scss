@@ -1,6 +1,7 @@
 :root {
     --default-bg: #F5F5F5;
     --default-color: #5A5A5A;
+    --white: #fff;
 }
 
 @mixin text{
@@ -15,4 +16,22 @@
     justify-content: center;
     align-items: center;
 }
+
+@mixin centerTop{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin tablet{ 
+    @media (max-width: 1023px){
+        @content;
+    }
+}
+
+@mixin mobile{
+    @media (max-width: 767px){
+        @content;
+    }
+} 
+
 
