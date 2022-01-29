@@ -1,8 +1,7 @@
 <template>
   <div class="wrap">
-    <Header :menuList = "menuList" :nav="nav" @open="open = $event"/>
-
-
+    <Header :menuList = "menuList" />
+    <img src="./assets/7002.jpg"/>
   </div>
 </template>
 
@@ -14,31 +13,23 @@ export default {
   name: 'App',
   data(){
     return {
+      
       menuList : MenuList,
-      nav : true,
     }
+  },
+  mounted() {
+      window.addEventListener('resize', this.respon);
+      this.respon;
+  },
+  unmounted() {
+      window.removeEventListener('resize', this.respon);
   },
   methods: {
-    isRespon() {
-        if( screen.width <= 1023 ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    },
-    open() {
-      this.nav = true;
-      console.log('open');
-    }
   },
-  created() {
-      if (this.isRespon()) {
-          this.nav = false
-      }
-      else {
-          this.nav = true
-      }
+  computed: {
+    respon(){
+      return this.$store.commit('handleResize')
+    }
   },
   components: {
     Header,
@@ -55,7 +46,6 @@ export default {
   overflow:hidden;
   position:relative;
   width:100%;
-  height:100vh;
   background: var(--default-bg);
   @include text;
 }

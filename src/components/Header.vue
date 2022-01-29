@@ -1,7 +1,7 @@
 <template>
     <header class="header-wrap">
         <h1 class="logo"><img src="../assets/logo.png"/></h1>
-        <div class="header-box" v-if="nav == true">
+        <div class="header-box" v-if="$store.state.nav == true">
             <nav class="nav-box">
                 <ul class="nav-list">
                     <li v-for="menu in menuList" :key="menu">
@@ -21,7 +21,7 @@
             </aside>
             
         </div>
-        <span @click="click" class="mobileNav-btn">토글</span>
+        <span @click="$store.commit('open')" class="mobileNav-btn"></span>
     </header>
 </template>
 
@@ -30,8 +30,8 @@ export default {
     name : 'Header',
     props : {
         menuList : Array,
-        nav : Boolean,
     },
+    
 }
 </script>
 
@@ -124,10 +124,24 @@ export default {
 
 .mobileNav-btn{
     display:none;
+    position:relative;
+}
+.mobileNav-btn:before{
+    content: "\f0c9";
+    display: block;
+    position: absolute;
+    top: -0.1rem;
+    left: 0;
+    font-size: 1.33rem;
+    line-height: 1;
+    color: #cacaca;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 100;
 }
 
 @include tablet{
     .header-wrap{
+        height: 100%;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
@@ -139,6 +153,7 @@ export default {
         left:0;
         flex-direction: column;
         background: var(--white);
+        border:1px solid red;
     }
     .nav-list{
         flex-direction: column;
