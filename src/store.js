@@ -22,6 +22,13 @@ const store = createStore({
       state.nav = true;
       console.log('open');
     },
+    close(state) {
+      state.nav = false;
+      console.log('close');
+    },
+  },
+  actions : {
+    
   },
 })
 

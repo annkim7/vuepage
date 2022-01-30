@@ -9,11 +9,11 @@
 import Header from './components/Header'
 import MenuList from './assets/data/menu.js'
 
+
 export default {
   name: 'App',
   data(){
     return {
-      
       menuList : MenuList,
     }
   },
@@ -25,6 +25,7 @@ export default {
       window.removeEventListener('resize', this.respon);
   },
   methods: {
+
   },
   computed: {
     respon(){

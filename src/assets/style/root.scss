@@ -1,8 +1,9 @@
 :root {
     --default-bg: #F5F5F5;
     --default-color: #5A5A5A;
+    --key-color: #DCD8CE;
     --white: #fff;
-    --black: rgba(0,0,0,0.6);
+    --dim: rgba(0,0,0,0.6);
 }
 
 @mixin text{
@@ -21,6 +22,16 @@
 @mixin centerTop{
     top: 50%;
     transform: translateY(-50%);
+}
+
+@mixin bef{
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    content: '';
 }
 
 @mixin tablet{ 
