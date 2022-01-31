@@ -1,7 +1,8 @@
 <template>
   <div class="wrap" v-resize="onResize">
     <Header :menuList = "menuList" />
-
+    <p>{{ $store.state.menu }}</p>
+    <button @click="$store.dispatch('getData')">더보기</button>
     <img src="./assets/7002.jpg"/>
     
   </div>

@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios from 'axios';
 
 const store = createStore({
   state(){
@@ -8,6 +9,7 @@ const store = createStore({
       show : false,
       width: 0,
       height: 0,
+      menu : {},
     }
   },
   mutations :{
@@ -41,7 +43,13 @@ const store = createStore({
     },
   },
   actions : {
-    
+    getData(context){
+      axios.get('https://annkim7.github.io/vuepage/src/assets/data/menu.js')
+      .then((a)=>{
+        console.log(a.data);
+        context.commit('setMore', a.data);
+      })
+    },
   },
 })
 
