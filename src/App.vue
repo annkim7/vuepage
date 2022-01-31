@@ -1,7 +1,8 @@
 <template>
-  <div class="wrap">
+  <div class="wrap" v-resize="onResize">
     <Header :menuList = "menuList" />
     <img src="./assets/7002.jpg"/>
+    
   </div>
 </template>
 
@@ -15,21 +16,19 @@ export default {
   data(){
     return {
       menuList : MenuList,
+      // width: 0,
+      // height: 0,
     }
   },
   mounted() {
-      window.addEventListener('resize', this.respon);
-      this.respon;
-  },
-  unmounted() {
-      window.removeEventListener('resize', this.respon);
+      // this.width = this.$el.offsetWidth;
+      // this.height = this.$el.offsetHeight;
   },
   methods: {
-
-  },
-  computed: {
-    respon(){
-      return this.$store.commit('handleResize')
+    onResize() {
+      // this.width = width;
+      // this.height = height;
+      this.$store.commit('handleResize')
     }
   },
   components: {
@@ -50,7 +49,6 @@ export default {
   background: var(--default-bg);
   @include text;
 }
-
 
 
 </style>

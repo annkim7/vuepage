@@ -4,6 +4,8 @@ const store = createStore({
   state(){
     return {
       nav : true,
+      width: 0,
+      height: 0,
     }
   },
   mutations :{
