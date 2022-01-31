@@ -1,6 +1,7 @@
 <template>
   <div class="wrap" v-resize="onResize">
     <Header :menuList = "menuList" />
+
     <img src="./assets/7002.jpg"/>
     
   </div>
@@ -16,6 +17,7 @@ export default {
   data(){
     return {
       menuList : MenuList,
+      // show: true,
       // width: 0,
       // height: 0,
     }

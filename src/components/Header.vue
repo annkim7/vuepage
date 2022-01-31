@@ -1,29 +1,34 @@
 <template>
     <header class="header-wrap">
         <h1 class="logo"><img src="../assets/logo.png"/></h1>
-        <div class="header-box" v-if="$store.state.nav == true">
-            <span v-if="$store.state.nav == true" @click="$store.commit('close')" class="mobileNav-btn close"></span>
-            <header class="header">
-                <nav class="nav-box">
-                    <ul class="nav-list">
-                        <li v-for="menu in menuList" :key="menu">
-                            <strong class="navTit">{{menu.bigTitle}}</strong>
-                            <ul class="navTit-list">
-                                <li v-for="sub in menu.subTitle" :key="sub">{{sub}}</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <aside class="side-box">
-                    <ul class="side-list">
-                        <li>My</li>
-                        <li>Ko</li>
-                        <li>En</li>
-                    </ul>
-                </aside>
-            </header>
-        </div>
-        <span @click="$store.commit('open')" class="mobileNav-btn"><font-awesome-icon :icon="['fas', 'bars']" /></span>
+        <transition name="slideIn">
+            <div v-if="$store.state.nav == true" class="header-box">
+                <span v-if="$store.state.nav == true" @click="$store.commit('close')" class="mobileNav-btn close"></span>
+                <header class="header">
+                    <nav class="nav-box">
+                        <ul class="nav-list">
+                            <li v-for="(menu, i) in menuList" :key="i">
+                                <strong @click="$store.commit('toggle');" class="navTit">{{menu.bigTitle}}</strong>
+                                <transition name="slideDown">
+                                    <ul v-if="$store.state.show == true" class="navTit-list">
+                                        <li v-for="sub in menu.subTitle" :key="sub">{{sub}}</li>
+                                    </ul>
+                                </transition> 
+                                
+                            </li>
+                        </ul>
+                    </nav>
+                    <aside class="side-box">
+                        <ul class="side-list">
+                            <li>My</li>
+                            <li>Ko</li>
+                            <li>En</li>
+                        </ul>
+                    </aside>
+                </header>
+            </div>
+        </transition>
+        <span v-if="$store.state.mob == true" @click="$store.commit('open')" class="mobileNav-btn"><font-awesome-icon :icon="['fas', 'bars']" /></span>
     </header>
 </template>
 
@@ -132,15 +137,7 @@ export default {
     width:1.3em;
     height: 1.5em;
 }
-// .mobileNav-btn:before{
-//     @include bef;
-//     content: "\f0c9";
-//     font-size: 1.33rem;
-//     line-height: 1;
-//     color: #cacaca;
-//     font-family: "Font Awesome 5 Free";
-//     font-weight: 100;
-// }
+
 
 @include tablet{
     .header-wrap{
@@ -159,6 +156,7 @@ export default {
         align-items: flex-start;
         background: var(--dim);
         z-index: 999;
+        
     }
     
     .header{
@@ -195,7 +193,6 @@ export default {
     }
     .nav-list li{
         width: auto;
-        
         flex-direction: column;
         
     }
@@ -204,17 +201,19 @@ export default {
     }
     
     .navTit{
-        padding: 0.6rem 0;
+        padding: 1.2rem 0;
         background: var(--key-color);
     }
     .navTit-list{
+        overflow: hidden;
         position:relative;
         width:100%;
+        height:100%;
         top:auto;
     }
     .navTit-list li{
         width: 100%;
-        padding: 0.6rem 0;
+        padding: 1.2rem 0;
         background: var(--white);
     }
 
@@ -229,10 +228,43 @@ export default {
         height:100%;
         right:0;
     }
+
+
+    .slideIn-enter-from { 
+        opacity: 0;
+        transform: translateX(-100%);
+        background: transparent;
+    }
+    .slideIn-enter-active {
+        transition: transform 0.3s,
+                    background 0.3s linear 0.6s; 
+    }
+    .slideIn-enter-to {
+        opacity: 1;
+        transform: translateX(0%);
+        background: var(--dim);
+    }
+    
+
+    .slideDown-enter-from {
+        overflow: hidden;  
+        opacity: 0;
+        height:0;
+    }
+    .slideDown-enter-active {
+        transition: all 1s ease-in-out; 
+    }
+    .slideDown-enter-to {
+        overflow: hidden;  
+        opacity: 1;
+        height:100%;
+    }
+
 }
 
 @include mobile{
 
 }
+
 
 </style>

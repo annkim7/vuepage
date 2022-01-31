@@ -4,6 +4,8 @@ const store = createStore({
   state(){
     return {
       nav : true,
+      mob : false,
+      show : false,
       width: 0,
       height: 0,
     }
@@ -13,10 +15,12 @@ const store = createStore({
       if (window.innerWidth < 1023) {
         this.responsive = true;
         state.nav = false;
+        state.mob = true;
         console.log('mobile');
       } else {
         this.responsive = false;
         state.nav = true;
+        state.mob = false;
         console.log('pc');
       }
     },
@@ -27,6 +31,13 @@ const store = createStore({
     close(state) {
       state.nav = false;
       console.log('close');
+    },
+    toggle(state) {
+      if(state.show == false){
+        state.show = true;
+      }else{
+        state.show = false;
+      }
     },
   },
   actions : {
