@@ -13,6 +13,9 @@ const store = createStore({
     }
   },
   mutations :{
+    setMenu(state, data){
+      state.menu = data
+    },
     handleResize(state) {
       if (window.innerWidth < 1023) {
         this.responsive = true;
@@ -47,7 +50,7 @@ const store = createStore({
       axios.get('https://annkim7.github.io/vuepage/src/assets/data/menu.js')
       .then((a)=>{
         console.log(a.data);
-        context.commit('setMore', a.data);
+        context.commit('setMenu', a.data);
       })
     },
   },
