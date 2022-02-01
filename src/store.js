@@ -6,7 +6,7 @@ const store = createStore({
     return {
       nav : true,
       mob : false,
-      show : false,
+      show : 0,
       menu : {},
       num : 0,
     }
@@ -36,14 +36,9 @@ const store = createStore({
       state.nav = false;
       console.log('close');
     },
-    toggle(state, event) {
-      if(state.show == false){
-        state.show = true;
-        event.preventDefault()
-        console.log(event.target.id)
-      }else{
-        state.show = false;
-      }
+    toggle(state) {
+      state.show = state.num
+      console.log(state.num);
     },
   },
   actions : {
