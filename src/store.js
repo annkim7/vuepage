@@ -7,9 +7,8 @@ const store = createStore({
       nav : true,
       mob : false,
       show : false,
-      width: 0,
-      height: 0,
       menu : {},
+      num : 0,
     }
   },
   mutations :{
@@ -37,9 +36,11 @@ const store = createStore({
       state.nav = false;
       console.log('close');
     },
-    toggle(state) {
+    toggle(state, event) {
       if(state.show == false){
         state.show = true;
+        event.preventDefault()
+        console.log(event.target.id)
       }else{
         state.show = false;
       }

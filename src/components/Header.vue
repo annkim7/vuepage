@@ -7,17 +7,8 @@
                 <header class="header">
                     <nav class="nav-box">
                         <ul class="nav-list">
-                            <!-- <li v-for="(menu, i) in menuList" :key="i">
-                                <strong @click="$store.commit('toggle');" class="navTit">{{menu.bigTitle}}</strong>
-                                <transition name="slideDown">
-                                    <ul v-if="$store.state.show == true" class="navTit-list">
-                                        <li v-for="sub in menu.subTitle" :key="sub">{{sub}}</li>
-                                    </ul>
-                                </transition> 
-                                
-                            </li> -->
-                            <li v-for="menu in $store.state.menu" :key="menu">
-                                <strong @click="$store.commit('toggle');" class="navTit">{{menu.bigTitle}}</strong>
+                            <li v-for="(menu, i) in $store.state.menu" :key="i">
+                                <strong @click="$store.commit('toggle', $event);" class="navTit">{{menu.bigTitle}}</strong>
                                 <transition name="slideDown">
                                     <ul v-if="$store.state.show == true" class="navTit-list">
                                         <li v-for="sub in menu.subTitle" :key="sub">{{sub}}</li>
@@ -42,12 +33,7 @@
 
 <script>
 export default {
-    name : 'Header',
-    props : {
-        // menuList : Array,
-    },
-    
-    
+    name : 'Header',   
 }
 </script>
 
