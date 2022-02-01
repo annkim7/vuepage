@@ -1,8 +1,7 @@
 <template>
   <div class="wrap" v-resize="onResize">
-    <Header :menuList = "menuList" />
-    <p>{{ $store.state.menu }}</p>
-    <button @click="$store.dispatch('getData')">더보기</button>
+    <!-- <Header :menuList = "menuList" /> -->
+    <Header />
     <img src="./assets/7002.jpg"/>
     
   </div>
@@ -10,20 +9,20 @@
 
 <script>
 import Header from './components/Header'
-import MenuList from './assets/data/menu.js'
-
+// import MenuList from './assets/data/menu.js'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
   data(){
     return {
-      menuList : MenuList,
-      // show: true,
+      // menuList : MenuList,
       // width: 0,
       // height: 0,
     }
   },
   mounted() {
+      this.getData()
       // this.width = this.$el.offsetWidth;
       // this.height = this.$el.offsetHeight;
   },
@@ -32,7 +31,10 @@ export default {
       // this.width = width;
       // this.height = height;
       this.$store.commit('handleResize')
-    }
+    },
+    ...mapActions([
+      'getData'
+    ])
   },
   components: {
     Header,

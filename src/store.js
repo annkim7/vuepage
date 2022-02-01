@@ -47,7 +47,7 @@ const store = createStore({
   },
   actions : {
     getData(context){
-      axios.get('https://annkim7.github.io/vuepage/src/assets/data/menu.js')
+      axios.get('https://annkim7.github.io/vuepage/src/assets/data/menu.json')
       .then((a)=>{
         console.log(a.data);
         context.commit('setMenu', a.data);
