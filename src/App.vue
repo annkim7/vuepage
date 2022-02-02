@@ -1,7 +1,9 @@
 <template>
   <div class="wrap" v-resize="onResize">
     <Header />
-    <img src="./assets/7002.jpg"/>
+    <router-view></router-view>
+    <!-- <img src="./assets/7002.jpg"/> -->
+    
     
   </div>
 </template>
@@ -41,6 +43,7 @@ export default {
   overflow:hidden;
   position:relative;
   width:100%;
+  height: 100vh;
   background: var(--default-bg);
   @include text;
 }

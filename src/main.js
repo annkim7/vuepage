@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import VueResizeObserver from "vue-resize-observer";
+import router from "./router.js";
 
 let app = createApp(App)
 
@@ -16,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 library.add(fab, far, fas)
 
 app.use(store);
+app.use(router);
 app.use(VueResizeObserver);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount('#app');

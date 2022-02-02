@@ -7,6 +7,7 @@ const store = createStore({
       nav : true,
       mob : false,
       show : 0,
+      statue : false,
       menu : {},
       num : 0,
     }
@@ -39,6 +40,7 @@ const store = createStore({
     toggle(state) {
       state.show = state.num
       console.log(state.num);
+      
     },
   },
   actions : {

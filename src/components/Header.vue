@@ -1,6 +1,8 @@
 <template>
     <header class="header-wrap">
-        <h1 class="logo"><img src="../assets/logo.png"/></h1>
+        <router-link to="/">
+            <h1 class="logo"><img src="../assets/logo.png"/></h1>
+        </router-link>
         <transition name="slideIn">
             <div v-if="$store.state.nav == true" class="header-box">
                 <span v-if="$store.state.nav == true" @click="$store.commit('close')" class="mobileNav-btn close"></span>
@@ -8,10 +10,19 @@
                     <nav class="nav-box">
                         <ul class="nav-list">
                             <li v-for="(menu, i) in $store.state.menu" :key="i">
-                                <strong @click="$store.commit('toggle', $store.state.num=i); " class="navTit">{{menu.bigTitle}}</strong>
+                                
+                                    <strong @click="$store.commit('toggle', $store.state.num=i);" class="navTit">
+                                        <router-link :to="{ path: `/detail/` + i + `0`}">{{menu.bigTitle}}</router-link>
+                                    </strong>
+                                
                                 <transition name="slideDown">
                                     <ul v-if="$store.state.show == $store.state.num" class="navTit-list">
-                                        <li v-for="sub in menu.subTitle" :key="sub">{{sub}}</li>
+                                        
+                                            <li v-for="(sub, j) in menu.subTitle" :key="j">
+                                                <router-link :to="{ path: `/detail/` + i + j}">{{sub}}</router-link>
+                                            </li>
+                                        
+                                        
                                     </ul>
                                 </transition>
                             </li>
@@ -27,7 +38,9 @@
                 </header>
             </div>
         </transition>
-        <span v-if="$store.state.mob == true" @click="$store.commit('open')" class="mobileNav-btn"><font-awesome-icon :icon="['fas', 'bars']" /></span>
+        <span v-if="$store.state.mob == true" @click="$store.commit('open')" class="mobileNav-btn">
+            <font-awesome-icon :icon="['fas', 'bars']" />
+        </span>
     </header>
 </template>
 
