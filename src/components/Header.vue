@@ -10,19 +10,14 @@
                     <nav class="nav-box">
                         <ul class="nav-list">
                             <li v-for="(menu, i) in $store.state.menu" :key="i">
-                                
                                     <strong @click="$store.commit('toggle', $store.state.num=i);" class="navTit">
                                         <router-link :to="{ path: `/detail/` + i + `0`}">{{menu.bigTitle}}</router-link>
                                     </strong>
-                                
                                 <transition name="slideDown">
                                     <ul v-if="$store.state.show == $store.state.num" class="navTit-list">
-                                        
-                                            <li v-for="(sub, j) in menu.subTitle" :key="j">
-                                                <router-link :to="{ path: `/detail/` + i + j}">{{sub}}</router-link>
-                                            </li>
-                                        
-                                        
+                                        <li v-for="(sub, j) in menu.subTitle" :key="j">
+                                            <router-link :to="{ path: `/detail/` + i + j}">{{sub}}</router-link>
+                                        </li>
                                     </ul>
                                 </transition>
                             </li>
@@ -61,17 +56,18 @@ export default {
     padding: 0 1rem;
     background: var(--white);
     justify-content: space-between;
+    z-index:10;
 }
 
 .logo{
     max-width:30px;
     max-height:30px;
+    img{
+        height:100%;
+        object-fit: cover;
+    }
 }
 
-.logo img{
-    height:100%;
-    object-fit: cover;
-}
 
 .header-box, .header{
     display:flex;
@@ -110,40 +106,36 @@ export default {
     margin-left: 1rem;
 }
 
-.navTit:hover + .navTit-list, .navTit-list:hover{
-    display:block;
-}
-
 .navTit{
     @include center;
     width:100%;
     height:100%;
-    cursor:pointer;
 }
 
 .navTit-list{
     display:none;
     position: absolute;
     top: 60px;
+    li{
+        padding: 0.6rem 0;
+        background: var(--white);
+    }
+    li ~ li{
+        margin-left:0;
+    }
 }
 
-.navTit-list li{
-    padding: 0.6rem 0;
-    background: var(--white);
-    cursor:pointer;
-}
-
-.navTit-list li ~ li{
-    margin-left:0;
+.navTit:hover + .navTit-list, .navTit-list:hover{
+    display:block;
 }
 
 .mobileNav-btn{
     position:relative;
     display:none;
-}
-.mobileNav-btn svg.fa-bars{
-    width:1.3em;
-    height: 1.5em;
+    svg.fa-bars{
+        width:1.3em;
+        height: 1.5em;
+    }
 }
 
 
@@ -154,17 +146,8 @@ export default {
         justify-content: center;
     }
     .header-box{
-        position: fixed;
-        top:0;
-        left:0;
-        bottom:0;
-        right:0;
-        width:100%;
-        height:100%;
+        @include dim;
         align-items: flex-start;
-        background: var(--dim);
-        z-index: 999;
-        
     }
     
     .header{
@@ -172,12 +155,13 @@ export default {
         height:auto;
         flex-flow: row wrap;
         flex: 0 0 auto;
+        &:before{
+            @include bef;
+            width: 80%;
+            background: var(--white);
+        }
     }
-    .header:before{
-        @include bef;
-        width: 80%;
-        background: var(--white);
-    }
+    
     .nav-box, .side-box{
         width:100%;
         height:auto;
@@ -198,14 +182,13 @@ export default {
     }
     .nav-list{
         flex-direction: column;
-    }
-    .nav-list li{
-        width: auto;
-        flex-direction: column;
-        
-    }
-    .nav-list li ~ li{
-        margin-left:0;
+        li{
+            width: auto;
+            flex-direction: column;
+        }
+        li ~ li{
+            margin-left:0;
+        }
     }
     
     .navTit{
@@ -218,11 +201,11 @@ export default {
         width:100%;
         height:100%;
         top:auto;
-    }
-    .navTit-list li{
-        width: 100%;
-        padding: 1.2rem 0;
-        background: var(--white);
+        li{
+            width: 100%;
+            padding: 1.2rem 0;
+            background: var(--white);
+        }
     }
 
     .mobileNav-btn{

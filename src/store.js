@@ -7,7 +7,6 @@ const store = createStore({
       nav : true,
       mob : false,
       show : 0,
-      statue : false,
       menu : {},
       num : 0,
     }
