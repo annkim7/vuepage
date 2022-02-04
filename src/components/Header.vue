@@ -117,7 +117,7 @@ export default {
     position: absolute;
     top: 60px;
     li{
-        padding: 0.6rem 0;
+        padding: 1rem 0;
         background: var(--white);
     }
     li ~ li{

@@ -1,9 +1,8 @@
 <template>
   <div class="wrap" v-resize="onResize">
     <Header />
-    <router-view></router-view>
-    <!-- <img src="./assets/7002.jpg"/> -->
     
+    <router-view></router-view>   
     
   </div>
 </template>
@@ -47,6 +46,7 @@ export default {
   background: var(--default-bg);
   @include text;
 }
+
 
 
 </style>

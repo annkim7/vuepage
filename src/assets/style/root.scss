@@ -13,6 +13,13 @@
     color: var(--default-color);
 }
 
+@mixin title{
+    font-family: 'Pretendard-Regular';
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--default-color);
+}
+
 @mixin center{
     display:flex;
     justify-content: center;
