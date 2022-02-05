@@ -26,7 +26,6 @@
                     <aside class="side-box">
                         <ul class="side-list">
                             <li>My</li>
-                            <li>Ko</li>
                             <li>En</li>
                         </ul>
                     </aside>

@@ -58,6 +58,12 @@
     z-index: 999;
 }
 
+@mixin layout{
+    max-width: 1023px;
+    margin: 0 auto;
+}
+
+
 @mixin tablet{ 
     @media (max-width: 1023px){
         @content;
@@ -74,6 +80,7 @@
 
 .list{
     display:flex;
+    flex-flow: row wrap;
 }
 
 .list.bar{
