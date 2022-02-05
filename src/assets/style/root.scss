@@ -1,3 +1,6 @@
+
+/* root */
+
 :root {
     --default-bg: #F5F5F5;
     --default-color: #5A5A5A;
@@ -5,6 +8,8 @@
     --white: #fff;
     --dim: rgba(0,0,0,0.6);
 }
+
+/* mixin */
 
 @mixin text{
     font-family: 'Pretendard-Regular';
@@ -65,4 +70,25 @@
     }
 } 
 
+/* class */
 
+.list{
+    display:flex;
+}
+
+.list.bar{
+    li{
+        position: relative;
+    }
+    li ~ li{
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        &:before{
+            @include bef;
+            width:1px;
+            height: 80%;
+            top: 6%;
+            background: var(--default-color);
+        }
+    }
+}
