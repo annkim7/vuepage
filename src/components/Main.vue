@@ -1,14 +1,22 @@
 <template>
   <div class="wave">
-    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+    <svg viewBox="0 0 1440 320"  width="100%" >
       <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <!-- <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" style="stop-color: rgb(91, 243, 250);"></stop>
           <stop offset="100%" style="stop-color: rgb(2, 145, 189);"></stop>
-        </linearGradient>
+        </linearGradient> -->
+        <path id="gentle-wave" stroke="#5A5A5A" fill="transparent"
+      d="M0,160L48,170.7C96,181,192,203,288,186.7C384,171,480,117,576,122.7C672,128,768,192,864,197.3C960,203,1056,149,1152,106.7C1248,64,1344,32,1392,16L1440,0L1440,"/>
       </defs>
-      <path fill="url(#gradient)">
-          <animate attributeName="d"
+      <g class="parallax">
+            <use xlink:href="#gentle-wave" x="-50" y="0" fill="#4579e2"/>
+            <use xlink:href="#gentle-wave" x="-50" y="3" fill="#3461c1"/>
+            <use xlink:href="#gentle-wave" x="-50" y="6" fill="#2d55aa"/>
+        </g>
+          
+    </svg>
+    <!-- <animate attributeName="d"
               dur="10000ms"
               repeatCount = "indefinite"
               
@@ -23,10 +31,7 @@
               M0,256L48,229.3C96,203,192,149,288,128C384,107,480,117,576,154.7C672,192,768,256,864,250.7C960,245,1056,171,1152,154.7C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
               
               M0,160L48,170.7C96,181,192,203,288,186.7C384,171,480,117,576,122.7C672,128,768,192,864,197.3C960,203,1056,149,1152,106.7C1248,64,1344,32,1392,16L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;">
-          </animate>
-      </path>
-    </svg>
-    
+          </animate> -->
   </div>
   
 </template>
@@ -41,5 +46,17 @@ export default {
 <style lang="scss" >
 @import '../assets/style/root.scss';
 
-
+.wave{
+  width:100%;
+  height:100vh;
+}
+.editorial{display:block;width:100%;height:10em;max-height:100vh; }
+        .parallax > use{animation: move-forever 12s linear infinite;}
+        .parallax > use:nth-child(1){animation-delay: -0.5s;}
+        .parallax > use:nth-child(2){animation-delay: -1.5s;animation-duration: 5s;}
+        .parallax > use:nth-child(3){animation-delay: -2.5s;animation-duration: 3s;}
+        @keyframes move-forever{
+            0%{transform: translate(-50%, 0%);}
+            100%{transform: translate(50%, 0%);}
+        }
 </style>
