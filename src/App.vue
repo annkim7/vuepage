@@ -42,7 +42,7 @@ export default {
 @import './assets/style/root.scss';
 
 .wrap{
-  overflow:hidden;
+  overflow-x: hidden;
   position:relative;
   width:100%;
   height: 100vh;
