@@ -1,4 +1,5 @@
 <template>
+
   
   <div class="container">
     <section class="section1">
@@ -8,11 +9,11 @@
         </svg>
       </div>
       <div class="content">
-        <h2 class="top-title">Lorem Ipsum</h2> 
+        <h2 class="top-title">Lorem Ipsum</h2>
         <p>Lorem Ipsum is simply dummy<br>text of the printing</p>
       </div>
     </section>
-    <section class="section2">
+    <section class="section2" :class="{active : active == true}">
       <h2 class="main-title">메인제목2</h2>
       <div class="item-box">
         <div class="item">게시판 형태</div>
@@ -20,7 +21,6 @@
         <div class="item">게시판 형태</div>
         <div class="item">게시판 형태</div>
       </div>
-      
     </section>
     <section class="section3">
       <h2>메인제목3</h2>
@@ -29,7 +29,6 @@
       <h2>메인제목4</h2>
     </section>
   </div>
-  
 </template>
 
 <script>
@@ -37,22 +36,56 @@
 
 export default {
     name : 'Main',
-    
-    mounted() {
-      
+    data(){
+      return{
+        scrollTop : 0,
+        pageNum : 0,
+        active : false,
+      }
     },
+    mounted(){
+      document.addEventListener('scroll', this.scroll, true)
+    },
+    unmounted() {
+      document.removeEventListener('scroll', this.scroll, true);
+    },
+    methods:{
+      scroll(e){
+        this.scrollTop = e.target.scrollTop;
+        const section = document.getElementsByTagName("section");
+
+        console.log('scroll', this.scrollTop);
+
+        for(var i= 0; i < section.length; i++){
+          if(this.scrollTop > section[i].offsetTop - window.outerHeight/1.5 && this.scrollTop < section[i].offsetTop - window.outerHeight/1.5 + section[i].offsetHeight){
+            this.pageNum = i;
+            console.log(this.pageNum);
+            break;
+          }
+        }
+        this.pageChangeFunc();
+      },
+
+      pageChangeFunc(){
+          const section = document.getElementsByTagName("section");
+          this.active == true;
+          for(var i=0; i< section.length; i++){
+            // section[i].classList.remove("active");
+          }
+          // section[section.length].classList.add("active");
+          
+        }
+    }
+
 }
 </script>
 
 <style lang="scss" >
 @import '../assets/style/root.scss';
 
+
 .wave{
   width:100%;
-}
-
-.container{
-  
 }
 
 section {

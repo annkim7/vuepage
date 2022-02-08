@@ -19,7 +19,7 @@ export default {
     return {}
   },
   mounted() {
-      this.getData()
+      this.getData();
   },
   methods: {
     onResize() {
