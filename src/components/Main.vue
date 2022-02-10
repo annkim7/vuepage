@@ -2,7 +2,7 @@
 
   
   <div class="container">
-    <section class="section1" :class="{ active: this.pageNum == 0 }">
+    <section class="section" :class="{ active: this.pageNum == 0 }">
       <div class="inner-wrap">
           <div class="wave">
           <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 490">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </section>
-    <section class="section2" :class="{ active: this.pageNum == 1 }">
+    <section class="section" :class="{ active: this.pageNum == 1 }">
       <div class="inner-wrap">
         <h2 class="main-title">메인제목2</h2>
         <div class="item-box">
@@ -26,7 +26,7 @@
         </div>
       </div>
     </section>
-    <section class="section3" :class="{ active: this.pageNum == 2 }">
+    <section class="section" :class="{ active: this.pageNum == 2 }">
       <div class="inner-wrap">
         <div class="half-box">
           <div class="item"></div>
@@ -39,14 +39,14 @@
         </div>
       </div>
     </section>
-    <section class="section4" :class="{ active: this.pageNum == 3 }">
+    <section class="section" :class="{ active: this.pageNum == 3 }">
       <h2>메인제목4</h2>
     </section>
   </div>
 </template>
 
 <script>
-// import { gsap } from "gsap";
+import { gsap } from "gsap";
 
 export default {
     name : 'Main',
@@ -83,13 +83,15 @@ export default {
 
       pageChangeFunc(){
           const section = document.getElementsByTagName("section");
-          console.log(section[this.pageNum]);
-          for(var i=0; i< section.length; i++){
-            // section[i].classList.remove("active");
-           
-          }
-          // section[section.length].classList.add("active");
-          
+          // const inner = document.getElementsByTagName(".inner-wrap");
+          const el = section[this.pageNum];
+          // console.log(section[this.pageNum]);
+          gsap.to(el, {
+            duration: 1,
+            y:0,
+            opacity: 1,
+            ease : 'bounce.out',
+          })
         }
     }
 
@@ -105,13 +107,16 @@ export default {
 }
 
 section {
+  overflow:hidden;
   position: relative;
   height: 100vh;
   width: 100vw;
   border-top: 1px dashed #333;
+  opacity:0; transform:translateY(100%);
 }
 
-section.active{border:1px solid red;}
+// section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
+// section.active .inner-wrap{opacity: 1; transform:translateY(0);}
 
 
 
