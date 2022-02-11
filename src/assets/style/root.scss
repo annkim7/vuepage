@@ -36,6 +36,13 @@
     transform: translateY(-50%);
 }
 
+@mixin centerPos{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @mixin bef{
     display: block;
     position: absolute;
