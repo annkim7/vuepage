@@ -24,12 +24,12 @@
     <section class="section" :class="{ active: this.pageNum == 1 }">
       <div class="inner-wrap">
         <h2 class="main-title">Random text</h2>
-        <div class="item-box">
+        <!-- <div class="item-box">
           <div class="item">게시판 형태</div>
           <div class="item">게시판 형태</div>
           <div class="item">게시판 형태</div>
           <div class="item">게시판 형태</div>
-        </div>
+        </div> -->
       </div>
     </section>
     <section class="section" :class="{ active: this.pageNum == 2 }">
@@ -235,18 +235,7 @@ line {
   text-align: center;
 }
 
-.item-box{
-  display:flex;
-  margin: 5rem 0;
-}
-.item{
-  @include center;
-  width: 23%;
-  height: 500px;
-  margin: 0 2%;
-  color: #fff;
-  background: var(--default-color);
-}
+
 
 .half-box{
   @include center;
