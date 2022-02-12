@@ -85,6 +85,48 @@
     }
 }
 
+@mixin imgPad{
+    position: relative;
+    height: 13.888rem;
+    img{
+        @include centerPos;
+        max-width: 88%;
+        max-height: 88%;
+        object-fit: contain;
+    }
+}
+
+@mixin imgFull{
+    overflow:hidden;
+    position: relative;
+    height:0;
+    padding-top: 100%;
+    img{
+        position: absolute;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+        object-fit: cover;
+    }
+}
+
+@mixin ellipseBox($boxHeight,$rowNumber){
+    overflow: hidden;
+    display: -webkit-box;
+    height: $boxHeight;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    -webkit-line-clamp: $rowNumber;
+    -webkit-box-orient: vertical;
+}
+
+@mixin ellipse{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 @mixin tablet{ 
     @media (max-width: 1023px){

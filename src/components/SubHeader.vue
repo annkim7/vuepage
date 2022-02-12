@@ -53,9 +53,11 @@ export default {
 
 .subHeader-box{
     padding: 3.5rem 0 2.6rem;
+    text-align: center
 }
 .pageTitle{
     @include title;
+    display: inline-block;
     text-align: center;
 }
 
@@ -65,8 +67,11 @@ export default {
 }
 .pageList{
     @include center;
+    @include layout;
     li{
-        padding: 1.4rem 3rem;
+        padding: 1.4rem 1rem;
+        min-width:10%;
+        text-align: center;
     }
 }
 .siteMap{
