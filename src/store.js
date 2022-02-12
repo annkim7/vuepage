@@ -9,6 +9,7 @@ const store = createStore({
       show : 0,
       menu : {},
       num : 0,
+      item : {},
     }
   },
   mutations :{
@@ -39,7 +40,9 @@ const store = createStore({
     toggle(state) {
       state.show = state.num
       console.log(state.num);
-      
+    },
+    setItem(state, data){
+      state.item = data
     },
   },
   actions : {
@@ -48,6 +51,13 @@ const store = createStore({
       .then((a)=>{
         console.log(a.data);
         context.commit('setMenu', a.data);
+      })
+    },
+    getItem(context){
+      axios.get('https://annkim7.github.io/vuepage/src/assets/data/itemList.json')
+      .then((b)=>{
+        console.log(b.data);
+        context.commit('setItem', b.data);
       })
     },
   },

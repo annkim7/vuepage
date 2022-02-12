@@ -74,11 +74,15 @@
     display:flex;
     flex-flow: row wrap;
     li{
-        max-width: calc((100% - ($marginLeft*($column - 1)))/$column);
+        width: calc((100% - ($marginLeft*($column - 1)))/$column);
         margin-left: $marginLeft;
+        &:nth-of-type(#{$column+1}n+1){
+            margin-left:$marginLeft;
+        }
         &:nth-of-type(#{$column}n+1){
             margin-left:0;
         }
+        
         &:nth-of-type(n+#{$column+1}){
             margin-top: $marginLeft;
         }

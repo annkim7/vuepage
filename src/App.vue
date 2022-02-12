@@ -20,13 +20,14 @@ export default {
   },
   mounted() {
       this.getData();
+      this.getItem();
   },
   methods: {
     onResize() {
       this.$store.commit('handleResize')
     },
     ...mapActions([
-      'getData'
+      'getData', 'getItem'
     ])
   },
   components: {

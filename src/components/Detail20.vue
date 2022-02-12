@@ -3,17 +3,17 @@
         <div class="exhibition-wrap">
             <div class="item-box">
                 <ul class="item-list">
-                    <li v-for="(item, i) in 9" :key="i" class="item" >
+                    <li v-for="(item, i) in $store.state.item" :key="i" class="item" >
                         <div class="image">
-                            <span class="img"><img src="https://images.unsplash.com/photo-1628834673318-62bd8be938c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80"/></span>
+                            <span class="img"><img :src="item.img"/></span>
                         </div>
                         <div class="summary">
-                            <strong class="title">Lorem Ipsum Lorem Ipsum Lorem Ipsum</strong>
+                            <strong class="title">{{item.title}}</strong>
                             <span class="like">
                                 <font-awesome-icon :icon="['far', 'heart']" />
-                                33
+                                {{item.like}}
                             </span>
-                            <p class="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
+                            <p class="text">{{item.text}}</p>
                         </div>
                     </li>
                 </ul>
@@ -53,6 +53,7 @@ export default {
     border-top: 1px solid var(--default-color);
     .title{
         @include ellipse;
+        padding-right: 0.5rem;
         flex: 1 1 0;
         font-weight: 900;
     }
@@ -67,6 +68,7 @@ export default {
     }
     .text{
         @include ellipseBox(2rem,2);
+        width:100%;
         margin-top:1rem;
     }
 }
