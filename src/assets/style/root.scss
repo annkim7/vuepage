@@ -70,6 +70,21 @@
     margin: 0 auto;
 }
 
+@mixin gallary($marginLeft, $column){
+    display:flex;
+    flex-flow: row wrap;
+    li{
+        max-width: calc((100% - ($marginLeft*($column - 1)))/$column);
+        margin-left: $marginLeft;
+        &:nth-of-type(#{$column}n+1){
+            margin-left:0;
+        }
+        &:nth-of-type(n+#{$column+1}){
+            margin-top: $marginLeft;
+        }
+    }
+}
+
 
 @mixin tablet{ 
     @media (max-width: 1023px){

@@ -5,7 +5,7 @@
                 <ul class="item-list">
                     <li v-for="(item, i) in 8" :key="i" class="item" >
                         <div class="image">
-                            <span class="img"><img src="https://images.unsplash.com/photo-1644550805208-54b031553153?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80"/></span>
+                            <span class="img"><img src="https://images.unsplash.com/photo-1628834673318-62bd8be938c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80"/></span>
                         </div>
                         <div class="summary">
                             <strong class="title">Lorem Ipsum</strong>
@@ -30,24 +30,12 @@ export default {
 
 
 .item-list{
-    display:flex;
-    flex-flow: row wrap;
-    li.item{
-        max-width: calc((100% - 3rem)/4);
-        margin-left: 1rem;
+    @include gallary(2rem,4);
+    li{
         border: 1px solid var(--default-color);
-
-        &:nth-of-type(4n+1){
-            margin-left:0;
-        }
-        &:nth-of-type(n+5){
-            margin-top:1rem;
-        }
     }
     
-    
 }
-
 
 .summary{
     display:flex;
@@ -57,5 +45,16 @@ export default {
     .text{width:100%;}
 }
 
+@include tablet{
+    .item-list{
+        @include gallary(2rem,2);
+    }
+}
+
+@include mobile{
+    .item-list{
+        @include gallary(2rem,1);
+    }
+}
 
 </style>
