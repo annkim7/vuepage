@@ -10,6 +10,8 @@ const store = createStore({
       menu : {},
       num : 0,
       item : {},
+      like: 0,
+      clickLike : false,
     }
   },
   mutations :{
@@ -44,6 +46,16 @@ const store = createStore({
     setItem(state, data){
       state.item = data
     },
+    like(state){
+      if(state.clickLike == false){
+        state.like++;
+        state.clickLike = true;
+      }else{
+        state.like--;
+        state.clickLike = false;
+      }
+    },
+    
   },
   actions : {
     getData(context){

@@ -9,9 +9,10 @@
                         </div>
                         <div class="summary">
                             <strong class="title">{{item.title}}</strong>
-                            <span class="like">
+                            <span @click="$store.commit('like')" class="like">
                                 <font-awesome-icon :icon="['far', 'heart']" />
-                                {{item.like}}
+                                <!-- {{item.like}} -->
+                                {{$store.state.like}}
                             </span>
                             <p class="text">{{item.text}}</p>
                         </div>
