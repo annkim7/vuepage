@@ -11,7 +11,7 @@ const store = createStore({
       num : 0,
       item : {},
       like: 0,
-      clickLike : false,
+      clickLike : [],
     }
   },
   mutations :{
@@ -41,19 +41,21 @@ const store = createStore({
     },
     toggle(state) {
       state.show = state.num
-      console.log(state.num);
+      // console.log(state.num);
     },
     setItem(state, data){
       state.item = data
     },
     like(state){
       if(state.clickLike == false){
-        state.like++;
+        state.item[state.id].like++;
         state.clickLike = true;
+        
       }else{
-        state.like--;
+        state.item[state.id].like--;
         state.clickLike = false;
       }
+
     },
     
   },

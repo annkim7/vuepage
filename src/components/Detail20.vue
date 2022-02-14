@@ -9,10 +9,10 @@
                         </div>
                         <div class="summary">
                             <strong class="title">{{item.title}}</strong>
-                            <span @click="$store.commit('like')" class="like">
-                                <font-awesome-icon :icon="['far', 'heart']" />
-                                <!-- {{item.like}} -->
-                                {{$store.state.like}}
+                            <span @click="$store.commit('like', $store.state.id=i)" class="like">
+                                <!-- <font-awesome-icon :icon="['far', 'heart']" /> -->
+                                <em class="heart" :class="{ active: $store.state.clickLike == true }"></em>
+                                {{item.like}}
                             </span>
                             <p class="text">{{item.text}}</p>
                         </div>
@@ -54,7 +54,7 @@ export default {
     border-top: 1px solid var(--default-color);
     .title{
         @include ellipse;
-        padding-right: 0.5rem;
+        padding-right: 1rem;
         flex: 1 1 0;
         font-weight: 900;
     }
@@ -63,6 +63,7 @@ export default {
         align-items: center;
         flex-shrink: 0;
         font-size: 0.9rem;
+        cursor: pointer;
         svg{
             margin-right: 0.3rem;
         }
@@ -71,6 +72,21 @@ export default {
         @include ellipseBox(2rem,2);
         width:100%;
         margin-top:1rem;
+    }
+}
+
+.heart {
+    width: 100px;
+    height: 100px;
+    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+    border:1px solid red;
+    &.active {
+        transition-duration: 1s;
+        background-position: -2800px 0;
     }
 }
 
