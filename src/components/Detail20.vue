@@ -11,7 +11,7 @@
                             <strong class="title">{{item.title}}</strong>
                             <span @click="$store.commit('like', $store.state.id=i)" class="like">
                                 <!-- <font-awesome-icon :icon="['far', 'heart']" /> -->
-                                <em class="heart" :class="{ active: $store.state.clickLike == true }"></em>
+                                <em class="heart" :class="{ active: item.click == true }"></em>
                                 {{item.like}}
                             </span>
                             <p class="text">{{item.text}}</p>
@@ -71,22 +71,20 @@ export default {
     .text{
         @include ellipseBox(2rem,2);
         width:100%;
-        margin-top:1rem;
     }
 }
 
 .heart {
-    width: 100px;
-    height: 100px;
-    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    width: 3.125rem;
+    height: 3.125rem;
+    background: url("../assets/heart.png") no-repeat;
     background-position: 0 0;
     cursor: pointer;
     transition: background-position 1s steps(28);
     transition-duration: 0s;
-    border:1px solid red;
     &.active {
         transition-duration: 1s;
-        background-position: -2800px 0;
+        background-position: -87.5rem 0;
     }
 }
 
