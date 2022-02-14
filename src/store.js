@@ -10,6 +10,7 @@ const store = createStore({
       menu : {},
       num : 0,
       item : {},
+      step : 0,
     }
   },
   mutations :{
@@ -46,11 +47,11 @@ const store = createStore({
     },
     like(state){
       if(state.item[state.id].click == false){
-        state.item[state.id].like++;
         state.item[state.id].click = true;
+        state.item[state.id].like++;
       }else{
-        state.item[state.id].like--;
         state.item[state.id].click = false;
+        state.item[state.id].like--;
         
       }
     },

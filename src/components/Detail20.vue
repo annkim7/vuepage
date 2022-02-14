@@ -10,9 +10,8 @@
                         <div class="summary">
                             <strong class="title">{{item.title}}</strong>
                             <span @click="$store.commit('like', $store.state.id=i)" class="like">
-                                <!-- <font-awesome-icon :icon="['far', 'heart']" /> -->
                                 <em class="heart" :class="{ active: item.click == true }"></em>
-                                {{item.like}}
+                                <i class="count">{{item.like}}</i>
                             </span>
                             <p class="text">{{item.text}}</p>
                         </div>
@@ -48,24 +47,25 @@ export default {
 
 .summary{
     display:flex;
-    padding: 1.2rem;
+    padding: 0.4rem 1.2rem 1.2rem;
     flex-flow: row wrap;
     align-items: center;
     border-top: 1px solid var(--default-color);
     .title{
         @include ellipse;
-        padding-right: 1rem;
         flex: 1 1 0;
         font-weight: 900;
     }
     .like{
         display:flex;
+        position:relative;
         align-items: center;
         flex-shrink: 0;
         font-size: 0.9rem;
         cursor: pointer;
-        svg{
-            margin-right: 0.3rem;
+        .count{
+            @include centerTop;
+            right: 0.2rem;
         }
     }
     .text{
