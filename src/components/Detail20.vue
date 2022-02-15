@@ -3,19 +3,23 @@
         <div class="exhibition-wrap">
             <div class="item-box">
                 <ul class="item-list">
-                    <li v-for="(item, i) in $store.state.item" :key="i" class="item" >
-                        <div class="image">
-                            <span class="img"><img :src="item.img"/></span>
-                        </div>
-                        <div class="summary">
-                            <strong class="title">{{item.title}}</strong>
-                            <span @click="$store.commit('like', $store.state.id=i)" class="like">
-                                <em class="heart" :class="{ active: item.click == true }"></em>
-                                <i class="count">{{item.like}}</i>
-                            </span>
-                            <p class="text">{{item.text}}</p>
-                        </div>
-                    </li>
+                        <li v-for="(item, i) in $store.state.item" :key="i" class="item" >
+                            <div class="image">
+                                <router-link :to="{ path: `/detail/20/` + i }">
+                                    <span class="img"><img :src="item.img"/></span>
+                                </router-link>
+                            </div>
+                            <div class="summary">
+                                <strong class="title">{{item.title}}</strong>
+                                <span @click="$store.commit('like', $store.state.id=i)" class="like">
+                                    <em class="heart" :class="{ active: item.click == true }"></em>
+                                    <i class="count">{{item.like}}</i>
+                                </span>
+                                <p class="text">{{item.text}}</p>
+                            </div>
+                            
+                        </li>
+                    
                 </ul>
             </div>
         </div>
