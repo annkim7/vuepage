@@ -5,15 +5,23 @@
         <div class="exhibitionDetail-area">
             <div class="exhibitionDetail-wrap">
                 <div class="detail-box">
-                    <div class="img-box">
+                    <div class="picture">
                         <div class="image">
                             <span class="img"><img :src="$store.state.item[$route.params.id].img"/></span>
                         </div>
                     </div>
                     <div class="explain">
-                        <div class="information">
-                            <ul class="list dot">
-                                <li><strong class="title">일시</strong><span class="text">2021. 10. 01(화) ~ 02(수) / 2일간</span></li>
+                        <div class="ex-header">
+                            <span class="category">tag a</span>
+                            <h4 class="title">{{$store.state.item[$route.params.id].title}}</h4>
+                        </div>
+                        <div class="ex-content">
+                            <ul class="list">
+                                <li><b>주소</b><span>서울시 강남구 강남대로 0길 00-0</span></li>
+                                <li><b>대표자</b><span>대표자</span></li>
+                                <li><b>전화</b><span>00-0000-0000</span></li>
+                                <li><b>이메일</b><span>111@gmail.com</span></li>
+                                <li><b>SNS</b><span>www.yosungtop.com</span></li>
                             </ul>
                         </div>
                     </div>
@@ -48,13 +56,55 @@ export default {
 
 .detail-box{
     display:flex;
-    .img-box{
-        width: calc((100% - 4rem)/3);
+    align-items: center;
+    .picture{
+        width: 35%;
+        margin-right:5%;
         border: 1px solid var(--default-color);
+        .img{
+            @include imgFull;
+        }
     }
-    .image{
-        @include imgFull;
+    .explain{
+        width: 60%;
     }
 }
 
+.ex-header{
+    .category{
+        margin-bottom: 0.4rem;
+        font-size:0.95rem;
+        color: #878787;
+    }
+    .title{
+        margin-bottom: 1.8rem;
+        font-size:1.8rem;
+        font-weight:600;
+    }
+}
+
+.ex-content{
+    border-top: 1px solid var(--default-color);
+    border-bottom: 1px solid var(--default-color);
+}
+
+.ex-content .list{
+    flex-direction: column;
+    li{
+        display:flex;
+        padding: 1rem 0;
+        align-items: center;
+        b{
+            width:6rem;
+            padding-left: 0.85rem;
+            background: url('../assets/icon_arrow_gr.png') no-repeat left 0.1rem;
+        }
+        span{
+            width: calc(100% - 6rem);
+        }
+    }
+    li ~ li{
+        border-top: 1px solid #cfcfcf;
+    }
+}
 </style>
