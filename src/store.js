@@ -45,13 +45,13 @@ const store = createStore({
     setItem(state, data){
       state.item = data
     },
-    like(state){
-      if(state.item[state.id].click == false){
-        state.item[state.id].click = true;
-        state.item[state.id].like++;
+    like(state, data){
+      if(state.item[data].click == false){
+        state.item[data].click = true;
+        state.item[data].like++;
       }else{
-        state.item[state.id].click = false;
-        state.item[state.id].like--;
+        state.item[data].click = false;
+        state.item[data].like--;
         
       }
     },
