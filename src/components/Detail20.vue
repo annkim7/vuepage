@@ -3,8 +3,8 @@
         <div class="exhibition-wrap">
             <div class="search-box">
                 <form name="search">
-                    <input type="text" name="search-input" placeholder="업체명" @input="search($event.target.value)" />
-                    <span class="search-btn"><font-awesome-icon :icon="['fa', 'search']" /></span>
+                    <input type="text" name="search-input" placeholder="업체명" @input="text = $event.target.value" />
+                    <span @click="search(this.text)" class="search-btn"><font-awesome-icon :icon="['fa', 'search']" /></span>
                 </form>
             </div>
             <div class="item-box">
@@ -36,6 +36,11 @@ import { useStore } from 'vuex'
 
 export default {
     name : 'Detail20',
+    data(){
+        return {
+            text : "",
+        }
+    },
     setup(){
         let store = useStore();
 
@@ -45,7 +50,6 @@ export default {
         onMounted(()=>{
             searchArr.value = store.state.item;
             searchOriginal.value = [...store.state.item]
-            console.log(searchArr.value[0].id);
         });
 
         function search(text){
@@ -59,6 +63,7 @@ export default {
         
         return { searchArr, search }
     },
+    
 }
 </script>
 
