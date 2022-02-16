@@ -12,16 +12,16 @@
                     </div>
                     <div class="explain">
                         <div class="ex-header">
-                            <span class="category">tag a</span>
+                            <span class="category">{{$store.state.item[$route.params.id].category}}</span>
                             <h4 class="title">{{$store.state.item[$route.params.id].title}}</h4>
                         </div>
                         <div class="ex-content">
                             <ul class="list">
-                                <li><b>주소</b><span>서울시 강남구 강남대로 0길 00-0</span></li>
-                                <li><b>대표자</b><span>대표자</span></li>
-                                <li><b>전화</b><span>00-0000-0000</span></li>
-                                <li><b>이메일</b><span>111@gmail.com</span></li>
-                                <li><b>SNS</b><span>www.yosungtop.com</span></li>
+                                <li><b>주소</b><span>{{$store.state.item[$route.params.id].address}}</span></li>
+                                <li><b>대표자</b><span>{{$store.state.item[$route.params.id].ceo}}</span></li>
+                                <li><b>전화</b><span>{{$store.state.item[$route.params.id].phone}}</span></li>
+                                <li><b>이메일</b><span>{{$store.state.item[$route.params.id].email}}</span></li>
+                                <li><b>SNS</b><span>{{$store.state.item[$route.params.id].sns}}</span></li>
                             </ul>
                         </div>
                     </div>
