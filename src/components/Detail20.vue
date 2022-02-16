@@ -1,6 +1,12 @@
 <template>
     <div class="exhibition-area">
         <div class="exhibition-wrap">
+            <div class="search-box">
+                <form name="search">
+                    <input type="text" name="search-input" placeholder="업체명" @input="write($event.target.value)" />
+                    <span @click="search()"  class="search-btn"><font-awesome-icon :icon="['fa', 'search']" /></span>
+                </form>
+            </div>
             <div class="item-box">
                 <ul class="item-list">
                         <li v-for="(item, i) in $store.state.item" :key="i" class="item" >
@@ -17,9 +23,22 @@
                                 </span>
                                 <p class="text">{{item.text}}</p>
                             </div>
-                            
                         </li>
-                    
+                        <!-- <li v-for="(item, i) in searchArr" :key="i" class="item" >
+                            <div class="image">
+                                <router-link :to="{ path: `/detail/20/` + i }">
+                                    <span class="img"><img :src="item.img"/></span>
+                                </router-link>
+                            </div>
+                            <div class="summary">
+                                <strong class="title">{{item.title}}</strong>
+                                <span @click="$store.commit('like', $store.state.id=i)" class="like">
+                                    <em class="heart" :class="{ active: item.click == true }"></em>
+                                    <i class="count">{{item.like}}</i>
+                                </span>
+                                <p class="text">{{item.text}}</p>
+                            </div>
+                        </li> -->
                 </ul>
             </div>
         </div>
@@ -27,8 +46,35 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue'
+import axios from 'axios';
+// import { useStore } from 'vuex'
+
 export default {
     name : 'Detail20',
+    setup(){
+        let searchArr = ref([]);
+        let searchOriginal = ref([]);
+
+        // let store = useStore();
+        onMounted(()=>{
+            axios.get('https://annkim7.github.io/vuepage/src/assets/data/itemList.json').then((b)=>{
+                searchArr.value = b.data;
+                searchOriginal.value = [...b.data];
+            })
+        });
+
+        function search(text){
+            console.log(text);
+            let searchTxt = searchOriginal.value.filter((b)=>{
+                return b.title.indexOf(text) != -1
+            });
+            searchArr.value = [...searchTxt]
+            console.log(search.value);
+        }
+        
+        return { searchArr, search }
+    },
 }
 </script>
 
@@ -91,6 +137,38 @@ export default {
         background-position: -87.5rem 0;
     }
 }
+
+.search-box{
+    display:flex;
+    margin-bottom: 2.5rem;
+    align-items: center;
+    justify-content: flex-end;
+    form[name=search]{
+        display:flex;
+        width: 30%;
+        height: 2.3rem;
+        font-size: 0.85rem;
+        input{
+            width: calc(100% - 2.5rem);
+            height: 100%;
+            padding: 0 0.7rem;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem; 
+        }
+        .search-btn{
+            @include center;
+            width:2.3rem;
+            height: 100%;
+            margin-left: 0.2rem;
+            background: var(--white);
+            font-size: 0.85rem;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            cursor:pointer; 
+        }
+    }
+}
+
 
 @include tablet{
     .item-list{
