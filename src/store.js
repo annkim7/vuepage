@@ -11,6 +11,8 @@ const store = createStore({
       num : 0,
       item : {},
       step : 0,
+      isActive: false,
+      value: null,
     }
   },
   mutations :{
@@ -55,7 +57,13 @@ const store = createStore({
         
       }
     },
-    
+    toggleList(state){
+        state.isActive = !state.isActive;
+    },
+    setValue(state, data){
+        state.isActive = false;                    
+        state.value = state.item[data].category;
+    }
   },
   actions : {
     getData(context){

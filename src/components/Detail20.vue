@@ -2,11 +2,16 @@
     <div class="exhibition-area">
         <div class="exhibition-wrap">
             <div class="select-box">
-                <select v-model="selected">
-                    <option :value="{name : 'a'}">test1</option>
-                    <option :value="{name : 'b'}">test2</option>
-                    <option :value="{name : 'c'}">test3</option>
-                </select>
+                <div class="select">
+                    <span @click="$store.commit('toggleList')" class="select-btn">
+                        {{$store.state.value}}
+                    </span>
+                    <ul v-show="$store.state.isActive" class="select-list">
+                        <li v-for="(item, i) in searchArr" :key="i" @click="$store.commit('setValue', item.id); search($store.state.value);">
+                            {{item.category}}
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="search-box">
                 <form name="search">
@@ -48,7 +53,6 @@ export default {
     data(){
         return {
             text : "",
-            selected : "",
         }
     },
     setup(){
@@ -71,7 +75,10 @@ export default {
         
         return { searchArr, search }
     },
-    
+    methods: {
+        
+
+    }
 }
 </script>
 
@@ -80,6 +87,18 @@ export default {
 
 .exhibition-area{
     @include layout;
+}
+
+.exhibition-wrap{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-box{
+    width:100%;
+    margin-top: 2.5rem;
 }
 
 .item-list{
@@ -98,6 +117,7 @@ export default {
     flex-flow: row wrap;
     align-items: center;
     border-top: 1px solid var(--default-color);
+    background: var(--white);
     .title{
         @include ellipse;
         flex: 1 1 0;
@@ -136,22 +156,58 @@ export default {
 }
 
 .search-box{
-    display:flex;
-    margin-bottom: 2.5rem;
-    justify-content: flex-end;
+    width: 30%;
     form{
         @include search(2.5rem, 2.3rem);
-        width: 30%;
+        width:100%;
         font-size: 0.85rem;
         input{
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem; 
+            &::placeholder{
+                font-size:0.8rem;
+                color: var(--default-color);
+            }
         }
         span{
             background: var(--white);
             font-size: 0.85rem;
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
+        }
+    }
+}
+
+.select-box{
+    position:relative;
+    width: 30%;
+    .select-btn{
+        @include centerVertical;
+        width:100%;
+        height: 2.5rem;
+        padding: 0.2rem 1.4rem 0.2rem 0.8rem;
+        background: url('https://design-science.or.kr/app/dubu_subcontent/docs/imgs/1586411111_arrow.png') no-repeat 95% 50% #fff;
+        background-size: 0.65rem 0.65rem;
+        border-radius: 0.5rem;
+        font-size:0.9rem;
+        color: var(--default-color);
+        cursor:pointer;
+    }
+    .select-list{
+        position:absolute;
+        width:100%;
+        top: 2.3rem;
+        left:0;
+        z-index:2;
+        li{
+            @include centerVertical;
+            height: 2.5rem;
+            padding: 0.2rem 0.8rem;
+            background-color: var(--white);
+            cursor:pointer;
+            &:hover{
+                background-color: #ccc;
+            }
         }
     }
 }
