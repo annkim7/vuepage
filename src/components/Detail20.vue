@@ -1,10 +1,19 @@
 <template>
     <div class="exhibition-area">
         <div class="exhibition-wrap">
+            <div class="select-box">
+                <select v-model="selected">
+                    <option :value="{name : 'a'}">test1</option>
+                    <option :value="{name : 'b'}">test2</option>
+                    <option :value="{name : 'c'}">test3</option>
+                </select>
+            </div>
             <div class="search-box">
                 <form name="search">
-                    <input type="text" name="search-input" placeholder="업체명" @input="text = $event.target.value" />
-                    <span @click="search(this.text)" class="search-btn"><font-awesome-icon :icon="['fa', 'search']" /></span>
+                    <input @input="text = $event.target.value" type="text" name="search-input" placeholder="업체명" />
+                    <span @click="search(this.text)" class="search-btn">
+                        <font-awesome-icon :icon="['fa', 'search']" />
+                    </span>
                 </form>
             </div>
             <div class="item-box">
@@ -39,6 +48,7 @@ export default {
     data(){
         return {
             text : "",
+            selected : "",
         }
     },
     setup(){
@@ -53,12 +63,10 @@ export default {
         });
 
         function search(text){
-            console.log(text);
             let searchTxt = searchOriginal.value.filter((b)=>{
                 return b.title.indexOf(text) != -1
             });
             searchArr.value = [...searchTxt]
-            console.log(searchArr.value);
         }
         
         return { searchArr, search }
@@ -130,30 +138,20 @@ export default {
 .search-box{
     display:flex;
     margin-bottom: 2.5rem;
-    align-items: center;
     justify-content: flex-end;
-    form[name=search]{
-        display:flex;
+    form{
+        @include search(2.5rem, 2.3rem);
         width: 30%;
-        height: 2.3rem;
         font-size: 0.85rem;
         input{
-            width: calc(100% - 2.5rem);
-            height: 100%;
-            padding: 0 0.7rem;
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem; 
         }
-        .search-btn{
-            @include center;
-            width:2.3rem;
-            height: 100%;
-            margin-left: 0.2rem;
+        span{
             background: var(--white);
             font-size: 0.85rem;
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            cursor:pointer; 
         }
     }
 }
