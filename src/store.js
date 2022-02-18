@@ -62,7 +62,7 @@ const store = createStore({
     },
     setValue(state, data){
         state.isActive = false;                    
-        state.value = state.item[data].category;
+        state.value = data;
     }
   },
   actions : {

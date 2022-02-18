@@ -4,14 +4,17 @@
             <div class="select-box">
                 <div class="select">
                     <span @click="$store.commit('toggleList')" class="select-btn">
-                        {{$store.state.value}}
+                        {{$store.state.value ? $store.state.value : 'category'}}
                     </span>
                     <ul v-show="$store.state.isActive" class="select-list">
-                        <li v-for="(item, i) in searchArr" :key="i" @click="$store.commit('setValue', item.id); search($store.state.value);">
-                            {{item.category}}
+                        <li v-for="(cate, i) in cateArr" :key="i" @click="$store.commit('setValue', cate); select(cate);">
+                            {{cate}}
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="return-box">
+                <span class="return-btn"><font-awesome-icon :icon="['fa', 'undo']" /></span>
             </div>
             <div class="search-box">
                 <form name="search">
@@ -25,7 +28,7 @@
                 <ul class="item-list">
                         <li v-for="(item, i) in searchArr" :key="i" class="item" >
                             <div class="image">
-                                <router-link :to="{ path: `/detail/20/` + i }">
+                                <router-link :to="{ path: `/detail/20/` + item.id }">
                                     <span class="img"><img :src="item.img"/></span>
                                 </router-link>
                             </div>
@@ -60,10 +63,15 @@ export default {
 
         let searchArr = ref([]);
         let searchOriginal = ref([]);
+
+        let cateArr = ref([]);
         
         onMounted(()=>{
             searchArr.value = store.state.item;
             searchOriginal.value = [...store.state.item]
+
+            let category = store.state.item.map(a => a.category);
+            cateArr.value = new Set(category);
         });
 
         function search(text){
@@ -72,13 +80,16 @@ export default {
             });
             searchArr.value = [...searchTxt]
         }
-        
-        return { searchArr, search }
-    },
-    methods: {
-        
 
-    }
+        function select(cate){
+            let selectTxt = searchOriginal.value.filter((c)=>{
+                return c.category.indexOf(cate) != -1
+            });
+            searchArr.value = [...selectTxt]
+        }
+        
+        return { searchArr, cateArr, search, select }
+    },
 }
 </script>
 
@@ -180,7 +191,7 @@ export default {
 
 .select-box{
     position:relative;
-    width: 30%;
+    width: 23%;
     .select-btn{
         @include centerVertical;
         width:100%;
@@ -209,6 +220,19 @@ export default {
                 background-color: #ccc;
             }
         }
+    }
+}
+
+.return-box{
+    width:4%;
+    span{
+        @include center;
+        width: 2.3rem;
+        height: 2.3rem;
+        background-color: var(--white);
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        cursor:pointer;
     }
 }
 
