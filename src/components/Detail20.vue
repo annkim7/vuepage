@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="return-box">
-                <span class="return-btn"><font-awesome-icon :icon="['fa', 'undo']" /></span>
+                <span @click="undo()" class="return-btn"><font-awesome-icon :icon="['fa', 'undo']" /></span>
             </div>
             <div class="search-box">
                 <form name="search">
@@ -25,23 +25,26 @@
                 </form>
             </div>
             <div class="item-box">
-                <ul class="item-list">
-                        <li v-for="(item, i) in searchArr" :key="i" class="item" >
-                            <div class="image">
-                                <router-link :to="{ path: `/detail/20/` + item.id }">
-                                    <span class="img"><img :src="item.img"/></span>
-                                </router-link>
-                            </div>
-                            <div class="summary">
-                                <strong class="title">{{item.title}}</strong>
-                                <span @click="$store.commit('like', item.id)" class="like">
-                                    <em class="heart" :class="{ active: item.click == true }"></em>
-                                    <i class="count">{{item.like}}</i>
-                                </span>
-                                <p class="text">{{item.text}}</p>
-                            </div>
-                        </li>
+                <ul v-if="searchArr != ''" class="item-list">
+                    <li v-for="(item, i) in searchArr" :key="i" class="item" >
+                        <div class="image">
+                            <router-link :to="{ path: `/detail/20/` + item.id }">
+                                <span class="img"><img :src="item.img"/></span>
+                            </router-link>
+                        </div>
+                        <div class="summary">
+                            <strong class="title">{{item.title}}</strong>
+                            <span @click="$store.commit('like', item.id)" class="like">
+                                <em class="heart" :class="{ active: item.click == true }"></em>
+                                <i class="count">{{item.like}}</i>
+                            </span>
+                            <p class="text">{{item.text}}</p>
+                        </div>
+                    </li>
                 </ul>
+                <div v-if="searchArr == ''" class="noResult">
+                    no result
+                </div>
             </div>
         </div>
     </div>
@@ -88,7 +91,12 @@ export default {
             searchArr.value = [...selectTxt]
         }
         
-        return { searchArr, cateArr, search, select }
+        function undo(){
+            searchArr.value = store.state.item;
+            store.state.value = null;
+        }
+
+        return { searchArr, cateArr, search, select, undo }
     },
 }
 </script>
@@ -168,6 +176,7 @@ export default {
 
 .search-box{
     width: 30%;
+    margin-left: auto;
     form{
         @include search(2.5rem, 2.3rem);
         width:100%;
@@ -191,7 +200,7 @@ export default {
 
 .select-box{
     position:relative;
-    width: 23%;
+    width: 25%;
     .select-btn{
         @include centerVertical;
         width:100%;
@@ -225,10 +234,11 @@ export default {
 
 .return-box{
     width:4%;
-    span{
+    margin-left: 0.2rem;
+    .return-btn{
         @include center;
-        width: 2.3rem;
-        height: 2.3rem;
+        width: 2.5rem;
+        height: 2.5rem;
         background-color: var(--white);
         border-radius: 0.5rem;
         font-size: 0.85rem;
