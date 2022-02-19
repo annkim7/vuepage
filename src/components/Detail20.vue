@@ -1,7 +1,7 @@
 <template>
     <div class="exhibition-area">
         <div class="exhibition-wrap">
-            <div class="select-box">
+            <!-- <div class="select-box">
                 <div class="select">
                     <span @click="$store.commit('toggleList')" class="select-btn">
                         {{$store.state.value ? $store.state.value : 'category'}}
@@ -45,14 +45,32 @@
                 <div v-if="searchArr == ''" class="noResult">
                     no result
                 </div>
+            </div> -->
+            <div class="item-box">
+                <ul  class="item-list">
+                    <li v-for="(item, i) in listData" :key="i" class="item" >
+                        <div class="image">
+                            <router-link :to="{ path: `/detail/20/` + item.id }">
+                                <span class="img"><img :src="item.img"/></span>
+                            </router-link>
+                        </div>
+                        <div class="summary">
+                            <strong class="title">{{item.title}}</strong>
+                            <span @click="$store.commit('like', item.id)" class="like">
+                                <em class="heart" :class="{ active: item.click == true }"></em>
+                                <i class="count">{{item.like}}</i>
+                            </span>
+                            <p class="text">{{item.text}}</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="page-box">
                 <span class="prev-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-left']" />
                 </span>
                 <ul class="page-list">
-                    <li>1</li>
-                    <li>2</li>
+                    <li v-for="(page, i) in 3" :key="i" @click="pagingMethod(page)">{{page}}</li>
                 </ul>
                 <span class="next-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-right']" />
@@ -63,55 +81,76 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
-import { useStore } from 'vuex'
+// import { onMounted, ref } from 'vue'
+// import { useStore } from 'vuex'
 
 export default {
     name : 'Detail20',
     data(){
         return {
-            text : "",
+            // text : "",
+            listData: {},
+            paymentInfo : this.$store.state.item,
+            total : this.$store.state.item.length,
+            page: 1,
+            limit: 6,
+            block: 5, 
         }
     },
-    setup(){
-        let store = useStore();
+    mounted() {
+        this.pagingMethod(this.page)
 
-        let searchArr = ref([]);
-        let searchOriginal = ref([]);
-
-        let cateArr = ref([]);
-
-        onMounted(()=>{
-            searchArr.value = store.state.item;
-            searchOriginal.value = [...store.state.item]
-
-            let category = store.state.item.map(a => a.category);
-            cateArr.value = new Set(category);
-
-        });
-
-        function search(text){
-            let searchTxt = searchOriginal.value.filter((b)=>{
-                return b.title.indexOf(text) != -1
-            });
-            searchArr.value = [...searchTxt]
-        }
-
-        function select(cate){
-            let selectTxt = searchOriginal.value.filter((c)=>{
-                return c.category.indexOf(cate) != -1
-            });
-            searchArr.value = [...selectTxt]
-        }
+    },
+    methods: {
+        pagingMethod(page) {
+            this.listData = this.paymentInfo.slice(
+            (page - 1) * this.limit,
+            page * this.limit
+            )
+            this.page = page
+            
+        },
         
-        function undo(){
-            searchArr.value = store.state.item;
-            store.state.value = null;
-        }
-
-
-        return { searchArr, cateArr, search, select, undo }
     },
+    // setup(){
+    //     let store = useStore();
+
+    //     let searchArr = ref([]);
+    //     let searchOriginal = ref([]);
+
+    //     let cateArr = ref([]);
+
+    //     onMounted(()=>{
+    //         searchArr.value = store.state.item;
+    //         searchOriginal.value = [...store.state.item]
+
+    //         let category = store.state.item.map(a => a.category);
+    //         cateArr.value = new Set(category);
+
+    //     });
+
+    //     function search(text){
+    //         let searchTxt = searchOriginal.value.filter((b)=>{
+    //             return b.title.indexOf(text) != -1
+    //         });
+    //         searchArr.value = [...searchTxt]
+    //     }
+
+    //     function select(cate){
+    //         let selectTxt = searchOriginal.value.filter((c)=>{
+    //             return c.category.indexOf(cate) != -1
+    //         });
+    //         searchArr.value = [...selectTxt]
+    //     }
+        
+    //     function undo(){
+    //         searchArr.value = store.state.item;
+    //         store.state.value = null;
+    //     }
+
+
+    //     return { searchArr, cateArr, search, select, undo }
+    // },
 }
 </script>
 
