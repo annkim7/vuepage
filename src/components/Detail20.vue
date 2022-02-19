@@ -46,6 +46,18 @@
                     no result
                 </div>
             </div>
+            <div class="page-box">
+                <span class="prev-btn">
+                    <font-awesome-icon :icon="['fa', 'angle-double-left']" />
+                </span>
+                <ul class="page-list">
+                    <li>1</li>
+                    <li>2</li>
+                </ul>
+                <span class="next-btn">
+                    <font-awesome-icon :icon="['fa', 'angle-double-right']" />
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -68,13 +80,14 @@ export default {
         let searchOriginal = ref([]);
 
         let cateArr = ref([]);
-        
+
         onMounted(()=>{
             searchArr.value = store.state.item;
             searchOriginal.value = [...store.state.item]
 
             let category = store.state.item.map(a => a.category);
             cateArr.value = new Set(category);
+
         });
 
         function search(text){
@@ -95,6 +108,7 @@ export default {
             searchArr.value = store.state.item;
             store.state.value = null;
         }
+
 
         return { searchArr, cateArr, search, select, undo }
     },
@@ -175,7 +189,7 @@ export default {
 }
 
 .search-box{
-    width: 30%;
+    min-width: 17rem;
     margin-left: auto;
     form{
         @include search(2.5rem, 2.3rem);
@@ -200,7 +214,7 @@ export default {
 
 .select-box{
     position:relative;
-    width: 25%;
+    min-width: 14rem;
     .select-btn{
         @include centerVertical;
         width:100%;
@@ -233,7 +247,6 @@ export default {
 }
 
 .return-box{
-    width:4%;
     margin-left: 0.2rem;
     .return-btn{
         @include center;
@@ -246,6 +259,22 @@ export default {
     }
 }
 
+.page-box{
+    @include center;
+    width:100%;
+    margin-top: 3rem;
+    span{
+        cursor:pointer;
+    }
+    .page-list{
+        display:flex;
+        margin: 0 0.5rem;
+        li{
+            padding: 0 0.5rem;
+            cursor:pointer;
+        }
+    }
+}
 
 @include tablet{
     .item-list{
@@ -256,6 +285,17 @@ export default {
 @include mobile{
     .item-list{
         @include gallary(2rem,1);
+    }
+
+    .search-box{
+        width:100%;
+        min-width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .select-box{
+        width: calc(100% - 2.7rem);
+        min-width: calc(100% - 2.7rem);
     }
 }
 
