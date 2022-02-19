@@ -66,13 +66,16 @@
                 </ul>
             </div>
             <div class="page-box">
-                <span class="prev-btn">
+                <span v-if="pageDataSetting(total, limit, block, this.page).first != null" class="prev-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-left']" />
                 </span>
                 <ul class="page-list">
-                    <li v-for="(page, i) in 3" :key="i" @click="pagingMethod(page)">{{page}}</li>
+                    <li v-for="(page, i) in pageDataSetting(total, limit, block, this.page).list" :key="i"
+                    @click="pagingMethod(page)">
+                        {{page}}
+                    </li>
                 </ul>
-                <span class="next-btn">
+                <span v-if="pageDataSetting(total, limit, block, this.page).end != null" class="next-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-right']" />
                 </span>
             </div>
@@ -108,9 +111,27 @@ export default {
             page * this.limit
             )
             this.page = page
-            
+            this.pageDataSetting(this.total, this.limit, this.block, page)
         },
-        
+        pageDataSetting(total, limit, block, page) {
+            const totalPage = Math.ceil(total / limit)
+            let currentPage = page
+            const first =
+            currentPage > 1 ? parseInt(currentPage, 10) - parseInt(1, 10) : null
+            const end =
+            totalPage !== currentPage
+                ? parseInt(currentPage, 10) + parseInt(1, 10)
+                : null
+    
+            let startIndex = (Math.ceil(currentPage / block) - 1) * block + 1
+            let endIndex =
+                startIndex + block > totalPage ? totalPage : startIndex + block - 1
+            let list = []
+            for (let index = startIndex; index <= endIndex; index++) {
+                list.push(index)
+            }
+            return { first, end, list, currentPage }
+        }
     },
     // setup(){
     //     let store = useStore();
