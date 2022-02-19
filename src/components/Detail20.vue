@@ -1,7 +1,7 @@
 <template>
     <div class="exhibition-area">
         <div class="exhibition-wrap">
-            <!-- <div class="select-box">
+            <div class="select-box">
                 <div class="select">
                     <span @click="$store.commit('toggleList')" class="select-btn">
                         {{$store.state.value ? $store.state.value : 'category'}}
@@ -24,7 +24,7 @@
                     </span>
                 </form>
             </div>
-            <div class="item-box">
+            <!-- <div class="item-box">
                 <ul v-if="searchArr != ''" class="item-list">
                     <li v-for="(item, i) in searchArr" :key="i" class="item" >
                         <div class="image">
@@ -48,7 +48,7 @@
             </div> -->
             <div class="item-box">
                 <ul  class="item-list">
-                    <li v-for="(item, i) in listData" :key="i" class="item" >
+                    <li v-for="(item, i) in searchArr" :key="i" class="item" >
                         <div class="image">
                             <router-link :to="{ path: `/detail/20/` + item.id }">
                                 <span class="img"><img :src="item.img"/></span>
@@ -65,7 +65,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="page-box">
+            <!-- <div class="page-box">
                 <span v-if="pageDataSetting(total, limit, block, this.page).first != null" class="prev-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-left']" />
                 </span>
@@ -78,48 +78,97 @@
                 <span v-if="pageDataSetting(total, limit, block, this.page).end != null" class="next-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-right']" />
                 </span>
+            </div> -->
+            <div class="page-box">
+                <span class="prev-btn">
+                    <font-awesome-icon :icon="['fa', 'angle-double-left']" />
+                </span>
+                <ul class="page-list">
+                    <li v-for="(page, i) in 3" :key="i" >{{page}}</li>
+                </ul>
+                <span class="next-btn">
+                    <font-awesome-icon :icon="['fa', 'angle-double-right']" />
+                </span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-// import { onMounted, ref } from 'vue'
-// import { useStore } from 'vuex'
+import { onMounted, ref } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
     name : 'Detail20',
     data(){
         return {
-            // text : "",
-            listData: {},
-            paymentInfo : this.$store.state.item,
-            total : this.$store.state.item.length,
-            page: 1,
-            limit: 6,
-            block: 5, 
+            text : "",
+            // listData: {},
+            // paymentInfo : this.store.state.item,
+            // total : this.store.state.item.length,
+            // page: 1,
+            // limit: 6,
+            // block: 5, 
         }
     },
-    mounted() {
-        this.pagingMethod(this.page)
+    setup(){
+        let store = useStore();
 
-    },
-    methods: {
-        pagingMethod(page) {
-            this.listData = this.paymentInfo.slice(
-            (page - 1) * this.limit,
-            page * this.limit
+        let searchArr = ref([]);
+        let searchOriginal = ref([]);
+
+        let cateArr = ref([]);
+
+        onMounted(()=>{
+            searchArr.value = store.state.item;
+            searchOriginal.value = [...store.state.item]
+
+            let category = store.state.item.map(a => a.category);
+            cateArr.value = new Set(category);
+            
+            let page = 1
+            let limit = 6
+            let total = searchOriginal.value.length
+            let block = 5
+
+            paging(page, limit, total, block)
+        });
+
+        function search(text){
+            let searchTxt = searchOriginal.value.filter((b)=>{
+                return b.title.indexOf(text) != -1
+            });
+            searchArr.value = [...searchTxt]
+        }
+
+        function select(cate){
+            let selectTxt = searchOriginal.value.filter((c)=>{
+                return c.category.indexOf(cate) != -1
+            });
+            searchArr.value = [...selectTxt]
+        }
+        
+        function undo(){
+            searchArr.value = store.state.item;
+            store.state.value = null;
+        }
+
+        function paging(page, limit, total, block){
+            let pageList = searchOriginal.value.slice(
+                (page - 1) * limit,
+                page * limit
             )
-            this.page = page
-            this.pageDataSetting(this.total, this.limit, this.block, page)
-        },
-        pageDataSetting(total, limit, block, page) {
+            searchArr.value = pageList
+            pageSetting(total, limit, block, page)
+        }
+
+        function pageSetting(total, limit, block, page){
             const totalPage = Math.ceil(total / limit)
             let currentPage = page
             const first =
-            currentPage > 1 ? parseInt(currentPage, 10) - parseInt(1, 10) : null
+                currentPage > 1 ? parseInt(currentPage, 10) - parseInt(1, 10) : null
             const end =
-            totalPage !== currentPage
+                totalPage !== currentPage
                 ? parseInt(currentPage, 10) + parseInt(1, 10)
                 : null
     
@@ -132,46 +181,42 @@ export default {
             }
             return { first, end, list, currentPage }
         }
+
+        return { searchArr, cateArr, search, select, undo, paging, pageSetting }
     },
-    // setup(){
-    //     let store = useStore();
-
-    //     let searchArr = ref([]);
-    //     let searchOriginal = ref([]);
-
-    //     let cateArr = ref([]);
-
-    //     onMounted(()=>{
-    //         searchArr.value = store.state.item;
-    //         searchOriginal.value = [...store.state.item]
-
-    //         let category = store.state.item.map(a => a.category);
-    //         cateArr.value = new Set(category);
-
-    //     });
-
-    //     function search(text){
-    //         let searchTxt = searchOriginal.value.filter((b)=>{
-    //             return b.title.indexOf(text) != -1
-    //         });
-    //         searchArr.value = [...searchTxt]
-    //     }
-
-    //     function select(cate){
-    //         let selectTxt = searchOriginal.value.filter((c)=>{
-    //             return c.category.indexOf(cate) != -1
-    //         });
-    //         searchArr.value = [...selectTxt]
-    //     }
-        
-    //     function undo(){
-    //         searchArr.value = store.state.item;
-    //         store.state.value = null;
-    //     }
-
-
-    //     return { searchArr, cateArr, search, select, undo }
+    // mounted() {
+    //     this.pagingMethod(this.page)
     // },
+    // methods: {
+    //     pagingMethod(page) {
+    //         this.listData = this.paymentInfo.slice(
+    //         (page - 1) * this.limit,
+    //         page * this.limit
+    //         )
+    //         this.page = page
+    //         this.pageDataSetting(this.total, this.limit, this.block, page)
+    //     },
+    //     pageDataSetting(total, limit, block, page) {
+    //         const totalPage = Math.ceil(total / limit)
+    //         let currentPage = page
+    //         const first =
+    //         currentPage > 1 ? parseInt(currentPage, 10) - parseInt(1, 10) : null
+    //         const end =
+    //         totalPage !== currentPage
+    //             ? parseInt(currentPage, 10) + parseInt(1, 10)
+    //             : null
+    
+    //         let startIndex = (Math.ceil(currentPage / block) - 1) * block + 1
+    //         let endIndex =
+    //             startIndex + block > totalPage ? totalPage : startIndex + block - 1
+    //         let list = []
+    //         for (let index = startIndex; index <= endIndex; index++) {
+    //             list.push(index)
+    //         }
+    //         return { first, end, list, currentPage }
+    //     }
+    // },
+    
 }
 </script>
 
