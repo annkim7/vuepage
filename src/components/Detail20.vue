@@ -47,7 +47,7 @@
                 </div>
             </div> -->
             <div class="item-box">
-                <ul  class="item-list">
+                <ul v-if="searchArr != ''" class="item-list">
                     <li v-for="(item, i) in searchArr" :key="i" class="item" >
                         <div class="image">
                             <router-link :to="{ path: `/detail/20/` + item.id }">
@@ -64,6 +64,9 @@
                         </div>
                     </li>
                 </ul>
+                <div v-if="searchArr == ''" class="noResult">
+                    no result
+                </div>
             </div>
             <!-- <div class="page-box">
                 <span v-if="pageDataSetting(total, limit, block, this.page).first != null" class="prev-btn">
@@ -84,7 +87,9 @@
                     <font-awesome-icon :icon="['fa', 'angle-double-left']" />
                 </span>
                 <ul class="page-list">
-                    <li v-for="(page, i) in 3" :key="i" >{{page}}</li>
+                    <li v-for="(page, i) in pageSetting(total, limit, block, page)" :key="i" @click="paging(page)">
+                        {{page}}
+                    </li>
                 </ul>
                 <span class="next-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-right']" />
@@ -103,12 +108,10 @@ export default {
     data(){
         return {
             text : "",
-            // listData: {},
-            // paymentInfo : this.store.state.item,
-            // total : this.store.state.item.length,
-            // page: 1,
-            // limit: 6,
-            // block: 5, 
+            total: 0,
+            page: 1,
+            limit: 6,
+            block: 5, 
         }
     },
     setup(){
@@ -119,6 +122,11 @@ export default {
 
         let cateArr = ref([]);
 
+        let page = 1
+        let limit = 6
+        let block = 5
+        let total = 18
+        
         onMounted(()=>{
             searchArr.value = store.state.item;
             searchOriginal.value = [...store.state.item]
@@ -126,12 +134,8 @@ export default {
             let category = store.state.item.map(a => a.category);
             cateArr.value = new Set(category);
             
-            let page = 1
-            let limit = 6
-            let total = searchOriginal.value.length
-            let block = 5
-
-            paging(page, limit, total, block)
+            
+            paging(page)
         });
 
         function search(text){
@@ -153,16 +157,18 @@ export default {
             store.state.value = null;
         }
 
-        function paging(page, limit, total, block){
+        function paging(page){
             let pageList = searchOriginal.value.slice(
                 (page - 1) * limit,
                 page * limit
             )
             searchArr.value = pageList
+
             pageSetting(total, limit, block, page)
         }
 
         function pageSetting(total, limit, block, page){
+            
             const totalPage = Math.ceil(total / limit)
             let currentPage = page
             const first =
@@ -179,7 +185,9 @@ export default {
             for (let index = startIndex; index <= endIndex; index++) {
                 list.push(index)
             }
+            
             return { first, end, list, currentPage }
+            
         }
 
         return { searchArr, cateArr, search, select, undo, paging, pageSetting }
