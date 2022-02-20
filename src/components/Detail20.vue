@@ -83,15 +83,15 @@
                 </span>
             </div> -->
             <div class="page-box">
-                <span class="prev-btn">
+                <span v-if="pageSetting(total, limit, block, page).first != null" class="prev-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-left']" />
                 </span>
                 <ul class="page-list">
-                    <li v-for="(page, i) in pageSetting(total, limit, block, page)" :key="i" @click="paging(page)">
+                    <li v-for="(page, i) in pageSetting(total, limit, block, page).list" :key="i" @click="paging(page)">
                         {{page}}
                     </li>
                 </ul>
-                <span class="next-btn">
+                <span v-if="pageSetting(total, limit, block, page).end != null"  class="next-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-right']" />
                 </span>
             </div>
@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive, toRefs, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -108,10 +108,6 @@ export default {
     data(){
         return {
             text : "",
-            total: 0,
-            page: 1,
-            limit: 6,
-            block: 5, 
         }
     },
     setup(){
@@ -121,11 +117,16 @@ export default {
         let searchOriginal = ref([]);
 
         let cateArr = ref([]);
+        
+        let data = reactive({
+            limit : 6,
+            block : 5,
+            page : 1,
+        });
 
-        let page = 1
-        let limit = 6
-        let block = 5
-        let total = 18
+        let total = computed(()=>{
+            return searchOriginal.value.length;
+        })
         
         onMounted(()=>{
             searchArr.value = store.state.item;
@@ -133,9 +134,8 @@ export default {
 
             let category = store.state.item.map(a => a.category);
             cateArr.value = new Set(category);
-            
-            
-            paging(page)
+
+            paging(data.page);
         });
 
         function search(text){
@@ -153,22 +153,24 @@ export default {
         }
         
         function undo(){
-            searchArr.value = store.state.item;
+            // searchArr.value = store.state.item;
+            paging(data.page);
             store.state.value = null;
         }
 
         function paging(page){
             let pageList = searchOriginal.value.slice(
-                (page - 1) * limit,
-                page * limit
+                (page - 1) * data.limit,
+                page * data.limit
             )
             searchArr.value = pageList
+            data.page = page
 
-            pageSetting(total, limit, block, page)
+            pageSetting(total, data.limit, data.block, page)
+            
         }
 
         function pageSetting(total, limit, block, page){
-            
             const totalPage = Math.ceil(total / limit)
             let currentPage = page
             const first =
@@ -185,12 +187,17 @@ export default {
             for (let index = startIndex; index <= endIndex; index++) {
                 list.push(index)
             }
-            
             return { first, end, list, currentPage }
             
         }
 
-        return { searchArr, cateArr, search, select, undo, paging, pageSetting }
+        return {
+            ...toRefs(data),
+            total,
+            searchArr, cateArr,
+            search, select, undo,
+            paging, pageSetting
+        }
     },
     // mounted() {
     //     this.pagingMethod(this.page)
