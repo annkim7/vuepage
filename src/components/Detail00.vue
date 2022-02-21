@@ -15,6 +15,40 @@
                     Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                 </p>
             </div>
+            <div class="abridge-box">
+                <div class="abridge">
+                    <ul class="abridge-list">
+                        <li><b>title</b><span>Lorem Ipsum passage</span></li>
+                        <li><b>date</b><span>Sections 1.10.32</span></li>
+                        <li><b>summay</b><span>Lorem Ipsum passage</span></li>
+                        <li class="innerLine">
+                            <b>list</b>
+                            <span>
+                                <ul class="inner-list">
+                                    <li>Lorem Ipsum passage</li>
+                                    <li>Lorem Ipsum passage</li>
+                                    <li>Lorem Ipsum passage</li>
+                                    <li>Lorem Ipsum passage</li>
+                                    <li>Lorem Ipsum passage</li>
+                                </ul>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="check-box">
+                <ul class="check-list">
+                    <li>
+                        <input type="checkbox" id="check01">
+                        <label for="check01">체크!</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="check02">
+                        <label for="check02">체크!</label>
+                    </li>
+                </ul>
+                
+            </div>
         </div>
     </div>
 </template>
@@ -61,6 +95,30 @@ export default {
 }
 
 
+.abridge-box{
+    margin-top:2rem;
+}
+
+.abridge-list{
+    @include list;
+    @include dotList;
+}
+
+.abridge-list .innerLine{
+    @include innerDot;
+    > b{
+        height:1.3rem;
+    }
+    .inner-list{
+        @include dashList;
+    }
+}
+
+
+.check-list input[type=checkbox]{display:none;}
+.check-list input[type=checkbox] + label{display: inline-block;position: relative;padding-left: 1.5rem;font-size: 0.933rem; line-height: 1.25; color:#333; cursor: pointer;}
+.check-list input[type=checkbox] + label:before{content:'';position: absolute;top:0; left:0; width: 1rem;height:1rem;border:1px solid #333;}
+.check-list input[type=checkbox]:checked + label:before{background: #333;}
 
 @include tablet{
     .introduce-box, .video-box{
