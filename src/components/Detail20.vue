@@ -48,7 +48,7 @@
             </div> -->
             <div class="item-box">
                 <ul v-if="searchArr != ''" class="item-list">
-                    <li v-for="(item, i) in searchArr" :key="i" class="item" >
+                    <li v-for="(item, i) in pageArr" :key="i" class="item" >
                         <div class="image">
                             <router-link :to="{ path: `/detail/20/` + item.id }">
                                 <span class="img"><img :src="item.img"/></span>
@@ -117,6 +117,8 @@ export default {
         let searchOriginal = ref([]);
 
         let cateArr = ref([]);
+
+        let pageArr = ref([]);
         
         let data = reactive({
             limit : 6,
@@ -125,7 +127,7 @@ export default {
         });
 
         let total = computed(()=>{
-            return searchOriginal.value.length;
+            return searchArr.value.length;
         })
         
         onMounted(()=>{
@@ -143,6 +145,7 @@ export default {
                 return b.title.indexOf(text) != -1
             });
             searchArr.value = [...searchTxt]
+            paging(data.page);
         }
 
         function select(cate){
@@ -150,20 +153,24 @@ export default {
                 return c.category.indexOf(cate) != -1
             });
             searchArr.value = [...selectTxt]
+            paging(data.page);
         }
         
         function undo(){
             // searchArr.value = store.state.item;
+            searchArr.value = store.state.item;
             paging(data.page);
             store.state.value = null;
         }
 
         function paging(page){
-            let pageList = searchOriginal.value.slice(
+            let pageList = searchArr.value.slice(
                 (page - 1) * data.limit,
                 page * data.limit
             )
-            searchArr.value = pageList
+            
+            // searchArr.value = pageList
+            pageArr.value = pageList
             data.page = page
 
             pageSetting(total, data.limit, data.block, page)
@@ -194,7 +201,7 @@ export default {
         return {
             ...toRefs(data),
             total,
-            searchArr, cateArr,
+            searchArr, cateArr, pageArr,
             search, select, undo,
             paging, pageSetting
         }
