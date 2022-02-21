@@ -26,6 +26,7 @@
                 </div>
             </div>
             <div class="text-box">
+                <h4 class="title">기업소개</h4>
                 <p>{{$store.state.item[$route.params.id].text}}</p>
             </div>
         </div>
@@ -108,12 +109,16 @@ export default {
 }
 
 .text-box{
-    margin:3rem 0 0;
-    height: 18rem;
-    border-top: 1px solid #cfcfcf;
+    @include layout; 
+    margin-top: 3.5rem;
+
+    .title{
+        @include befTitle;
+        font-size: 1.5rem;
+    }
     p{
-        @include layout;        
-        padding: 2rem 1.66rem;
+        height: 18rem;      
+        padding: 1.3rem 0;
     }
 }
 </style>

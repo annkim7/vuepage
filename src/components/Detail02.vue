@@ -77,23 +77,8 @@ export default {
 }
 
 .information{
-    .list.title li{
-        display:flex;
-        width:100%;
-        .title{
-            width: 10rem;
-            margin-bottom: 0.3rem;
-            font-size:1.1rem;
-            font-weight: 600;
-            line-height: 1.3;
-            color: #A0A0A0;
-        }
-        .text{
-            width: calc(100% - 10rem);
-            font-size:1.1rem;
-            font-weight: 400;
-            line-height: 1.3;
-        }
+    .list{
+        @include list;
     }
 }
 

@@ -61,6 +61,7 @@ export default {
 }
 
 
+
 @include tablet{
     .introduce-box, .video-box{
         width:100%;

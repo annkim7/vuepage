@@ -24,30 +24,8 @@
                     </span>
                 </form>
             </div>
-            <!-- <div class="item-box">
-                <ul v-if="searchArr != ''" class="item-list">
-                    <li v-for="(item, i) in searchArr" :key="i" class="item" >
-                        <div class="image">
-                            <router-link :to="{ path: `/detail/20/` + item.id }">
-                                <span class="img"><img :src="item.img"/></span>
-                            </router-link>
-                        </div>
-                        <div class="summary">
-                            <strong class="title">{{item.title}}</strong>
-                            <span @click="$store.commit('like', item.id)" class="like">
-                                <em class="heart" :class="{ active: item.click == true }"></em>
-                                <i class="count">{{item.like}}</i>
-                            </span>
-                            <p class="text">{{item.text}}</p>
-                        </div>
-                    </li>
-                </ul>
-                <div v-if="searchArr == ''" class="noResult">
-                    no result
-                </div>
-            </div> -->
             <div class="item-box">
-                <ul v-if="searchArr != ''" class="item-list">
+                <ul v-if="pageArr != ''" class="item-list">
                     <li v-for="(item, i) in pageArr" :key="i" class="item" >
                         <div class="image">
                             <router-link :to="{ path: `/detail/20/` + item.id }">
@@ -64,24 +42,10 @@
                         </div>
                     </li>
                 </ul>
-                <div v-if="searchArr == ''" class="noResult">
+                <div v-if="pageArr == ''" class="noResult">
                     no result
                 </div>
             </div>
-            <!-- <div class="page-box">
-                <span v-if="pageDataSetting(total, limit, block, this.page).first != null" class="prev-btn">
-                    <font-awesome-icon :icon="['fa', 'angle-double-left']" />
-                </span>
-                <ul class="page-list">
-                    <li v-for="(page, i) in pageDataSetting(total, limit, block, this.page).list" :key="i"
-                    @click="pagingMethod(page)">
-                        {{page}}
-                    </li>
-                </ul>
-                <span v-if="pageDataSetting(total, limit, block, this.page).end != null" class="next-btn">
-                    <font-awesome-icon :icon="['fa', 'angle-double-right']" />
-                </span>
-            </div> -->
             <div class="page-box">
                 <span v-if="pageSetting(total, limit, block, page).first != null" class="prev-btn">
                     <font-awesome-icon :icon="['fa', 'angle-double-left']" />
@@ -105,11 +69,6 @@ import { useStore } from 'vuex'
 
 export default {
     name : 'Detail20',
-    data(){
-        return {
-            text : "",
-        }
-    },
     setup(){
         let store = useStore();
 
@@ -145,6 +104,7 @@ export default {
                 return b.title.indexOf(text) != -1
             });
             searchArr.value = [...searchTxt]
+
             paging(data.page);
         }
 
@@ -153,14 +113,15 @@ export default {
                 return c.category.indexOf(cate) != -1
             });
             searchArr.value = [...selectTxt]
+
             paging(data.page);
         }
         
         function undo(){
-            // searchArr.value = store.state.item;
             searchArr.value = store.state.item;
-            paging(data.page);
             store.state.value = null;
+
+            paging(data.page);
         }
 
         function paging(page){
@@ -169,12 +130,10 @@ export default {
                 page * data.limit
             )
             
-            // searchArr.value = pageList
             pageArr.value = pageList
             data.page = page
 
             pageSetting(total, data.limit, data.block, page)
-            
         }
 
         function pageSetting(total, limit, block, page){
@@ -206,38 +165,6 @@ export default {
             paging, pageSetting
         }
     },
-    // mounted() {
-    //     this.pagingMethod(this.page)
-    // },
-    // methods: {
-    //     pagingMethod(page) {
-    //         this.listData = this.paymentInfo.slice(
-    //         (page - 1) * this.limit,
-    //         page * this.limit
-    //         )
-    //         this.page = page
-    //         this.pageDataSetting(this.total, this.limit, this.block, page)
-    //     },
-    //     pageDataSetting(total, limit, block, page) {
-    //         const totalPage = Math.ceil(total / limit)
-    //         let currentPage = page
-    //         const first =
-    //         currentPage > 1 ? parseInt(currentPage, 10) - parseInt(1, 10) : null
-    //         const end =
-    //         totalPage !== currentPage
-    //             ? parseInt(currentPage, 10) + parseInt(1, 10)
-    //             : null
-    
-    //         let startIndex = (Math.ceil(currentPage / block) - 1) * block + 1
-    //         let endIndex =
-    //             startIndex + block > totalPage ? totalPage : startIndex + block - 1
-    //         let list = []
-    //         for (let index = startIndex; index <= endIndex; index++) {
-    //             list.push(index)
-    //         }
-    //         return { first, end, list, currentPage }
-    //     }
-    // },
     
 }
 </script>
