@@ -15,7 +15,7 @@
                     Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                 </p>
             </div>
-            <div class="abridge-box">
+            <!-- <div class="abridge-box">
                 <div class="abridge">
                     <ul class="abridge-list">
                         <li><b>title</b><span>Lorem Ipsum passage</span></li>
@@ -47,8 +47,25 @@
                         <label for="check02">체크!</label>
                     </li>
                 </ul>
-                
-            </div>
+            </div> -->
+            <!-- <div class="radio-box">
+                <ul class="radio-list">
+                    <li>
+                        <input type="radio" id="radio01">
+                        <label for="radio01">
+                            <em></em>
+                            <span>radio 01</span>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" id="radio02">
+                        <label for="radio02">
+                            <em></em>
+                            <span>radio 02</span>
+                        </label>
+                    </li>
+                </ul>
+            </div> -->
         </div>
     </div>
 </template>
@@ -115,10 +132,37 @@ export default {
 }
 
 
-.check-list input[type=checkbox]{display:none;}
-.check-list input[type=checkbox] + label{display: inline-block;position: relative;padding-left: 1.5rem;font-size: 0.933rem; line-height: 1.25; color:#333; cursor: pointer;}
-.check-list input[type=checkbox] + label:before{content:'';position: absolute;top:0; left:0; width: 1rem;height:1rem;border:1px solid #333;}
-.check-list input[type=checkbox]:checked + label:before{background: #333;}
+.check-list{
+    @include check;
+}
+
+
+// .radio-list{
+//     input[type=radio]{
+//         display:none;
+//     }
+//     input[type=radio] + label{
+//         position: relative;
+//         em{
+//             width: 100%;
+//             height: auto;
+//             padding: 1rem 0.3rem;
+//             cursor:pointer;
+//         }
+//         span{
+//             position: absolute;
+//             top:0;
+//             left:0;
+//             text-align: center;
+//             background: skyblue;
+//         }
+//     }
+//     input[type=radio]:checked + label{
+//         span{
+//             background: blue;
+//         }
+//     }  
+// }
 
 @include tablet{
     .introduce-box, .video-box{

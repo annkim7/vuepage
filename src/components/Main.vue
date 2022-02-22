@@ -24,12 +24,25 @@
     <section class="section" :class="{ active: this.pageNum == 1 }">
       <div class="inner-wrap">
         <h2 class="main-title">Random text</h2>
-        <!-- <div class="item-box">
-          <div class="item">게시판 형태</div>
-          <div class="item">게시판 형태</div>
-          <div class="item">게시판 형태</div>
-          <div class="item">게시판 형태</div>
-        </div> -->
+        <div class="item-box">
+            <ul class="item-list">
+                <li v-for="(item, i) in $store.state.item" :key="i" class="item" >
+                    <div class="image">
+                        <router-link :to="{ path: `/detail/20/` + item.id }">
+                            <span class="img"><img :src="item.img"/></span>
+                        </router-link>
+                    </div>
+                    <div class="summary">
+                        <strong class="title">{{item.title}}</strong>
+                        <span @click="$store.commit('like', item.id)" class="like">
+                            <em class="heart" :class="{ active: item.click == true }"></em>
+                            <i class="count">{{item.like}}</i>
+                        </span>
+                        <p class="text">{{item.text}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
       </div>
     </section>
     <section class="section" :class="{ active: this.pageNum == 2 }">
@@ -73,6 +86,7 @@ export default {
       document.addEventListener('scroll', this.scroll, true);
       this.waveBg();
       
+      this.$store.commit('sorting');
     },
     unmounted() {
       document.removeEventListener('scroll', this.scroll, true);
@@ -128,31 +142,32 @@ export default {
             break;
           }
         }
-        this.pageChangeFunc();
+        // this.pageChangeFunc();
       },
-      pageChangeFunc(){
-          const inner = document.querySelectorAll(".inner-wrap");
-          const el = inner[this.pageNum];
-          CustomEase.create("custom", "M0,0 C0.266,0.412 0.571,0.079 0.7,0.2 0.744,0.241 0.78,1 1,1 ");
+      // pageChangeFunc(){
+      //     const inner = document.querySelectorAll(".inner-wrap");
+      //     const el = inner[this.pageNum];
+      //     CustomEase.create("custom", "M0,0 C0.266,0.412 0.571,0.079 0.7,0.2 0.744,0.241 0.78,1 1,1 ");
 
-          for(var i=0; i<inner.length; i++){
-              const notEl = inner[i];
-              gsap.to(notEl, {
-                duration: 1,
-                transform: 'translateY(-100%)',
-                opacity: 0,
-                ease : "custom",
+      //     for(var i=0; i<inner.length; i++){
+      //         const notEl = inner[i];
+      //         gsap.to(notEl, {
+      //           duration: 1,
+      //           transform: 'translateY(-100%)',
+      //           opacity: 0,
+      //           ease : "custom",
                 
-              })
-          }
+      //         })
+      //     }
 
-          gsap.to(el, {
-            duration: 1,
-            transform: 'translateY(0%)',
-            opacity: 1,
-            ease : "custom",
-          })
-      }
+      //     gsap.to(el, {
+      //       duration: 1,
+      //       transform: 'translateY(0%)',
+      //       opacity: 1,
+      //       ease : "custom",
+      //     })
+      // }
+
     }
 }
 </script>
@@ -200,7 +215,7 @@ line {
 .inner-wrap{
   width:100%;
   height:100%;
-  opacity:0; transform:translateY(100%);
+  // opacity:0; transform:translateY(100%);
 }
 // section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
 // section.active .inner-wrap{opacity: 1; transform:translateY(0);}

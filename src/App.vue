@@ -41,6 +41,7 @@ export default {
 @import './assets/style/common.scss';
 @import './assets/style/font.scss';
 @import './assets/style/root.scss';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 .wrap{
   overflow-x: hidden;

@@ -63,7 +63,11 @@ const store = createStore({
     setValue(state, data){
         state.isActive = false;                    
         state.value = data;
-    }
+    },
+    sorting(state){
+      let sortArr = state.item;
+      console.log(sortArr);
+    },
   },
   actions : {
     getData(context){

@@ -16,7 +16,7 @@
     {
         "id" : "1",
         "title" : "영환식품",
-        "like" : 0,
+        "like" : 3,
         "click" : false,
         "category" : "미디어",
         "ceo" : "양지희",
@@ -30,7 +30,7 @@
     {
         "id" : "2",
         "title" : "민서스튜디오",
-        "like" : 0,
+        "like" : 5,
         "click" : false,
         "category" : "철강",
         "ceo" : "염성민",
@@ -44,7 +44,7 @@
     {
         "id" : "3",
         "title" : "성민인터넷",
-        "like" : 0,
+        "like" : 24,
         "click" : false,
         "category" : "식품",
         "ceo" : "소수원",
@@ -58,7 +58,7 @@
     {
         "id" : "4",
         "title" : "(주)서현네트웍스",
-        "like" : 0,
+        "like" : 7,
         "click" : false,
         "category" : "미디어",
         "ceo" : "변혜나",
@@ -72,7 +72,7 @@
     {
         "id" : "5",
         "title" : "은상인터넷",
-        "like" : 0,
+        "like" : 44,
         "click" : false,
         "category" : "미디어",
         "ceo" : "천민서",
@@ -86,7 +86,7 @@
     {
         "id" : "6",
         "title" : "선엽기획",
-        "like" : 0,
+        "like" : 78,
         "click" : false,
         "category" : "철강",
         "ceo" : "정경춘",
@@ -100,7 +100,7 @@
     {
         "id" : "7",
         "title" : "나연건설",
-        "like" : 0,
+        "like" : 14,
         "click" : false,
         "category" : "식품",
         "ceo" : "왕진수",
@@ -114,7 +114,7 @@
     {
         "id" : "8",
         "title" : "진희미디어",
-        "like" : 0,
+        "like" : 22,
         "click" : false,
         "category" : "이벤트",
         "ceo" : "진구범",
@@ -128,7 +128,7 @@
     {
         "id" : "9",
         "title" : "인규은행",
-        "like" : 0,
+        "like" : 86,
         "click" : false,
         "category" : "미디어",
         "ceo" : "엄지민",
@@ -142,7 +142,7 @@
     {
         "id" : "10",
         "title" : "영진식품",
-        "like" : 0,
+        "like" : 145,
         "click" : false,
         "category" : "철강",
         "ceo" : "장봄",
@@ -156,7 +156,7 @@
     {
         "id" : "11",
         "title" : "상호은행",
-        "like" : 0,
+        "like" : 43,
         "click" : false,
         "category" : "식품",
         "ceo" : "남채현",
@@ -170,7 +170,7 @@
     {
         "id" : "12",
         "title" : "태현식품",
-        "like" : 0,
+        "like" : 23,
         "click" : false,
         "category" : "금융",
         "ceo" : "여영철",
@@ -184,7 +184,7 @@
     {
         "id" : "13",
         "title" : "강희인터넷",
-        "like" : 0,
+        "like" : 30,
         "click" : false,
         "category" : "교육",
         "ceo" : "양영진",
@@ -198,7 +198,7 @@
     {
         "id" : "14",
         "title" : "상선미디어",
-        "like" : 0,
+        "like" : 46,
         "click" : false,
         "category" : "이벤트",
         "ceo" : "남나연",
@@ -212,7 +212,7 @@
     {
         "id" : "15",
         "title" : "한나기획",
-        "like" : 0,
+        "like" : 49,
         "click" : false,
         "category" : "금융",
         "ceo" : "김민희",
@@ -226,7 +226,7 @@
     {
         "id" : "16",
         "title" : "종수보험",
-        "like" : 0,
+        "like" : 22,
         "click" : false,
         "category" : "미디어",
         "ceo" : "이진우",
@@ -240,7 +240,7 @@
     {
         "id" : "17",
         "title" : "지선기획",
-        "like" : 0,
+        "like" : 35,
         "click" : false,
         "category" : "보험",
         "ceo" : "명수빈",

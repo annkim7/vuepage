@@ -171,4 +171,10 @@ export default {
     }
 }
 
+@include mobile{
+    .history{
+        @include scrollX(767px);
+    }
+}
+
 </style>

@@ -341,6 +341,7 @@ export default {
         @include gallary(2rem,1);
     }
 
+
     .search-box{
         width:100%;
         min-width: 100%;
