@@ -18,17 +18,17 @@ export default {
   data(){
     return {}
   },
-  mounted() {
-      this.getData();
-      this.getItem();
-  },
+  mounted(){
+    this.getData();
+    this.getItem();
+  },  
   methods: {
     onResize() {
       this.$store.commit('handleResize')
     },
     ...mapActions([
       'getData', 'getItem'
-    ])
+    ]),
   },
   components: {
     Header,

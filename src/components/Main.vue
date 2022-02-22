@@ -26,7 +26,7 @@
         <h2 class="main-title">Random text</h2>
         <div class="item-box">
             <ul class="item-list">
-                <li v-for="(item, i) in $store.state.item" :key="i" class="item" >
+                <li v-for="(item, i) in sortArr" :key="i" class="item" >
                     <div class="image">
                         <router-link :to="{ path: `/detail/20/` + item.id }">
                             <span class="img"><img :src="item.img"/></span>
@@ -80,13 +80,14 @@ export default {
         scrollTop : 0,
         pageNum : 0,
         active : false,
+        sortArr : {},
       }
     },
     mounted(){
       document.addEventListener('scroll', this.scroll, true);
       this.waveBg();
-      
-      this.$store.commit('sorting');
+
+      this.sort();
     },
     unmounted() {
       document.removeEventListener('scroll', this.scroll, true);
@@ -127,6 +128,16 @@ export default {
             }).progress(norm * frequency);  
           }
       },
+      sort(){
+        setTimeout(()=>{
+          let sortOriginal = [...this.$store.state.item];
+          let sort = sortOriginal.sort(function(a,b){
+            return b.like - a.like
+          });
+          this.sortArr = sort.slice(0,4);
+          console.log(this.sortArr)
+        }, 2000);
+      },
       scroll(e){
         this.scrollTop = e.target.scrollTop;
         const section = document.getElementsByTagName("section");
@@ -166,13 +177,13 @@ export default {
       //       opacity: 1,
       //       ease : "custom",
       //     })
-      // }
-
+      // },
+      
     }
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import '../assets/style/root.scss';
 
 
@@ -221,7 +232,6 @@ line {
 // section.active .inner-wrap{opacity: 1; transform:translateY(0);}
 
 
-
 .top-title{
   @include title;
   font-size: 7rem;
@@ -250,6 +260,19 @@ line {
   text-align: center;
 }
 
+section .item-box{
+  padding: 0 4rem;
+}
+
+section .item-list{
+    @include gallary(2rem,4);
+    li{
+      &:nth-of-type(n+4){
+        margin-top:0;
+        margin-left: 2rem;
+      }
+    }
+}
 
 
 .half-box{

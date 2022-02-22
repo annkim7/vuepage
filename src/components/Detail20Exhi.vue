@@ -1,6 +1,5 @@
 <template>
     <SubHeader />
-    
     <div class="exhibitionDetail-area">
         <div class="exhibitionDetail-wrap">
             <div class="detail-box">
