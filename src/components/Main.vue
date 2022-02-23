@@ -16,14 +16,48 @@
       </div>
       <div class="inner-wrap">
         <div class="content">
-          <h2 class="top-title">Lorem Ipsum</h2>
-          <p>Lorem Ipsum is simply dummy<br>text of the printing</p>
+          <!--<h2 class="top-title">Lorem Ipsum</h2>
+          <p>Lorem Ipsum is simply dummy<br>text of the printing</p> -->
+          <h2 class="topWord">
+            <span>
+              <em>T</em>
+              <em>H</em>
+              <em>E</em>
+            </span>
+            <span class="whiteRow">
+              <em>F</em>
+              <em>U</em>
+              <em>T</em>
+              <em>U</em>
+              <em>R</em>
+              <em>E</em>
+            </span>
+            <span>
+              <em>I</em>
+              <em>S</em>
+              <em>-</em>
+              <em>I</em>
+              <em>N</em>
+            </span>
+            <span class="whiteRow">
+              <em>O</em>
+              <em>U</em>
+              <em>R</em>
+            </span>
+            <span>
+              <em>H</em>
+              <em>A</em>
+              <em>N</em>
+              <em>D</em>
+              <em>S</em>
+            </span>
+          </h2>
         </div>
       </div>
     </section>
     <section class="section" :class="{ active: this.pageNum == 1 }">
       <div class="inner-wrap">
-        <h2 class="main-title">Random text</h2>
+        <h2 class="main-title">Best Exhibitor</h2>
         <div class="item-box">
             <ul class="item-list">
                 <li v-for="(item, i) in sortArr" :key="i" class="item" >
@@ -51,9 +85,20 @@
           <div class="item"></div>
           <div class="txt">
             <h2 class="main-title">메인제목3</h2>
-            <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-            </p>
+            <!-- <hooper>
+              <slide>
+                slide 1
+              </slide>
+              <slide>
+                slide 2
+              </slide>
+              <slide>
+                slide 3
+              </slide>
+              <slide>
+                slide 3
+              </slide>
+            </hooper> -->
           </div>
         </div>
       </div>
@@ -70,11 +115,17 @@
 <script>
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+// import { Hooper, Slide } from 'hooper';
+// import 'hooper/dist/hooper.css';
 
 gsap.registerPlugin(CustomEase);
 
 export default {
     name : 'Main',
+    // components: {
+    //   Hooper,
+    //   Slide
+    // },
     data(){
       return{
         scrollTop : 0,
@@ -187,8 +238,6 @@ export default {
 @import '../assets/style/root.scss';
 
 
-
-
 section {
   overflow:hidden;
   position: relative;
@@ -196,6 +245,15 @@ section {
   width: 100vw;
   
 }
+
+.inner-wrap{
+  width:100%;
+  height:100%;
+  // opacity:0; transform:translateY(100%);
+}
+// section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
+// section.active .inner-wrap{opacity: 1; transform:translateY(0);}
+
 
 .bg{
   @include centerPos;
@@ -223,13 +281,31 @@ line {
 }
 
 
-.inner-wrap{
-  width:100%;
-  height:100%;
-  // opacity:0; transform:translateY(100%);
+
+.content{
+  @include centerPos;
+  width: 70%;
+  z-index: 5;
 }
-// section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
-// section.active .inner-wrap{opacity: 1; transform:translateY(0);}
+
+.topWord{
+  display:flex;
+  flex-flow: row wrap;
+  span{
+    display: flex;
+    width:100%;
+    margin: 3rem 0;
+    padding: 0.4rem;
+    justify-content: space-between;
+    em{
+      font-size: 4rem;
+      font-weight: 600;
+    }
+  }
+  span.whiteRow{
+    background: var(--white);
+  }
+}
 
 
 .top-title{
@@ -246,10 +322,7 @@ line {
   text-align: center;
 }
 
-.content{
-  @include centerPos;
-  z-index: 5;
-}
+
 
 .content p{
   @include title;

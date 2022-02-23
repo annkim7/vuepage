@@ -51,23 +51,23 @@ export default {
 <style lang="scss" >
 @import '../assets/style/root.scss';
 
+.subHeader-wrap{
+    @include layout;
+    margin-top: 60px;
+}
+
 .subHeader-box{
-    padding: 3.5rem 0 2.6rem;
-    text-align: center
+    padding: 3.5rem 0 3.5rem;
 }
 .pageTitle{
     @include title;
-    display: inline-block;
-    text-align: center;
+    font-size: 2.3rem;
 }
 
-.subList-box{
-    border-top: 1px solid var(--default-color);
-    border-bottom: 1px solid var(--default-color);
-}
 .pageList{
-    @include center;
     @include layout;
+    display:flex;
+    background: var(--white);
     li{
         padding: 1.4rem 1rem;
         min-width:10%;
@@ -75,14 +75,15 @@ export default {
     }
 }
 .siteMap{
-    margin-top:1.2rem;
+    margin-top:0.5rem;
 }
 .siteCate-list{
-    @include center;
+    display:flex;
     li{
         position:relative;
         display: flex;
         font-size: 0.9rem;
+        color: #cfcfcf;
     }
     svg{
         width: 0.25em;

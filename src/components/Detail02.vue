@@ -148,13 +148,15 @@ export default {
 .tab-list{
     display:flex;
     flex-flow: row wrap;
+    border-bottom: 1px solid var(--key-color);
     li{
         min-width: 7rem;
         margin-left: -1px;
+        margin-bottom: -1px;
         padding: 0.7rem 0;
         font-size: 1rem;
         text-align: center;
-        background: var(--white);
+        
         border:1px solid var(--key-color);
     }
     li.active{
@@ -163,11 +165,11 @@ export default {
     }
     li:first-child{
         border-top-left-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
+        // border-bottom-left-radius: 0.5rem;
     }
     li:last-child{
         border-top-right-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
+        // border-bottom-right-radius: 0.5rem;
     }
 }
 

@@ -49,11 +49,12 @@ export default {
 
 .header-wrap{
     @include center;
-    position:relative;
+    position:absolute;
     width:100%;
     height:60px;
     padding: 0 1rem;
-    background: var(--white);
+    top:0;
+    left:0;
     justify-content: space-between;
     z-index:10;
 }
