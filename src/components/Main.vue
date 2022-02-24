@@ -16,8 +16,6 @@
       </div>
       <div class="inner-wrap">
         <div class="content">
-          <!--<h2 class="top-title">Lorem Ipsum</h2>
-          <p>Lorem Ipsum is simply dummy<br>text of the printing</p> -->
           <h2 class="topWord">
             <span>
               <em>T</em>
@@ -57,49 +55,35 @@
     </section>
     <section class="section" :class="{ active: this.pageNum == 1 }">
       <div class="inner-wrap">
-        <h2 class="main-title">Best Exhibitor</h2>
-        <div class="item-box">
-            <ul class="item-list">
-                <li v-for="(item, i) in sortArr" :key="i" class="item" >
-                    <div class="image">
-                        <router-link :to="{ path: `/detail/20/` + item.id }">
-                            <span class="img"><img :src="item.img"/></span>
-                        </router-link>
-                    </div>
-                    <div class="summary">
-                        <strong class="title">{{item.title}}</strong>
-                        <span @click="$store.commit('like', item.id)" class="like">
-                            <em class="heart" :class="{ active: item.click == true }"></em>
-                            <i class="count">{{item.like}}</i>
-                        </span>
-                        <p class="text">{{item.text}}</p>
-                    </div>
-                </li>
-            </ul>
+        <div class="content">
+          <h2 class="main-title">Best Exhibitor</h2>
+          <div class="item-box">
+              <ul class="item-list">
+                  <li v-for="(item, i) in sortArr" :key="i" class="item" >
+                      <div class="image">
+                          <router-link :to="{ path: `/detail/20/` + item.id }">
+                              <span class="img"><img :src="item.img"/></span>
+                          </router-link>
+                      </div>
+                      <div class="summary">
+                          <strong class="title">{{item.title}}</strong>
+                          <span @click="$store.commit('like', item.id)" class="like">
+                              <em class="heart" :class="{ active: item.click == true }"></em>
+                              <i class="count">{{item.like}}</i>
+                          </span>
+                          <p class="text">{{item.text}}</p>
+                      </div>
+                  </li>
+              </ul>
+          </div>
         </div>
+        
       </div>
     </section>
     <section class="section" :class="{ active: this.pageNum == 2 }">
       <div class="inner-wrap">
-        <div class="half-box">
-          <div class="item"></div>
-          <div class="txt">
-            <h2 class="main-title">메인제목3</h2>
-            <!-- <hooper>
-              <slide>
-                slide 1
-              </slide>
-              <slide>
-                slide 2
-              </slide>
-              <slide>
-                slide 3
-              </slide>
-              <slide>
-                slide 3
-              </slide>
-            </hooper> -->
-          </div>
+        <div class="content">
+             
         </div>
       </div>
     </section>
@@ -115,17 +99,11 @@
 <script>
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-// import { Hooper, Slide } from 'hooper';
-// import 'hooper/dist/hooper.css';
 
 gsap.registerPlugin(CustomEase);
 
 export default {
     name : 'Main',
-    // components: {
-    //   Hooper,
-    //   Slide
-    // },
     data(){
       return{
         scrollTop : 0,
@@ -237,7 +215,6 @@ export default {
 <style lang="scss">
 @import '../assets/style/root.scss';
 
-
 section {
   overflow:hidden;
   position: relative;
@@ -322,21 +299,6 @@ line {
   text-align: center;
 }
 
-
-
-.content p{
-  @include title;
-  margin-top: 2rem;
-  font-size: 3rem;
-  line-height: 1.3;
-  color: #000;
-  text-align: center;
-}
-
-section .item-box{
-  padding: 0 4rem;
-}
-
 section .item-list{
     @include gallary(2rem,4);
     li{
@@ -348,13 +310,6 @@ section .item-list{
 }
 
 
-.half-box{
-  @include center;
-}
-
-.half-box .txt{
-  width: 50%;
-}
 
 
 </style>

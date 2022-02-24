@@ -25,8 +25,11 @@
                 </div>
             </div>
             <div class="text-box">
-                <h4 class="title">기업소개</h4>
-                <p>{{$store.state.item[$route.params.id].text}}</p>
+                <div class="companyIntro">
+                    <h4 class="title">기업소개</h4>
+                    <p>{{$store.state.item[$route.params.id].text}}</p>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -49,7 +52,8 @@ export default {
 
 
 .exhibitionDetail-area{
-    padding: 3.5rem 0;
+    padding: 3.5rem 0 0;
+    background:#f9f9f9;
 }
 
 .detail-box{
@@ -108,15 +112,19 @@ export default {
 }
 
 .text-box{
-    @include layout; 
     margin-top: 3.5rem;
+    background: #EBEBEB;
 
+}
+
+.companyIntro{
+    @include layout;
+    padding: 3rem 0;
     .title{
         @include befTitle;
         font-size: 1.5rem;
     }
-    p{
-        height: 18rem;      
+    p{   
         padding: 1.3rem 0;
     }
 }

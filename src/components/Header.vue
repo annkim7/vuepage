@@ -56,6 +56,7 @@ export default {
     top:0;
     left:0;
     justify-content: space-between;
+    border-bottom: 1px solid #D9D9D9;
     z-index:10;
 }
 
@@ -88,6 +89,12 @@ export default {
     height:100%;
 }
 
+.side-list{
+    li{
+        font-size:0.8rem;
+    }
+}
+
 .nav-list{
     justify-content: center
 }
@@ -110,6 +117,7 @@ export default {
     @include center;
     width:100%;
     height:100%;
+    font-size:0.85rem;
 }
 
 .navTit-list{
@@ -119,6 +127,7 @@ export default {
     li{
         padding: 1rem 0;
         background: var(--white);
+        font-size:0.85rem;
     }
     li ~ li{
         margin-left:0;

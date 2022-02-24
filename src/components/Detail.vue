@@ -30,6 +30,7 @@ export default {
 
 .sub-container{
     padding: 3.5rem 1.66rem;
+    background:#f9f9f9;
 }
 
 </style>

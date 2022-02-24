@@ -67,11 +67,12 @@ export default {
 .pageList{
     @include layout;
     display:flex;
-    background: var(--white);
+    border-top: 1px solid #DEDEDE;
     li{
         padding: 1.4rem 1rem;
         min-width:10%;
         text-align: center;
+        font-size: 0.8rem;
     }
 }
 .siteMap{

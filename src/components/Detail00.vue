@@ -100,6 +100,7 @@ export default {
         margin-bottom:2rem;
         font-size: 2.5rem;
         font-weight: 600;
+        background: var(--white);
     }
 }
 
