@@ -313,6 +313,27 @@
     }
 }
 
+@mixin tab(){
+    display:flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid var(--key-color);
+    li{
+        min-width: 7rem;
+        margin-left: -1px;
+        margin-bottom: -1px;
+        padding: 0.7rem 0;
+        font-size: 1rem;
+        text-align: center;
+        
+        border:1px solid var(--key-color);
+    }
+    li.active{
+        color: var(--white);
+        background: var(--key-color);
+    }
+}
+
+
 @mixin scrollX($minWidth){
     overflow:auto;
     ul{

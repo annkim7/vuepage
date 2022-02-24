@@ -83,7 +83,15 @@
     <section class="section" :class="{ active: this.pageNum == 2 }">
       <div class="inner-wrap">
         <div class="content">
-             
+            <Carousel :autoplay="2000" :wrap-around="true">
+              <Slide v-for="slide in 10" :key="slide">
+                <div class="carousel__item">{{ slide }}</div>
+              </Slide>
+
+              <template #addons>
+                <Pagination />
+              </template>
+            </Carousel>
         </div>
       </div>
     </section>
@@ -99,11 +107,21 @@
 <script>
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+// import { defineComponent } from 'vue'
+import { Carousel, Pagination, Slide } from 'vue3-carousel';
+
+import 'vue3-carousel/dist/carousel.css';
+
 
 gsap.registerPlugin(CustomEase);
 
 export default {
     name : 'Main',
+    components: {
+      Carousel,
+      Slide,
+      Pagination,
+    },
     data(){
       return{
         scrollTop : 0,
@@ -214,6 +232,33 @@ export default {
 
 <style lang="scss">
 @import '../assets/style/root.scss';
+
+.carousel{
+  width:100%;
+  height:300px;
+}
+.carousel__item {
+  min-height: 200px;
+  width: 100%;
+  background-color: var(--vc-clr-primary);
+  color:  var(--vc-clr-white);
+  font-size: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__slide {
+  padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
+}
+
 
 section {
   overflow:hidden;

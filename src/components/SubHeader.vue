@@ -69,9 +69,8 @@ export default {
     display:flex;
     border-top: 1px solid #DEDEDE;
     li{
-        padding: 1.4rem 1rem;
+        padding: 1.4rem 1rem 1.4rem 0;
         min-width:10%;
-        text-align: center;
         font-size: 0.8rem;
     }
 }
@@ -80,15 +79,16 @@ export default {
 }
 .siteCate-list{
     display:flex;
+    margin-top:0.5rem;
     li{
         position:relative;
         display: flex;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: #cfcfcf;
     }
     svg{
         width: 0.25em;
-        margin: 0 0.5rem;
+        margin: 0 0.2rem;
     }
     
 }

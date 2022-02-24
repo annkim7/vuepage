@@ -146,30 +146,22 @@ export default {
 
 
 .tab-list{
-    display:flex;
+    display: flex;
     flex-flow: row wrap;
-    border-bottom: 1px solid var(--key-color);
     li{
-        min-width: 7rem;
-        margin-left: -1px;
-        margin-bottom: -1px;
-        padding: 0.7rem 0;
-        font-size: 1rem;
+        min-width: 6rem;
+        padding: 0.8rem 0.5rem;
+        background: #D3D3D3;
+        border-radius: 2rem;
         text-align: center;
-        
-        border:1px solid var(--key-color);
+        cursor:pointer;
     }
     li.active{
         color: var(--white);
         background: var(--key-color);
     }
-    li:first-child{
-        border-top-left-radius: 0.5rem;
-        // border-bottom-left-radius: 0.5rem;
-    }
-    li:last-child{
-        border-top-right-radius: 0.5rem;
-        // border-bottom-right-radius: 0.5rem;
+    li ~ li{
+        margin-left: 0.5rem;
     }
 }
 
