@@ -16,40 +16,7 @@
       </div>
       <div class="inner-wrap">
         <div class="content">
-          <h2 class="topWord">
-            <span>
-              <em>T</em>
-              <em>H</em>
-              <em>E</em>
-            </span>
-            <span class="whiteRow">
-              <em>F</em>
-              <em>U</em>
-              <em>T</em>
-              <em>U</em>
-              <em>R</em>
-              <em>E</em>
-            </span>
-            <span>
-              <em>I</em>
-              <em>S</em>
-              <em>-</em>
-              <em>I</em>
-              <em>N</em>
-            </span>
-            <span class="whiteRow">
-              <em>O</em>
-              <em>U</em>
-              <em>R</em>
-            </span>
-            <span>
-              <em>H</em>
-              <em>A</em>
-              <em>N</em>
-              <em>D</em>
-              <em>S</em>
-            </span>
-          </h2>
+          
         </div>
       </div>
     </section>
@@ -84,9 +51,24 @@
       <div class="inner-wrap">
         <div class="content">
             <Carousel :autoplay="2000" :wrap-around="true">
-              <Slide v-for="slide in 10" :key="slide">
+              <Slide v-for="slide in 4" :key="slide">
                 <div class="carousel__item">{{ slide }}</div>
               </Slide>
+              
+              <!-- <Slide>
+                <div class="carousel__item">
+                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
+                </div>
+                <div class="carousel__item">
+                  <img src="https://images.unsplash.com/photo-1558222218-b7b54eede3f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHByb2Zlc3Npb25hbCUyMHdvbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+                </div>
+                <div class="carousel__item">
+                  <img src="https://images.unsplash.com/photo-1547486924-820807a1a076?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+                </div>
+                <div class="carousel__item">
+                  <img src="https://images.unsplash.com/photo-1581065178047-8ee15951ede6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80">
+                </div>
+              </Slide> -->
 
               <template #addons>
                 <Pagination />
@@ -310,24 +292,7 @@ line {
   z-index: 5;
 }
 
-.topWord{
-  display:flex;
-  flex-flow: row wrap;
-  span{
-    display: flex;
-    width:100%;
-    margin: 3rem 0;
-    padding: 0.4rem;
-    justify-content: space-between;
-    em{
-      font-size: 4rem;
-      font-weight: 600;
-    }
-  }
-  span.whiteRow{
-    background: var(--white);
-  }
-}
+
 
 
 .top-title{

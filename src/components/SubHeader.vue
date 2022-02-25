@@ -30,7 +30,7 @@
         </div>
         <div class="subList-box">
             <ul class="pageList">
-                <li v-for="(sub, j) in $store.state.menu[$route.path.substr(8).charAt(0)].subTitle" :key="j">
+                <li v-for="(sub, j) in $store.state.menu[$route.path.substr(8).charAt(0)].subTitle" :key="j" :class="{ active: $route.path.substr(8).charAt(1) == j }">
                     <router-link :to="{ path: `/detail/` + $route.path.substr(8).charAt(0) + j}">
                         {{sub}}
                     </router-link>
@@ -69,9 +69,23 @@ export default {
     display:flex;
     border-top: 1px solid #DEDEDE;
     li{
-        padding: 1.4rem 1rem 1.4rem 0;
-        min-width:10%;
+        padding: 1.4rem 0;
         font-size: 0.8rem;
+    }
+    li.active{
+        position:relative;
+        &:before{
+            position:absolute;
+            bottom:0;
+            left:0;
+            width:100%;
+            height:2px;
+            background: #D1D1D1;
+            content:'';
+        }
+    }
+    li ~ li{
+        margin-left:1.5rem;
     }
 }
 .siteMap{

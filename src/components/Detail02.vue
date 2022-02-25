@@ -103,30 +103,33 @@ export default {
 }
 
 .history-box{
+    display:flex;
+    flex-flow: row wrap;
     margin-top: 3.4rem;
     .title{
         @include title;
-        margin-bottom: 2rem;
+        width: 14rem;
+        margin-right: 2rem;
     }
 }
 
 .history{
-    border-top: 1px solid var(--default-color);
-    border-bottom: 1px solid var(--default-color);
+    width: calc(100% - 16rem);
 }
 
 .history .list{
     @include list;
     li{
-        padding: 1rem 0;
-        align-items: center;
+        padding: 0.3rem 0;
         b{
-            padding-left: 0.85rem;
+            font-size: 1.1rem;
+        }
+        span{
+            font-size: 1.1rem;
         }
     }
     li ~ li{
-        margin-top:0;
-        border-top: 1px solid #cfcfcf;
+        margin-top:0.4rem;
     }
 }
 
@@ -146,13 +149,14 @@ export default {
 
 
 .tab-list{
-    display: flex;
+    @include center;
     flex-flow: row wrap;
     li{
         min-width: 6rem;
-        padding: 0.8rem 0.5rem;
+        padding: 0.6rem 0.5rem;
         background: #D3D3D3;
         border-radius: 2rem;
+        font-size: 0.8rem;
         text-align: center;
         cursor:pointer;
     }

@@ -97,10 +97,9 @@ export default {
 
 .introduce-box{
     .title{
-        margin-bottom:2rem;
-        font-size: 2.5rem;
-        font-weight: 600;
-        background: var(--white);
+        @include title;
+        margin-bottom:1.2rem;
+        
     }
 }
 
