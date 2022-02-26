@@ -7,7 +7,7 @@
             <defs>
               <polyline id="wave" />
             </defs>  
-            <g>    
+            <g>     
               <use xlink:href="#wave" x="-30" stroke="#5A5A5A"/>
               <use xlink:href="#wave" x="0" stroke="#C9C9C9"/>
               <use xlink:href="#wave" x="30" stroke="#A0A0A0"/>
@@ -16,6 +16,7 @@
       </div>
       <div class="inner-wrap">
         <div class="content">
+          
           
         </div>
       </div>
@@ -269,6 +270,10 @@ svg {
   width:100%;
   margin: 0 auto;
   height: 100%;
+  g{
+    
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
 }
 
 line {
@@ -284,15 +289,18 @@ line {
   // stroke: var(--default-color);
 }
 
-
-
 .content{
   @include centerPos;
   width: 70%;
   z-index: 5;
 }
 
-
+.test{
+  @include centerPos;
+  width:50vw;
+  height:50vw;
+  background: skyblue;
+}
 
 
 .top-title{

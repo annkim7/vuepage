@@ -217,10 +217,6 @@ export default {
         flex-shrink: 0;
         font-size: 0.9rem;
         cursor: pointer;
-        .count{
-            @include centerTop;
-            right: 0.2rem;
-        }
     }
     .text{
         @include ellipseBox(2rem,2);

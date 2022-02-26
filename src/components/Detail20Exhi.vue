@@ -112,8 +112,9 @@ export default {
 }
 
 .text-box{
+    @include layout;
     margin-top: 3.5rem;
-    background: #EBEBEB;
+    border-top: 1px solid #d4d4d4;
 
 }
 
