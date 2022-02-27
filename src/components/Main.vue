@@ -2,23 +2,24 @@
 
   <div class="container">
     <section class="section" :class="{ active: this.pageNum == 0 }">
-      <div class="bg"> 
-          <svg>
-            <defs>
-              <polyline id="wave" />
-            </defs>  
-            <g>     
-              <use xlink:href="#wave" x="-30" stroke="#5A5A5A"/>
-              <use xlink:href="#wave" x="0" stroke="#C9C9C9"/>
-              <use xlink:href="#wave" x="30" stroke="#A0A0A0"/>
-            </g>
-          </svg>
-      </div>
+      
       <div class="inner-wrap">
         <div class="content">
           <div class="word">
-            SEMINAR
-          </div>
+              SEMINAR
+            </div>
+            <div class="bg"> 
+              <svg>
+                <defs>
+                  <polyline id="wave" />
+                </defs>  
+                <g>     
+                  <use xlink:href="#wave" x="-30" stroke="#5A5A5A"/>
+                  <use xlink:href="#wave" x="0" stroke="#C9C9C9"/>
+                  <use xlink:href="#wave" x="30" stroke="#A0A0A0"/>
+                </g>
+              </svg>
+            </div>
           
         </div>
       </div>
@@ -261,12 +262,18 @@ section {
 // section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
 // section.active .inner-wrap{opacity: 1; transform:translateY(0);}
 
+.content{
+  @include center;
+  position:relative;
+  width: 80%;
+  height:100%;
+  margin: 0 auto;
+  flex-flow: row wrap;
+  z-index: 5;
+}
+
 
 .bg{
-  // @include centerPos;
-  position:absolute;
-  top:0;
-  right:0;
   width:60%;
   height:100%;
   clip-path: circle(32% at 50% 50%);
@@ -292,39 +299,24 @@ line {
   // stroke: var(--default-color);
 }
 
-.content{
-  @include centerPos;
-  width: 70%;
-  z-index: 5;
-}
 
 .word{
+  width: 40%;
   font-size:8rem;
 }
 
-
-.top-title{
-  @include title;
-  font-size: 7rem;
-  color: #fff;
-  text-align: center;
+section:nth-of-type(2){
+  background:#f9f9f9;
 }
 
 .main-title{
   @include title;
-  margin-top:5rem;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-align: center;
 }
 
 section .item-list{
     @include gallary(2rem,4);
-    li{
-      &:nth-of-type(n+4){
-        margin-top:0;
-        margin-left: 2rem;
-      }
-    }
 }
 
 

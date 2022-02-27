@@ -191,7 +191,8 @@ export default {
 .item-list{
     @include gallary(2rem,3);
     li{
-        border: 1px solid var(--default-color);
+        // border: 1px solid var(--default-color);
+        border:1px solid #f4f4f4;
     }
     .image{
         @include imgFull;
@@ -203,12 +204,12 @@ export default {
     padding: 0.4rem 1.2rem 1.2rem;
     flex-flow: row wrap;
     align-items: center;
-    border-top: 1px solid var(--default-color);
+    border-top: 1px solid #f4f4f4;
     background: var(--white);
     .title{
         @include ellipse;
         flex: 1 1 0;
-        font-weight: 900;
+        color: var(--key-color);
     }
     .like{
         display:flex;
@@ -216,11 +217,15 @@ export default {
         align-items: center;
         flex-shrink: 0;
         font-size: 0.9rem;
+        color: var(--key-color);
         cursor: pointer;
     }
     .text{
         @include ellipseBox(2rem,2);
         width:100%;
+        font-size: 0.9rem;
+        line-height: 1.05;
+        color: #a8a8a8;
     }
 }
 
