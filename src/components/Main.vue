@@ -5,22 +5,26 @@
       
       <div class="inner-wrap">
         <div class="content">
-          <div class="word">
-              SEMINAR
+            <div class="main-visual">
+              <strong>Seoul Abstract Fair</strong>
+              <div class="bg"> 
+                <svg>
+                  <defs>
+                    <polyline id="wave" />
+                  </defs>  
+                  <g>     
+                    <use xlink:href="#wave" x="-30" stroke="#5A5A5A"/>
+                    <use xlink:href="#wave" x="0" stroke="#C9C9C9"/>
+                    <use xlink:href="#wave" x="30" stroke="#A0A0A0"/>
+                  </g>
+                </svg>
+              </div>
+              <strong>2022.12.25</strong>
             </div>
-            <div class="bg"> 
-              <svg>
-                <defs>
-                  <polyline id="wave" />
-                </defs>  
-                <g>     
-                  <use xlink:href="#wave" x="-30" stroke="#5A5A5A"/>
-                  <use xlink:href="#wave" x="0" stroke="#C9C9C9"/>
-                  <use xlink:href="#wave" x="30" stroke="#A0A0A0"/>
-                </g>
-              </svg>
+            <div class="word">
+              <span class="top">SEMINAR</span>
+              <span class="bottom">SEOUL</span>
             </div>
-          
         </div>
       </div>
     </section>
@@ -272,12 +276,23 @@ section {
   z-index: 5;
 }
 
+.main-visual{
+  @include center;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  strong{
+    font-size: 1.2rem;
+    color: #0e0e0e;
+    font-weight: 900;
+  }
+}
 
 .bg{
   width:60%;
   height:100%;
-  clip-path: circle(32% at 50% 50%);
-  background: #fff;
+  margin: 0 1rem;
+  // clip-path: circle(46% at 50% 50%);
 }
 
 svg {
@@ -296,14 +311,22 @@ line {
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  // stroke: var(--default-color);
 }
 
 
 .word{
-  width: 40%;
-  font-size:8rem;
+  @include centerPos;
+  font-size:40rem;
+  color:#EEEEEE;
+  font-weight:900;
+  .top{
+    transform: translate(-50%, 0%);
+  }
+  .bottom{
+    transform: translate(50%, 0%);
+  }
 }
+
 
 section:nth-of-type(2){
   background:#f9f9f9;

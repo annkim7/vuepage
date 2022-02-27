@@ -10,7 +10,10 @@
                 </ul>
             </div>
             <div v-if="$store.state.step == 0" class="history-box">
-                <h4 class="title">The Title 2021</h4>
+                <h4 class="title">
+                    <strong>The Title 2021</strong>
+                    <span></span>
+                </h4>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2021. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -24,7 +27,10 @@
                 </div>
             </div>
             <div v-if="$store.state.step == 1" class="history-box">
-                <h4 class="title">The Title 2020</h4>
+                <h4 class="title">
+                    <strong>The Title 2020</strong>
+                    <span></span>
+                </h4>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2020. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -38,7 +44,10 @@
                 </div>
             </div>
             <div v-if="$store.state.step == 2" class="history-box">
-                <h4 class="title">The Title 2019</h4>
+                <h4 class="title">
+                    <strong>The Title 2019</strong>
+                    <span></span>
+                </h4>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2019. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -62,7 +71,10 @@
                 </div>
             </div>
             <div v-if="$store.state.step == 3" class="history-box">
-                <h4 class="title">The Title 2018</h4>
+                <h4 class="title">
+                    <strong>The Title 2018</strong>
+                    <span></span>
+                </h4>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2018. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -103,19 +115,12 @@ export default {
 }
 
 .history-box{
-    display:flex;
-    flex-flow: row wrap;
-    margin-top: 3.4rem;
     .title{
-        @include title;
-        width: 14rem;
-        margin-right: 2rem;
+        @include contitle;
+        margin: 3.4rem 0;
     }
 }
 
-.history{
-    width: calc(100% - 16rem);
-}
 
 .history .list{
     @include list;
