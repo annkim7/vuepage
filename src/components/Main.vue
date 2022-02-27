@@ -16,7 +16,9 @@
       </div>
       <div class="inner-wrap">
         <div class="content">
-          
+          <div class="word">
+            SEMINAR
+          </div>
           
         </div>
       </div>
@@ -127,7 +129,7 @@ export default {
           var svg  = document.querySelector("svg");
           var wave = document.querySelector("#wave");
 
-          var width = window.innerWidth;
+          var width = svg.clientWidth;
           var sinus = CustomEase.create("sinus", "M0,0 C0.4,0 0.3,1 0.5,1 0.7,1 0.6,0 1,0");
 
           var amplitude = 240;
@@ -261,19 +263,20 @@ section {
 
 
 .bg{
-  @include centerPos;
-  width:100%;
+  // @include centerPos;
+  position:absolute;
+  top:0;
+  right:0;
+  width:60%;
   height:100%;
+  clip-path: circle(32% at 50% 50%);
+  background: #fff;
 }
 
 svg {
   width:100%;
   margin: 0 auto;
   height: 100%;
-  g{
-    
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  }
 }
 
 line {
@@ -295,11 +298,8 @@ line {
   z-index: 5;
 }
 
-.test{
-  @include centerPos;
-  width:50vw;
-  height:50vw;
-  background: skyblue;
+.word{
+  font-size:8rem;
 }
 
 
