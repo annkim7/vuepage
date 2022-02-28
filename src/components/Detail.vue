@@ -4,6 +4,7 @@
     <div class="sub-container">
         <Detail00 v-if="$route.params.id == '00'" />
         <Detail02 v-if="$route.params.id == '02'" />
+        <Detail10 v-if="$route.params.id == '10'" />
         <Detail20 v-if="$route.params.id == '20'" />
     </div>
 </template>
@@ -12,6 +13,7 @@
 import SubHeader from './SubHeader'
 import Detail00 from './Detail00'
 import Detail02 from './Detail02'
+import Detail10 from './Detail10'
 import Detail20 from './Detail20'
 
 export default {
@@ -20,6 +22,7 @@ export default {
         SubHeader,
         Detail00,
         Detail02,
+        Detail10,
         Detail20,
     }
 }

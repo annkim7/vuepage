@@ -62,21 +62,6 @@
               <Slide v-for="slide in 4" :key="slide">
                 <div class="carousel__item">{{ slide }}</div>
               </Slide>
-              
-              <!-- <Slide>
-                <div class="carousel__item">
-                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
-                </div>
-                <div class="carousel__item">
-                  <img src="https://images.unsplash.com/photo-1558222218-b7b54eede3f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHByb2Zlc3Npb25hbCUyMHdvbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
-                </div>
-                <div class="carousel__item">
-                  <img src="https://images.unsplash.com/photo-1547486924-820807a1a076?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
-                </div>
-                <div class="carousel__item">
-                  <img src="https://images.unsplash.com/photo-1581065178047-8ee15951ede6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80">
-                </div>
-              </Slide> -->
 
               <template #addons>
                 <Pagination />
@@ -87,7 +72,10 @@
     </section>
     <section class="section" :class="{ active: this.pageNum == 3 }">
       <div class="inner-wrap">
-        <h2 class="main-title">메인제목4</h2>
+        <div class="content">
+          <h2 class="main-title">Notice</h2>
+        </div>
+        
       </div>
     </section>
   </div>
@@ -118,6 +106,7 @@ export default {
         pageNum : 0,
         active : false,
         sortArr : {},
+
       }
     },
     mounted(){
@@ -223,6 +212,86 @@ export default {
 <style lang="scss">
 @import '../assets/style/root.scss';
 
+
+section {
+  overflow:hidden;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.inner-wrap{
+  width:100%;
+  height:100%;
+  // opacity:0; transform:translateY(100%);
+}
+// section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
+// section.active .inner-wrap{opacity: 1; transform:translateY(0);}
+
+.content{
+  @include center;
+  position:relative;
+  width: 80%;
+  height:100%;
+  margin: 0 auto;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.main-title{
+  @include lineTitle;
+}
+
+.main-visual{
+  @include center;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  strong{
+    font-size: 1.2rem;
+    color: #0e0e0e;
+    font-weight: 900;
+  }
+}
+
+.bg{
+  width:60%;
+  height:100%;
+  margin: 0 1rem;
+  // clip-path: circle(46% at 50% 50%);
+  svg {
+    width:100%;
+    height: 100%;
+    #wave {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+}
+
+.word{
+  @include centerPos;
+  font-size:40rem;
+  color:#EEEEEE;
+  font-weight:900;
+  .top{
+    transform: translate(-50%, 0%);
+  }
+  .bottom{
+    transform: translate(50%, 0%);
+  }
+}
+
+section:nth-of-type(2){
+  background:#f9f9f9;
+}
+
+section .item-list{
+    @include gallary(2rem,4);
+}
+
 .carousel{
   width:100%;
   height:300px;
@@ -250,99 +319,16 @@ export default {
 }
 
 
-section {
-  overflow:hidden;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  
+@include tablet{
+    section .item-list{
+        @include gallary(2rem,2);
+    }
 }
 
-.inner-wrap{
-  width:100%;
-  height:100%;
-  // opacity:0; transform:translateY(100%);
+@include mobile{
+    section .item-list{
+        @include gallary(2rem,1);
+    }
 }
-// section .inner-wrap{opacity:0; transform:translateY(100%); transition: all 0.3s;}
-// section.active .inner-wrap{opacity: 1; transform:translateY(0);}
-
-.content{
-  @include center;
-  position:relative;
-  width: 80%;
-  height:100%;
-  margin: 0 auto;
-  flex-flow: row wrap;
-  z-index: 5;
-}
-
-.main-visual{
-  @include center;
-  width:100%;
-  height:100%;
-  z-index: 1;
-  strong{
-    font-size: 1.2rem;
-    color: #0e0e0e;
-    font-weight: 900;
-  }
-}
-
-.bg{
-  width:60%;
-  height:100%;
-  margin: 0 1rem;
-  // clip-path: circle(46% at 50% 50%);
-}
-
-svg {
-  width:100%;
-  margin: 0 auto;
-  height: 100%;
-}
-
-line {
-  stroke-width: 1;
-  stroke: #3c3c3c;
-}
-
-#wave {
-  fill: none;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-
-.word{
-  @include centerPos;
-  font-size:40rem;
-  color:#EEEEEE;
-  font-weight:900;
-  .top{
-    transform: translate(-50%, 0%);
-  }
-  .bottom{
-    transform: translate(50%, 0%);
-  }
-}
-
-
-section:nth-of-type(2){
-  background:#f9f9f9;
-}
-
-.main-title{
-  @include title;
-  font-size: 2.2rem;
-  text-align: center;
-}
-
-section .item-list{
-    @include gallary(2rem,4);
-}
-
-
-
 
 </style>
