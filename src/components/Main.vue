@@ -112,7 +112,6 @@ export default {
     mounted(){
       document.addEventListener('scroll', this.scroll, true);
       this.waveBg();
-
       this.sort();
     },
     unmounted() {

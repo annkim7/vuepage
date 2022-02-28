@@ -21,13 +21,14 @@ export default {
   mounted(){
     this.getData();
     this.getItem();
+    this.getSchedule();
   },  
   methods: {
     onResize() {
       this.$store.commit('handleResize')
     },
     ...mapActions([
-      'getData', 'getItem'
+      'getData', 'getItem', 'getSchedule'
     ]),
   },
   components: {

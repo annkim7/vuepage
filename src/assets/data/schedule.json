@@ -4,41 +4,47 @@
         "time" : "10:00 ~ 11:00",
         "subject" : "New Trend 2022",
         "name" : "여종훈 본부장",
-        "company": "상선기획"
+        "company": "상선기획",
+        "img" : "../assets/person0.jpg"
     },
     {
         "id" : "1",
         "time" : "11:00 ~ 12:00",
         "subject" : "포스트 코로나 시대 소재 동향",
         "name" : "신민재 대표",
-        "company": "(주)규산"
+        "company": "(주)규산",
+        "img" : "../assets/person1.jpg"
     },
     {
         "id" : "2",
         "time" : "13:00 ~ 14:00",
         "subject" : "해양유래 최신 기술 동향",
         "name" : "윤경주 소장",
-        "company": "소민보험"
+        "company": "소민보험",
+        "img" : "../assets/person2.jpg"
     },
     {
         "id" : "3",
         "time" : "13:00 ~ 14:00",
         "subject" : "제약, 생명공학 회사의 대응과 역할",
         "name" : "표준호 수석연구원",
-        "company": "아름제약"
+        "company": "아름제약",
+        "img" : "../assets/person3.jpg"
     },
     {
         "id" : "4",
         "time" : "14:00 ~ 15:00",
         "subject" : "추상 예술의 특허분석",
         "name" : "배지선 상무",
-        "company": "(유)은택건설"
+        "company": "(유)은택건설",
+        "img" : "../assets/person4.jpg"
     },
     {
         "id" : "5",
         "time" : "14:00 ~ 15:00",
         "subject" : "컬러 트렌드와 유전공학",
         "name" : "강재연 이사",
-        "company": "(주)인규"
+        "company": "(주)인규",
+        "img" : "../assets/person5.jpg"
     }
 ]

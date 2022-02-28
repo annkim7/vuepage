@@ -12,28 +12,28 @@
                 </div>
                 <div class="break"><b>09:00 ~ 10:00</b> 접수 및 자료 배포</div>
                 <ul class="schedule-list">
-                    <li v-for="(time, i) in 2" :key="i">
-                        <span class="img"><img src="../assets/person.jpg"/></span>
+                    <li v-for="(schedule, i) in amArr" :key="i">
+                        <span class="img"><img :src="schedule.img"/></span>
                         <div class="con">
-                            <span class="time">10:00 ~ 11:00</span>
-                            <h5 class="subject">New Trend 2022</h5>
+                            <span class="time">{{schedule.time}}</span>
+                            <h5 class="subject">{{schedule.subject}}</h5>
                             <div class="belong">
-                                <span>박헌영 소장</span>
-                                <span>바이브 컴퍼니</span>
+                                <span>{{schedule.name}}</span>
+                                <span>{{schedule.company}}</span>
                             </div>
                         </div>
                     </li>
                 </ul>
                 <div class="break"><b>12:00 ~ 13:00</b> 점심</div>
                 <ul class="schedule-list double">
-                    <li v-for="(time, i) in 4" :key="i">
-                        <span class="img"><img src="../assets/person.jpg"/></span>
+                    <li v-for="(schedule, i) in pmArr" :key="i">
+                        <span class="img"><img :src="schedule.img"/></span>
                         <div class="con">
-                            <span class="time">10:00 ~ 11:00</span>
-                            <h5 class="subject">New Trend 2022</h5>
+                            <span class="time">{{schedule.time}}</span>
+                            <h5 class="subject">{{schedule.subject}}</h5>
                             <div class="belong">
-                                <span>박헌영 소장</span>
-                                <span>바이브 컴퍼니</span>
+                                <span>{{schedule.name}}</span>
+                                <span>{{schedule.company}}</span>
                             </div>
                         </div>
                     </li>
@@ -47,6 +47,24 @@
 <script>
 export default {
     name : 'Detail10',
+    data(){
+        return{
+            amArr : {},
+            pmArr : {},
+        }
+    },
+    mounted(){
+        this.schedule();
+    },
+    methods:{   
+        schedule(){
+            let scheduleOriginal = [...this.$store.state.schedule];
+            this.amArr = scheduleOriginal.slice(0,2);
+            this.pmArr = scheduleOriginal.slice(2,6);
+            console.log(this.amArr);
+            console.log(this.pmArr);
+        }
+    }
 }
 </script>
 
@@ -131,6 +149,7 @@ export default {
         width:10rem;
     }
     .con{
+        width:calc(100% - 10rem);
         padding-left: 1.66rem;
         .time{
             font-size:0.95rem;

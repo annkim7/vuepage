@@ -13,6 +13,7 @@ const store = createStore({
       step : 0,
       isActive: false,
       value: null,
+      schedule : {},
     }
   },
   mutations :{
@@ -64,6 +65,9 @@ const store = createStore({
         state.isActive = false;                    
         state.value = data;
     },
+    setSchedule(state, data){
+      state.schedule = data
+    },
   },
   actions : {
     getData(context){
@@ -78,6 +82,13 @@ const store = createStore({
       .then((b)=>{
         console.log(b.data);
         context.commit('setItem', b.data);
+      })
+    },
+    getSchedule(context){
+      axios.get('https://annkim7.github.io/vuepage/src/assets/data/schedule.json')
+      .then((c)=>{
+        console.log(c.data);
+        context.commit('setSchedule', c.data);
       })
     },
   },
