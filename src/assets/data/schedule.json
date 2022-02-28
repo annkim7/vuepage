@@ -5,7 +5,7 @@
         "subject" : "New Trend 2022",
         "name" : "여종훈 본부장",
         "company": "상선기획",
-        "img" : "../assets/person0.jpg"
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person0.jpg"
     },
     {
         "id" : "1",
@@ -13,7 +13,7 @@
         "subject" : "포스트 코로나 시대 소재 동향",
         "name" : "신민재 대표",
         "company": "(주)규산",
-        "img" : "../assets/person1.jpg"
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person1.jpg"
     },
     {
         "id" : "2",
@@ -21,7 +21,7 @@
         "subject" : "해양유래 최신 기술 동향",
         "name" : "윤경주 소장",
         "company": "소민보험",
-        "img" : "../assets/person2.jpg"
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person2.jpg"
     },
     {
         "id" : "3",
@@ -29,7 +29,7 @@
         "subject" : "제약, 생명공학 회사의 대응과 역할",
         "name" : "표준호 수석연구원",
         "company": "아름제약",
-        "img" : "../assets/person3.jpg"
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person3.jpg"
     },
     {
         "id" : "4",
@@ -37,7 +37,7 @@
         "subject" : "추상 예술의 특허분석",
         "name" : "배지선 상무",
         "company": "(유)은택건설",
-        "img" : "../assets/person4.jpg"
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person4.jpg"
     },
     {
         "id" : "5",
@@ -45,6 +45,14 @@
         "subject" : "컬러 트렌드와 유전공학",
         "name" : "강재연 이사",
         "company": "(주)인규",
-        "img" : "../assets/person5.jpg"
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person5.jpg"
+    },
+    {
+        "id" : "6",
+        "time" : "14:00 ~ 15:00",
+        "subject" : "플랫폼 시대, 기업의 생존 전략",
+        "name" : "오시은 부부장",
+        "company": "은택제약",
+        "img" : "https://annkim7.github.io/vuepage/src/assets/person6.jpg"
     }
 ]
