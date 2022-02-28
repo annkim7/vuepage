@@ -108,20 +108,7 @@ export default {
 }
 
 .list.bar{
-    li{
-        position: relative;
-    }
-    li ~ li{
-        margin-left: 0.5rem;
-        padding-left: 0.5rem;
-        &:before{
-            @include bef;
-            width:1px;
-            height: 80%;
-            top: 6%;
-            background: var(--default-color);
-        }
-    }
+    @include barList;
 }
 
 @include tablet{

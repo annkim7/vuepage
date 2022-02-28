@@ -92,6 +92,23 @@
     }
 }
 
+@mixin befBar($color){
+    display:flex;
+    color: $color;
+    span ~ span{
+        position: relative;
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        &:before{
+            @include bef;
+            width:1px;
+            height:84%;
+            top:2%;
+            background: $color;
+        }
+    }
+}
+
 @mixin dim{
     position: fixed;
     top:0;
@@ -217,6 +234,23 @@
     }
     li ~ li{
         margin-top: 0.4rem;
+    }
+}
+
+@mixin barList(){
+    li{
+        position: relative;
+    }
+    li ~ li{
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        &:before{
+            @include bef;
+            width:1px;
+            height: 80%;
+            top: 6%;
+            background: var(--default-color);
+        }
     }
 }
 
