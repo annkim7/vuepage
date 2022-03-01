@@ -98,7 +98,7 @@ export default {
 
 .introduce-box{
     .title{
-        @include lineTitle;
+        @include upTitle;
         margin-bottom:1.2rem;
         
     }

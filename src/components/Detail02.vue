@@ -104,7 +104,7 @@ export default {
 
 .history-box{
     .title{
-        @include lineTitle;
+        @include upTitle;
         margin: 3.4rem 0;
     }
 }

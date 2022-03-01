@@ -41,6 +41,21 @@
     }
 }
 
+@mixin upTitle{
+    padding: 0.8rem 0;
+    font-family: "Pretendard-Regular";
+    font-size: 2rem;
+    font-weight: 400;
+    color: #0e0e0e;
+    letter-spacing: -0.08rem;
+    position: relative;
+    &:before{
+        @include bef;
+        width:3rem;
+        height:3px;
+        background: #dedede;
+    }
+}
 
 @mixin center{
     display:flex;
@@ -124,6 +139,11 @@
 @mixin layout{
     max-width: 1023px;
     margin: 0 auto;
+}
+
+@mixin flexDown{
+    display:flex;
+    flex-flow:row wrap;
 }
 
 @mixin gallary($marginLeft, $column){

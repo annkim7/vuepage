@@ -3,7 +3,9 @@
         <div class="speaker-wrap">
             <div class="speaker-box">
                 <ul class="speaker-list">
-                    <li v-for="(speaker, i) in sideArr" :key="i" :style="{ backgroundImage : `url(${speaker.img})` }"></li>
+                    <li v-for="(speaker, i) in sideArr" :key="i" :style="{backgroundImage:`url(${speaker.img})`}">
+                        <router-link :to="{ path: `/detail/11/` + speaker.id }" v-if="speaker.id != undefined"></router-link>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -23,7 +25,6 @@ export default {
     },
     methods:{   
         side(){
-            // let scheduleOriginal = [...this.$store.state.schedule];
             this.sideArr = [...this.$store.state.schedule];
 
             const arr = Array.from({length: 7}, () => 1);
@@ -33,10 +34,7 @@ export default {
                 newArr.push(arr);
             }
 
-            // console.log(newArr);
-            // console.log(this.sideArr);
             this.sideArr.push(...newArr);
-            
         }
     }
 }
@@ -63,9 +61,6 @@ export default {
     li{
         width:25%;
         height: 20rem;
-        margin-top:-1px;
-        margin-right:-1px;
-        // border:1px solid var(--default-color);
         background: url('../assets/person0.jpg') no-repeat center center/cover;
         order:1;
         &:nth-of-type(n+8){
@@ -89,6 +84,10 @@ export default {
         }
         &:nth-of-type(15){
             order:7;
+        }
+        a{
+            width:100%;
+            height:100%;
         }
     }
 }

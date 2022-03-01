@@ -122,7 +122,7 @@ export default {
     @include layout;
     padding: 3rem 0;
     .title{
-        @include befTitle;
+        @include upTitle;
         font-size: 1.5rem;
     }
     p{   
