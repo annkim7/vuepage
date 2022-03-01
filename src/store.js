@@ -14,6 +14,8 @@ const store = createStore({
       isActive: false,
       value: null,
       schedule : {},
+      isOpen : false,
+      moId: 0,
     }
   },
   mutations :{
@@ -68,6 +70,13 @@ const store = createStore({
     setSchedule(state, data){
       state.schedule = data
     },
+    modal(state, data){
+      state.isOpen = true;
+      state.moId = data;
+    },
+    modalClose(state){
+      state.isOpen = false;
+    }
   },
   actions : {
     getData(context){

@@ -12,7 +12,7 @@
                 </div>
                 <div class="break"><b>09:00 ~ 10:00</b> 접수 및 자료 배포</div>
                 <ul class="schedule-list">
-                    <li v-for="(schedule, i) in amArr" :key="i">
+                    <li v-for="(schedule, i) in amArr" :key="i" @click="$store.commit('modal', schedule.id)">
                         <span class="img"><img :src="schedule.img"/></span>
                         <div class="con">
                             <span class="time">{{schedule.time}}</span>
@@ -26,7 +26,7 @@
                 </ul>
                 <div class="break"><b>12:00 ~ 13:00</b> 점심</div>
                 <ul class="schedule-list double">
-                    <li v-for="(schedule, i) in pmArr" :key="i">
+                    <li v-for="(schedule, i) in pmArr" :key="i" @click="$store.commit('modal', schedule.id)">
                         <span class="img"><img :src="schedule.img"/></span>
                         <div class="con">
                             <span class="time">{{schedule.time}}</span>
@@ -40,6 +40,24 @@
                 </ul>
             </div>
         </div>
+        
+    </div>
+
+    <div class="modal-area" v-if="$store.state.isOpen == true">
+        <div class="modal-wrap">
+            <span @click="$store.commit('modalClose')" class="close-btn"><font-awesome-icon :icon="['fa', 'times']" /></span>
+            <div class="modal-header">
+                <span class="time">{{$store.state.schedule[$store.state.moId].time}}</span>
+                <h4 class="title">{{$store.state.schedule[$store.state.moId].subject}}</h4>
+                <span class="name">{{$store.state.schedule[$store.state.moId].name}}</span>
+                <span class="company">({{$store.state.schedule[$store.state.moId].company}})</span>
+            </div>
+            <div class="modal-content">
+                {{$store.state.schedule[$store.state.moId].description}}
+            </div>
+
+        </div>
+        
         
     </div>
 </template>
@@ -59,10 +77,8 @@ export default {
     methods:{   
         schedule(){
             let scheduleOriginal = [...this.$store.state.schedule];
-            this.amArr = scheduleOriginal.slice(0,2);
-            this.pmArr = scheduleOriginal.slice(2,6);
-            console.log(this.amArr);
-            console.log(this.pmArr);
+            this.amArr = scheduleOriginal.filter((a)=>{ return a.time.substr(0,2) < 12; });
+            this.pmArr = scheduleOriginal.filter(b => !this.amArr.includes(b));
         }
     }
 }
@@ -161,7 +177,6 @@ export default {
             font-weight: 600;
             color: #0e0e0e;            
         }
-       
     }
 }
 
@@ -175,14 +190,74 @@ export default {
 }
 
 .schedule-list.double{
-    li{
-        width:50%;
-        &:nth-of-type(n+3){
-            border-top: 1px solid #0e0e0e;
-        }
-    }
     li ~ li{
         border-top:0;
     }
+    li{
+        width:auto;
+        min-width: 50%;
+        flex: 1 0 0;
+        &:nth-of-type(n+3){
+            border-top: 1px solid #0e0e0e;
+        }
+        &:nth-of-type(2n){
+            width:50%;
+        }
+    }
+    
+    
 }
+
+.modal-area{
+    @include dim;
+}
+
+.modal-wrap{
+    @include centerPos;
+    position:relative;
+    width: 40rem;
+    padding: 1.66rem;
+    background: #fff;
+    .close-btn{
+        position:absolute;
+        top:0;
+        right:0;
+        cursor:pointer;
+        svg{
+            width:1.5rem;
+            height:1.5rem;
+            margin:0.5rem;
+        }
+    }
+}
+
+.modal-header{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid #d4d4d4;
+    span{
+        font-size: 0.85rem;
+        color:#d1d1d1;
+    }
+    .time{
+        width:100%;
+    }
+    .title{
+        margin: 0.5rem 0 0.6rem;
+        margin-right:auto;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #0e0e0e;
+    }
+}
+
+.modal-content{
+    margin-top: 1.2rem;
+    padding: 1.2rem 0.6rem;
+    background: #f4f4f4;
+    white-space: pre-line;
+}
+
 </style>
