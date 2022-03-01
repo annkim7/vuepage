@@ -52,9 +52,7 @@
                 <span class="name">{{$store.state.schedule[$store.state.moId].name}}</span>
                 <span class="company">({{$store.state.schedule[$store.state.moId].company}})</span>
             </div>
-            <div class="modal-content">
-                {{$store.state.schedule[$store.state.moId].description}}
-            </div>
+            <div v-html="lineBreak($store.state.schedule[$store.state.moId].description)" class="modal-content"></div>
 
         </div>
         
@@ -79,6 +77,9 @@ export default {
             let scheduleOriginal = [...this.$store.state.schedule];
             this.amArr = scheduleOriginal.filter((a)=>{ return a.time.substr(0,2) < 12; });
             this.pmArr = scheduleOriginal.filter(b => !this.amArr.includes(b));
+        },
+        lineBreak(content){
+            return content.split('\n').join('<br><br>');
         }
     }
 }
@@ -161,6 +162,7 @@ export default {
     align-items: center;
     width:100%;
     padding: 1.66rem;
+    cursor:pointer;
     .img{
         width:10rem;
     }
@@ -254,9 +256,9 @@ export default {
 }
 
 .modal-content{
-    margin-top: 1.2rem;
-    padding: 1.2rem 0.6rem;
-    background: #f4f4f4;
+    padding: 1.2rem 0;
+    font-size:0.95rem;
+    line-height:1.3;
     white-space: pre-line;
 }
 
