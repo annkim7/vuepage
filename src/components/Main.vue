@@ -58,15 +58,19 @@
     <section class="section" :class="{ active: this.pageNum == 2 }">
       <div class="inner-wrap">
         <div class="content">
+          <div class="slide-box">
             <Carousel :autoplay="2000" :wrap-around="true">
-              <Slide v-for="slide in 4" :key="slide">
-                <div class="carousel__item">{{ slide }}</div>
+              <Slide v-for="(schedule, i) in $store.state.schedule" :key="i">
+                <div class="carousel__item">
+                  <img :src="schedule.img"/>
+                </div>
               </Slide>
 
               <template #addons>
                 <Pagination />
               </template>
             </Carousel>
+          </div>
         </div>
       </div>
     </section>
@@ -291,9 +295,13 @@ section .item-list{
     @include gallary(2rem,4);
 }
 
+.slide-box{
+  width:300px;
+}
+
 .carousel{
   width:100%;
-  height:300px;
+  // height:300px;
 }
 .carousel__item {
   min-height: 200px;
