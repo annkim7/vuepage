@@ -119,7 +119,7 @@ export default {
 }
 
 .abridge-list{
-    @include list;
+    @include list(10rem);
     @include dotList;
 }
 

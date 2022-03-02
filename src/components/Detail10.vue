@@ -52,9 +52,7 @@
                 <span class="name">{{$store.state.schedule[$store.state.moId].name}}</span>
                 <span class="company">({{$store.state.schedule[$store.state.moId].company}})</span>
             </div>
-            <!-- <div v-html="lineBreak($store.state.schedule[$store.state.moId].description)" class="modal-content"></div> -->
             <div v-html="$store.state.description" class="modal-content"></div>
-            <!-- <div v-html="$store.commit('lineBreak', $store.state.schedule[$store.state.moId].description)" class="modal-content"></div> -->
         </div>
         
         
@@ -78,10 +76,7 @@ export default {
             let scheduleOriginal = [...this.$store.state.schedule];
             this.amArr = scheduleOriginal.filter((a)=>{ return a.time.substr(0,2) < 12; });
             this.pmArr = scheduleOriginal.filter(b => !this.amArr.includes(b));
-        },
-        // lineBreak(content){
-        //     return content.split('\n').join('<br><br>');
-        // }
+        }
     }
 }
 </script>

@@ -74,18 +74,16 @@ const store = createStore({
     modal(state, data){
       state.isOpen = true;
       state.moId = data;
-      let a = state.schedule[state.moId].description;
-      state.description = a.split('\n').join('<br><br>');
-      console.log(state.description);
+      this.commit('lineBreak', state.moId);
     },
     modalClose(state){
       state.isOpen = false;
     },
-    // lineBreak(state, data){
-    //     state.description = data.split('\n').join('<br><br>');
-    //     console.log(data.split('\n').join('<br><br>'))
-    //     return data.split('\n').join('<br><br>');
-    // }
+    lineBreak(state, data){
+      let b = state.schedule[data].description;
+      state.description = b.split('\n').join('<br><br>');
+      console.log(state.description);
+    }
   },
   actions : {
     getData(context){

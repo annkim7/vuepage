@@ -111,7 +111,7 @@ export default {
 
 
 .history .list{
-    @include list;
+    @include list(10rem);
     li{
         padding: 0.3rem 0;
         b{
