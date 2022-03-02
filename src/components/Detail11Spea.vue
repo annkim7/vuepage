@@ -41,7 +41,7 @@ export default {
     .title{
         @include upTitle;
         width:100%;
-        margin: 2rem 0 1rem;
+        margin: 0 0 1rem;
     }
     .img{
         width:30%;
