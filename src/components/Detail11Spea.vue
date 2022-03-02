@@ -2,8 +2,12 @@
     <SubHeader />
     <div class="speakerDetail-area">
         <div class="speakerDetail-wrap">
+            <div class="description-box">
+                
+                <p v-html="$store.state.description" class="description"></p>
+                <h4 class="title">{{$store.state.schedule[$route.params.id].subject}}({{$store.state.schedule[$route.params.id].time}})</h4>
+            </div>
             <div class="speakerDetail-box">
-                <div v-html="$store.state.description" class="test"></div>
                 <h4 class="title">{{$store.state.schedule[$route.params.id].name}}</h4>
                 <div class="img"><img :src="$store.state.schedule[$route.params.id].img"/></div>
                 <div class="record">
@@ -38,7 +42,7 @@ export default {
 @import '../assets/style/root.scss';
 
 .speakerDetail-area{
-    padding: 3.5rem 0 0;
+    padding: 3.5rem 0;
     background:#f9f9f9;
 }
 
@@ -46,8 +50,28 @@ export default {
     @include layout;
 }
 
+.description-box{
+    border-top:1px solid #0e0e0e;
+    .description{
+        margin:0.8rem 0 0.3rem;
+        padding: 1.2rem;
+        background:#f1f1f1;
+        color: #0e0e0e;
+        
+    }
+    .title{
+        @include lineTitle;
+        flex-direction: row-reverse;
+        &:after{
+            margin-left:0;
+            margin-right:1rem;
+        }
+    }
+}
+
 .speakerDetail-box{
     @include flexDown;
+    margin-top: 3rem;
     align-items: center;
     .title{
         @include upTitle;
@@ -59,6 +83,9 @@ export default {
     }
     
 }
+
+
+
 
 .record{
     @include list(auto);

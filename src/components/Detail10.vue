@@ -252,7 +252,7 @@ export default {
 }
 
 .modal-content{
-    padding: 1.2rem 0;
+    padding: 1.2rem 0 0;
     font-size:0.95rem;
     line-height:1.3;
     white-space: pre-line;
