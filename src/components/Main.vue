@@ -59,10 +59,10 @@
       <div class="inner-wrap">
         <div class="content">
           <div class="slide-box">
-            <Carousel :autoplay="2000" :wrap-around="true">
+            <Carousel :autoplay="3000" :wrap-around="true">
               <Slide v-for="(schedule, i) in $store.state.schedule" :key="i">
                 <div class="carousel__item">
-                  <img :src="schedule.img"/>
+                  <span class="img"><img :src="schedule.img"/></span>
                 </div>
               </Slide>
 
@@ -70,6 +70,9 @@
                 <Pagination />
               </template>
             </Carousel>
+          </div>
+          <div class="infomation-box">
+            <h3 class="main-title"></h3>
           </div>
         </div>
       </div>
@@ -296,18 +299,18 @@ section .item-list{
 }
 
 .slide-box{
-  width:300px;
+  width:100%;
 }
 
 .carousel{
   width:100%;
-  // height:300px;
+  height: auto;
+  border:1px solid red;
 }
 .carousel__item {
   min-height: 200px;
   width: 100%;
-  background-color: var(--vc-clr-primary);
-  color:  var(--vc-clr-white);
+  color:  var(--key-color);
   font-size: 20px;
   border-radius: 8px;
   display: flex;
@@ -325,6 +328,24 @@ section .item-list{
   border: 5px solid white;
 }
 
+.carousel__pagination-button{
+  background: var(--key-color);
+}
+
+.carousel__pagination-button--active{
+  background: #0e0e0e;
+}
+
+.carousel__slide{
+  display:flex;
+}
+.leftSide{
+  width:30%;
+}
+
+.rightSide{
+  width:70%;
+}
 
 @include tablet{
     section .item-list{
