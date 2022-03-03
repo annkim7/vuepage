@@ -74,8 +74,10 @@
           </div> -->
           <div class="fadeIn-box">
             <div class="image">
-              <span class="img"><img :src="$store.state.schedule[this.fadeNum].img"/></span>
-              <span class="title">SPEAKERS</span>
+              <transition name="opacity">
+                <span v-if="opacity" class="img"><img :src="$store.state.schedule[this.fadeNum].img"/></span>
+              </transition>
+              <!-- <span class="title">SPEAKERS</span> -->
             </div>
             <div class="description">
               <span class="time">{{$store.state.schedule[this.fadeNum].time}}</span>
@@ -132,6 +134,7 @@ export default {
         active : false,
         sortArr : {},
         fadeNum : 0,
+        opacity: 0,
       }
     },
     mounted(){
@@ -245,11 +248,15 @@ export default {
       },
       speakerCh(number){
         console.log(number);
+        this.opacity = 1;
+        setTimeout(()=>{
+          this.opacity = 0;
+        }, 3300);
       },
       fade(){
         setInterval(()=>{
           this.next();
-        }, 3000);
+        }, 4000);
       }
     }
 }
@@ -380,30 +387,33 @@ section .item-list{
   @include center;
   position: relative;
   width:100%;
-  height:32vw;
+  height:36.2vw;
   .image{
     display:flex;
-    width: 30%;
+    width: 40%;
     height:100%;
-    background: #3F4756;
+    // background: #3F4756;
     flex-direction: column;
     .img{
       width:100%;
     }
-    .title{
-      display:flex;
-      height:100%;
-      padding: 0 1rem;
-      align-items: center;
-      justify-content: flex-end;
-      font-size: 1.8rem;
-      color:#f9f9f9;
-    }
+    // .title{
+    //   display:flex;
+    //   position:absolute;
+    //   width:100%;
+    //   height:4rem;
+    //   padding: 0 1rem;
+    //   bottom:0;
+    //   align-items: center;
+    //   justify-content: flex-end;
+    //   font-size: 1.8rem;
+    //   color:#f9f9f9;
+    // }
   }
   .description{
     display:flex;
     position:relative;
-    width: 70%;
+    width: 60%;
     height:100%;
     padding-left:4rem;
     background: #f9f9f9;
@@ -445,6 +455,14 @@ section .item-list{
     cursor:pointer;
   }
 }
+
+.opacity-enter-from{ opacity:0;}
+.opacity-enter-active{ transition: all 0.8s;}
+.opacity-enter-to{opacity:1;}
+
+.opacity-leave-from{ opacity:1;}
+.opacity-leave-active{ transition: all 0.8s;}
+.opacity-leave-to{opacity:0;}
 
 @include tablet{
     section .item-list{
