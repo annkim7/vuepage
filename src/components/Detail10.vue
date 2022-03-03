@@ -54,8 +54,6 @@
             </div>
             <div v-html="$store.state.description" class="modal-content"></div>
         </div>
-        
-        
     </div>
 </template>
 

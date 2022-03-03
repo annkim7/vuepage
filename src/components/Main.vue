@@ -58,7 +58,7 @@
     <section class="section" :class="{ active: this.pageNum == 2 }">
       <div class="inner-wrap">
         <div class="content">
-          <div class="slide-box">
+          <!-- <div class="slide-box">
             <Carousel :autoplay="3000" :wrap-around="true">
               <Slide v-for="(schedule, i) in $store.state.schedule" :key="i">
                 <div class="carousel__item">
@@ -67,14 +67,31 @@
               </Slide>
 
               <template #addons>
+                <Navigation />
                 <Pagination />
-              </template>
+              </template>s
             </Carousel>
+          </div> -->
+          <div class="fadeIn-box">
+            <div class="image">
+              <span class="img"><img :src="$store.state.schedule[this.fadeNum].img"/></span>
+              <span class="title">SPEAKERS</span>
+            </div>
+            <div class="description">
+              <span class="time">{{$store.state.schedule[this.fadeNum].time}}</span>
+              <h3 class="subject">{{$store.state.schedule[this.fadeNum].subject}}</h3>
+              <div class="belong">
+                  <span>{{$store.state.schedule[this.fadeNum].name}}</span>
+                  <span>{{$store.state.schedule[this.fadeNum].company}}</span>
+              </div>
+              <div class="fadeIn-button">
+                <span @click="prev()" class="prev">왼</span>
+                <span @click="next()" class="next">오</span>
+              </div>
+            </div>
+            
           </div>
-          <div class="infomation-box">
-            <h3 class="main-title"></h3>
-          </div>
-        </div>
+        </div> 
       </div>
     </section>
     <section class="section" :class="{ active: this.pageNum == 3 }">
@@ -93,9 +110,9 @@
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 // import { defineComponent } from 'vue'
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
+// import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
 
-import 'vue3-carousel/dist/carousel.css';
+// import 'vue3-carousel/dist/carousel.css';
 
 
 gsap.registerPlugin(CustomEase);
@@ -103,9 +120,10 @@ gsap.registerPlugin(CustomEase);
 export default {
     name : 'Main',
     components: {
-      Carousel,
-      Slide,
-      Pagination,
+      // Carousel,
+      // Slide,
+      // Pagination,
+      // Navigation
     },
     data(){
       return{
@@ -113,13 +131,14 @@ export default {
         pageNum : 0,
         active : false,
         sortArr : {},
-
+        fadeNum : 0,
       }
     },
     mounted(){
       document.addEventListener('scroll', this.scroll, true);
       this.waveBg();
       this.sort();
+      this.fade();
     },
     unmounted() {
       document.removeEventListener('scroll', this.scroll, true);
@@ -167,7 +186,7 @@ export default {
             return b.like - a.like
           });
           this.sortArr = sort.slice(0,4);
-          console.log(this.sortArr)
+          // console.log(this.sortArr)
         }, 2000);
       },
       scroll(e){
@@ -210,7 +229,28 @@ export default {
       //       ease : "custom",
       //     })
       // },
-      
+      prev(){
+        this.fadeNum--;
+        if(this.fadeNum < 0){
+          this.fadeNum = this.$store.state.schedule.length - 1;
+        }
+        this.speakerCh(this.fadeNum);
+      },
+      next(){
+        this.fadeNum++;
+        if(this.fadeNum > this.$store.state.schedule.length - 1){
+          this.fadeNum = 0;
+        }
+        this.speakerCh(this.fadeNum);
+      },
+      speakerCh(number){
+        console.log(number);
+      },
+      fade(){
+        setInterval(()=>{
+          this.next();
+        }, 3000);
+      }
     }
 }
 </script>
@@ -298,53 +338,112 @@ section .item-list{
     @include gallary(2rem,4);
 }
 
-.slide-box{
+// .slide-box{
+//   width:100%;
+//   background: #fff;
+// }
+
+// .carousel{
+//   width:100%;
+//   height:auto;
+// }
+// .carousel__item {
+//   min-height: 200px;
+//   width: 100%;
+//   color:  var(--key-color);
+//   font-size: 20px;
+//   border-radius: 8px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .carousel__slide {
+//   padding: 10px;
+// }
+
+// .carousel__prev,
+// .carousel__next {
+//   box-sizing: content-box;
+//   border: 5px solid white;
+// }
+
+// .carousel__pagination-button{
+//   background: var(--key-color);
+// }
+
+// .carousel__pagination-button--active{
+//   background: #0e0e0e;
+// }
+
+.fadeIn-box{
+  @include center;
+  position: relative;
   width:100%;
+  height:32vw;
+  .image{
+    display:flex;
+    width: 30%;
+    height:100%;
+    background: #3F4756;
+    flex-direction: column;
+    .img{
+      width:100%;
+    }
+    .title{
+      display:flex;
+      height:100%;
+      padding: 0 1rem;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 1.8rem;
+      color:#f9f9f9;
+    }
+  }
+  .description{
+    display:flex;
+    position:relative;
+    width: 70%;
+    height:100%;
+    padding-left:4rem;
+    background: #f9f9f9;
+    justify-content: center;
+    flex-direction: column;
+    &:before{
+      @include bef;
+      width:30%;
+      top:28%;
+      left: 0;
+      height:3px;
+      margin-left:4rem;
+      background: #38404A;
+    }
+    .time{
+      font-size: 0.95rem;
+      color:#d1d1d1;
+    }
+    .subject{
+      margin: 0.5rem 0 1rem;
+      font-size:3rem;
+      font-weight: 700;
+      color:#38404A;
+    }
+    .belong{
+      @include befBar(#38404A);
+      font-size: 1rem;
+    }
+  }
 }
 
-.carousel{
-  width:100%;
-  height: auto;
-  border:1px solid red;
-}
-.carousel__item {
-  min-height: 200px;
-  width: 100%;
-  color:  var(--key-color);
-  font-size: 20px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel__slide {
-  padding: 10px;
-}
-
-.carousel__prev,
-.carousel__next {
-  box-sizing: content-box;
-  border: 5px solid white;
-}
-
-.carousel__pagination-button{
-  background: var(--key-color);
-}
-
-.carousel__pagination-button--active{
-  background: #0e0e0e;
-}
-
-.carousel__slide{
+.fadeIn-button{
   display:flex;
-}
-.leftSide{
-  width:30%;
-}
-
-.rightSide{
-  width:70%;
+  span{
+    @include center;
+    width:3rem;
+    height:3rem;
+    border:1px solid #38404A;
+    cursor:pointer;
+  }
 }
 
 @include tablet{
