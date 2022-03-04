@@ -57,6 +57,7 @@
     </section>
     <section class="section" :class="{ active: this.pageNum == 2 }">
       <div class="inner-wrap">
+        <div class="fade-title"><span>SPEAKERS</span></div>
         <div class="content">
           <!-- <div class="slide-box">
             <Carousel :autoplay="3000" :wrap-around="true">
@@ -77,21 +78,23 @@
               <transition name="opacity">
                 <span v-if="opacity" class="img"><img :src="$store.state.schedule[this.fadeNum].img"/></span>
               </transition>
-              <!-- <span class="title">SPEAKERS</span> -->
             </div>
-            <div class="description">
+            <div class="description" :class="{ active: move }">
               <span class="time">{{$store.state.schedule[this.fadeNum].time}}</span>
-              <h3 class="subject">{{$store.state.schedule[this.fadeNum].subject}}</h3>
+              <h3 class="subject">
+                <router-link :to="{ path: `/detail/11/` + $store.state.schedule[this.fadeNum].id }">
+                  {{$store.state.schedule[this.fadeNum].subject}}
+                </router-link>
+              </h3>
               <div class="belong">
                   <span>{{$store.state.schedule[this.fadeNum].name}}</span>
                   <span>{{$store.state.schedule[this.fadeNum].company}}</span>
               </div>
               <div class="fadeIn-button">
-                <span @click="prev()" class="prev">왼</span>
-                <span @click="next()" class="next">오</span>
+                <span @click="prev()" class="prev"><font-awesome-icon :icon="['fa', 'angle-left']" /></span>
+                <span @click="next()" class="next"><font-awesome-icon :icon="['fa', 'angle-right']" /></span>
               </div>
             </div>
-            
           </div>
         </div> 
       </div>
@@ -135,6 +138,7 @@ export default {
         sortArr : {},
         fadeNum : 0,
         opacity: 0,
+        move : false,
       }
     },
     mounted(){
@@ -237,26 +241,27 @@ export default {
         if(this.fadeNum < 0){
           this.fadeNum = this.$store.state.schedule.length - 1;
         }
-        this.speakerCh(this.fadeNum);
+        this.speakerCh();
       },
       next(){
         this.fadeNum++;
         if(this.fadeNum > this.$store.state.schedule.length - 1){
           this.fadeNum = 0;
         }
-        this.speakerCh(this.fadeNum);
+        this.speakerCh();
       },
-      speakerCh(number){
-        console.log(number);
+      speakerCh(){
         this.opacity = 1;
+        this.move = true;
         setTimeout(()=>{
           this.opacity = 0;
-        }, 3300);
+          this.move = false;
+        }, 2300);
       },
       fade(){
         setInterval(()=>{
           this.next();
-        }, 4000);
+        }, 3000);
       }
     }
 }
@@ -274,6 +279,7 @@ section {
 }
 
 .inner-wrap{
+  position:relative;
   width:100%;
   height:100%;
   // opacity:0; transform:translateY(100%);
@@ -383,54 +389,71 @@ section .item-list{
 //   background: #0e0e0e;
 // }
 
+.fade-title{
+  position:absolute;
+  width:4rem;
+  height:100%;
+  top:0;
+  right:1.1rem;
+  background: #F0F0F2;
+  border-left: 1px solid #d1d1d1;
+  span{
+    margin-top:8rem;
+    transform:rotate(-90deg);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+    color: #0e0e0e;
+  }
+}
+
 .fadeIn-box{
   @include center;
   position: relative;
-  width:100%;
-  height:36.2vw;
+  width:73%;
+  height:23vw;
   .image{
     display:flex;
-    width: 40%;
+    position:relative;
+    width: 30vw;
     height:100%;
-    // background: #3F4756;
     flex-direction: column;
-    .img{
-      width:100%;
+    background: #38404A;
+    &:before{
+      @include bef;
+      width:16vw;
+      height:16vw;
+      top: auto;
+      bottom: -4vw;
+      left: -4vw;
+      border:3px solid #38404A;
     }
-    // .title{
-    //   display:flex;
-    //   position:absolute;
-    //   width:100%;
-    //   height:4rem;
-    //   padding: 0 1rem;
-    //   bottom:0;
-    //   align-items: center;
-    //   justify-content: flex-end;
-    //   font-size: 1.8rem;
-    //   color:#f9f9f9;
-    // }
+    .img{
+      position: relative;
+      width:100%;
+      z-index:3;
+    }
   }
   .description{
     display:flex;
-    position:relative;
-    width: 60%;
+    width: 55vw;
     height:100%;
     padding-left:4rem;
-    background: #f9f9f9;
     justify-content: center;
     flex-direction: column;
-    &:before{
-      @include bef;
-      width:30%;
-      top:28%;
-      left: 0;
-      height:3px;
-      margin-left:4rem;
-      background: #38404A;
-    }
     .time{
+      position:relative;
+      padding-top:0.8rem;
       font-size: 0.95rem;
       color:#d1d1d1;
+      &:before{
+        @include bef;
+        width:13rem;
+        height:3px;
+        left:-7rem;
+        background: #fff;
+        z-index:4;
+      }
     }
     .subject{
       margin: 0.5rem 0 1rem;
@@ -443,16 +466,23 @@ section .item-list{
       font-size: 1rem;
     }
   }
+  .description{
+
+  }
 }
 
 .fadeIn-button{
   display:flex;
+  margin-top:1rem;
   span{
     @include center;
     width:3rem;
     height:3rem;
-    border:1px solid #38404A;
+    background: #eeeeee;
     cursor:pointer;
+  }
+  span ~ span{
+    margin-left:0.3rem;
   }
 }
 
@@ -463,6 +493,16 @@ section .item-list{
 .opacity-leave-from{ opacity:1;}
 .opacity-leave-active{ transition: all 0.8s;}
 .opacity-leave-to{opacity:0;}
+
+
+
+.move2-enter-from{ opacity:0; transform:translateX(10%);}
+.move2-enter-active{ transition: all 0.8s;}
+.move2-enter-to{opacity:1; transform:translateX(0%);}
+
+.move2-leave-from{ opacity:1; transform:translateX(0%);}
+.move2-leave-active{ transition: all 0.8s;}
+.move2-leave-to{opacity:0; transform:translateX(10%);}
 
 @include tablet{
     section .item-list{
