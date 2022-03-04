@@ -191,8 +191,8 @@ export default {
 .item-list{
     @include gallary(2rem,3);
     li{
-        // border: 1px solid var(--default-color);
         border:1px solid #f4f4f4;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
     }
     .image{
         @include imgFull;
@@ -252,7 +252,8 @@ export default {
         font-size: 0.85rem;
         input{
             border-top-left-radius: 0.5rem;
-            border-bottom-left-radius: 0.5rem; 
+            border-bottom-left-radius: 0.5rem;
+            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
             &::placeholder{
                 font-size:0.8rem;
                 color: var(--default-color);
@@ -263,6 +264,7 @@ export default {
             font-size: 0.85rem;
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
+            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
         }
     }
 }
@@ -281,6 +283,7 @@ export default {
         font-size:0.9rem;
         color: var(--default-color);
         cursor:pointer;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
     }
     .select-list{
         position:absolute;
@@ -311,6 +314,7 @@ export default {
         border-radius: 0.5rem;
         font-size: 0.85rem;
         cursor:pointer;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
     }
 }
 

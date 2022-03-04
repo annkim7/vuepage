@@ -80,6 +80,7 @@
               </transition>
             </div>
             <div class="description" :class="{ active: move }">
+              <span class="line"></span>
               <span class="time">{{$store.state.schedule[this.fadeNum].time}}</span>
               <h3 class="subject">
                 <router-link :to="{ path: `/detail/11/` + $store.state.schedule[this.fadeNum].id }">
@@ -91,8 +92,8 @@
                   <span>{{$store.state.schedule[this.fadeNum].company}}</span>
               </div>
               <div class="fadeIn-button">
-                <span @click="prev()" class="prev"><font-awesome-icon :icon="['fa', 'angle-left']" /></span>
-                <span @click="next()" class="next"><font-awesome-icon :icon="['fa', 'angle-right']" /></span>
+                <span @click="clickPrev()" class="prev"><font-awesome-icon :icon="['fa', 'angle-left']" /></span>
+                <span @click="clickNext()" class="next"><font-awesome-icon :icon="['fa', 'angle-right']" /></span>
               </div>
             </div>
           </div>
@@ -139,6 +140,7 @@ export default {
         fadeNum : 0,
         opacity: 0,
         move : false,
+        timer : 0,
       }
     },
     mounted(){
@@ -259,9 +261,20 @@ export default {
         }, 2300);
       },
       fade(){
-        setInterval(()=>{
-          this.next();
-        }, 3000);
+        this.timer = setInterval(()=>{ this.next(); }, 3000);
+      },
+      unfade(){
+        clearInterval(this.timer);
+      },
+      clickNext(){
+        this.unfade();
+        this.next();
+        setTimeout(()=>{ this.fade(); }, 100);
+      },
+      clickPrev(){
+        this.unfade();
+        this.prev();
+        setTimeout(()=>{ this.fade(); }, 100);
       }
     }
 }
@@ -435,25 +448,26 @@ section .item-list{
     }
   }
   .description{
+    position:relative;
     display:flex;
     width: 55vw;
     height:100%;
     padding-left:4rem;
     justify-content: center;
     flex-direction: column;
+    .line{
+      position:absolute;
+      width:0;
+      height:3px;
+      top:6.3vw;
+      left: -3.5vw;
+      background: #fff;
+      z-index:4;
+    }
     .time{
-      position:relative;
       padding-top:0.8rem;
       font-size: 0.95rem;
       color:#d1d1d1;
-      &:before{
-        @include bef;
-        width:13rem;
-        height:3px;
-        left:-7rem;
-        background: #fff;
-        z-index:4;
-      }
     }
     .subject{
       margin: 0.5rem 0 1rem;
@@ -465,10 +479,22 @@ section .item-list{
       @include befBar(#38404A);
       font-size: 1rem;
     }
+    .time, .subject, .belong{
+      opacity:0;
+      transform: translateY(-50%);
+    }
   }
-  .description{
-
-  }
+  .description.active{
+    .line{
+      width:11.5vw;
+      transition: 0.6s linear 0.6s; 
+    }
+    .time, .subject, .belong{
+      opacity:1;
+      transform: translateY(0%);
+      transition: 0.6s linear 0.3s;
+    }
+  } 
 }
 
 .fadeIn-button{
@@ -494,15 +520,6 @@ section .item-list{
 .opacity-leave-active{ transition: all 0.8s;}
 .opacity-leave-to{opacity:0;}
 
-
-
-.move2-enter-from{ opacity:0; transform:translateX(10%);}
-.move2-enter-active{ transition: all 0.8s;}
-.move2-enter-to{opacity:1; transform:translateX(0%);}
-
-.move2-leave-from{ opacity:1; transform:translateX(0%);}
-.move2-leave-active{ transition: all 0.8s;}
-.move2-leave-to{opacity:0; transform:translateX(10%);}
 
 @include tablet{
     section .item-list{

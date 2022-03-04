@@ -16,7 +16,8 @@ const store = createStore({
       schedule : {},
       isOpen : false,
       moId: 0,
-      description: {}
+      description: {},
+      notice : {},
     }
   },
   mutations :{
@@ -83,7 +84,10 @@ const store = createStore({
       let b = state.schedule[data].description;
       state.description = b.split('\n').join('<br><br>');
       console.log(state.description);
-    }
+    },
+    setNotice(state, data){
+      state.notice = data
+    },
   },
   actions : {
     getData(context){
@@ -105,6 +109,13 @@ const store = createStore({
       .then((c)=>{
         console.log(c.data);
         context.commit('setSchedule', c.data);
+      })
+    },
+    getNotice(context){
+      axios.get('https://annkim7.github.io/vuepage/src/assets/data/notice.json')
+      .then((d)=>{
+        console.log(d.data);
+        context.commit('setNotice', d.data);
       })
     },
   },
