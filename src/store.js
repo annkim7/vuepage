@@ -18,6 +18,7 @@ const store = createStore({
       moId: 0,
       description: {},
       notice : {},
+      // find : {},
     }
   },
   mutations :{
@@ -83,11 +84,15 @@ const store = createStore({
     lineBreak(state, data){
       let b = state.schedule[data].description;
       state.description = b.split('\n').join('<br><br>');
-      console.log(state.description);
+      // console.log(state.description);
     },
     setNotice(state, data){
       state.notice = data
     },
+    // find(state){
+      
+    //   state.find = state.notice.find(x => x.id === data);
+    // }
   },
   actions : {
     getData(context){

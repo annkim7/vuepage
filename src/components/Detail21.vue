@@ -1,7 +1,7 @@
 <template>
     <div class="notice-area">
         <div class="notice-wrap">
-            <!-- <div class="select-box">
+            <div class="select-box">
                 <div class="select">
                     <span @click="$store.commit('toggleList')" class="select-btn">
                         {{$store.state.value ? $store.state.value : 'search'}}
@@ -20,7 +20,7 @@
                         <font-awesome-icon :icon="['fa', 'search']" />
                     </span>
                 </form>
-            </div> -->
+            </div>
             <div class="notice-box">
                 <table class="notice-table">
                     <thead>
@@ -31,12 +31,22 @@
                             <th class="time">작성일</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-if="pageArr != ''" >
                         <tr v-for="(notice, i) in pageArr" :key="i">
-                            <td class="no">{{(i + 1)}}</td>
-                            <td v-html="stringify(notice.title)" class="title"></td>
+                            <td class="no">{{indexArr[searchArr.indexOf(notice)]}}</td>
+                            <!-- <td v-html="stringify(notice.title)" class="title"></td> -->
+                            <td class="title">
+                                <router-link :to="{ path: `/detail/21/` + notice.id }"> 
+                                    {{notice.title}}
+                                </router-link>
+                            </td>
                             <td class="author">{{notice.author}}</td>
                             <td class="time">{{notice.time}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody v-if="pageArr == ''" >
+                        <tr>
+                            <td colspan="4" style="width:100%;text-align:center;">no result</td>
                         </tr>
                     </tbody>
                 </table>
@@ -70,12 +80,17 @@ export default {
         let searchArr = ref([]);
         let searchOriginal = ref([]);
 
+        let cateArr = ref([]);
+
         let pageArr = ref([]);
+
+        let indexArr = ref([]);
         
         let data = reactive({
             limit : 6,
-            block : 10,
+            block : 5,
             page : 1,
+            category : ''
         });
 
         let total = computed(()=>{
@@ -85,9 +100,48 @@ export default {
         onMounted(()=>{
             searchArr.value = store.state.notice;
             searchOriginal.value = [...store.state.notice]
-
-            paging(data.page);
+            
+            cateArr.value = ['제목', '내용'];
+            
+            order();
         });
+
+        function order(){
+            let sortTxt = searchArr.value.sort(function(a,b){
+                return new Date(b.time) - new Date(a.time);
+            });
+            searchArr.value = [...sortTxt]
+            
+            paging(data.page);
+            index();
+        }
+
+        function index(){
+            indexArr.value.length = 0;
+            for(var i = searchArr.value.length; i>0; i--){
+                indexArr.value.push(i);
+            }
+        }
+
+        function select(cate){
+            data.category = (cate == '제목') ? 'title' : 'content';
+        }
+
+        function search(text){
+            let searchTxt = {}
+            if(data.category == 'content'){
+                searchTxt = searchOriginal.value.filter((c)=>{
+                    return c.content.indexOf(text) != -1
+                });
+            }else{
+                searchTxt = searchOriginal.value.filter((c)=>{
+                    return c.title.indexOf(text) != -1
+                });
+            }
+            searchArr.value = [...searchTxt]
+            searchArr.value == {} ? store.state.notice : [...searchTxt]
+            order();
+        }
 
         function paging(page){
             let pageList = searchArr.value.slice(
@@ -125,19 +179,19 @@ export default {
         return {
             ...toRefs(data),
             total,
-            searchArr, pageArr,
-            paging, pageSetting
+            cateArr, searchArr, pageArr, indexArr,
+            order, index, paging, pageSetting, search, select
         }
     },
-    mounted(){
+    // mounted(){
         
-    },
-    methods:{
-        stringify(content){
-            let bef = JSON.stringify(content);
-            return bef.replace (/"/g,'');
-        }
-    }
+    // },
+    // methods:{
+    //     stringify(content){
+    //         let bef = JSON.stringify(content);
+    //         return bef.replace (/"/g,'');
+    //     }
+    // }
 }
 </script>
 
