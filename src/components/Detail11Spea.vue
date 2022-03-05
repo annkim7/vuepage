@@ -3,7 +3,6 @@
     <div class="speakerDetail-area">
         <div class="speakerDetail-wrap">
             <div class="description-box">
-                
                 <p v-html="$store.state.description" class="description"></p>
                 <h4 class="title">{{$store.state.schedule[$route.params.id].subject}}({{$store.state.schedule[$route.params.id].time}})</h4>
             </div>
