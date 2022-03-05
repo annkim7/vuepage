@@ -46,8 +46,107 @@
 </template>
 
 <script>
+import { onMounted, ref, reactive, toRefs, computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
     name : 'Detail21',
+    setup(){
+        let store = useStore();
+
+        let searchArr = ref([]);
+        let searchOriginal = ref([]);
+
+        let cateArr = ref([]);
+
+        let pageArr = ref([]);
+        
+        let data = reactive({
+            limit : 6,
+            block : 5,
+            page : 1,
+        });
+
+        let total = computed(()=>{
+            return searchArr.value.length;
+        })
+        
+        onMounted(()=>{
+            searchArr.value = store.state.item;
+            searchOriginal.value = [...store.state.item]
+
+            let category = store.state.item.map(a => a.category);
+            cateArr.value = new Set(category);
+
+            paging(data.page);
+        });
+
+        function search(text){
+            let searchTxt = searchOriginal.value.filter((b)=>{
+                return b.title.indexOf(text) != -1
+            });
+            searchArr.value = [...searchTxt]
+
+            paging(data.page);
+        }
+
+        function select(cate){
+            let selectTxt = searchOriginal.value.filter((c)=>{
+                return c.category.indexOf(cate) != -1
+            });
+            searchArr.value = [...selectTxt]
+
+            paging(data.page);
+        }
+        
+        function undo(){
+            searchArr.value = store.state.item;
+            store.state.value = null;
+
+            paging(data.page);
+        }
+
+        function paging(page){
+            let pageList = searchArr.value.slice(
+                (page - 1) * data.limit,
+                page * data.limit
+            )
+            
+            pageArr.value = pageList
+            data.page = page
+
+            pageSetting(total, data.limit, data.block, page)
+        }
+
+        function pageSetting(total, limit, block, page){
+            const totalPage = Math.ceil(total / limit)
+            let currentPage = page
+            const first =
+                currentPage > 1 ? parseInt(currentPage, 10) - parseInt(1, 10) : null
+            const end =
+                totalPage !== currentPage
+                ? parseInt(currentPage, 10) + parseInt(1, 10)
+                : null
+    
+            let startIndex = (Math.ceil(currentPage / block) - 1) * block + 1
+            let endIndex =
+                startIndex + block > totalPage ? totalPage : startIndex + block - 1
+            let list = []
+            for (let index = startIndex; index <= endIndex; index++) {
+                list.push(index)
+            }
+            return { first, end, list, currentPage }
+            
+        }
+
+        return {
+            ...toRefs(data),
+            total,
+            searchArr, cateArr, pageArr,
+            search, select, undo,
+            paging, pageSetting
+        }
+    },
     mounted(){
         
     },
