@@ -1,7 +1,7 @@
 <template>
     <div class="notice-area">
         <div class="notice-wrap">
-            <div class="select-box">
+            <!-- <div class="select-box">
                 <div class="select">
                     <span @click="$store.commit('toggleList')" class="select-btn">
                         {{$store.state.value ? $store.state.value : 'search'}}
@@ -20,7 +20,7 @@
                         <font-awesome-icon :icon="['fa', 'search']" />
                     </span>
                 </form>
-            </div>
+            </div> -->
             <div class="notice-box">
                 <table class="notice-table">
                     <thead>
@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(notice, i) in $store.state.notice" :key="i">
+                        <tr v-for="(notice, i) in pageArr" :key="i">
                             <td class="no">{{(i + 1)}}</td>
                             <td v-html="stringify(notice.title)" class="title"></td>
                             <td class="author">{{notice.author}}</td>
@@ -40,6 +40,19 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="page-box">
+                <span v-if="pageSetting(total, limit, block, page).first != null" class="prev-btn">
+                    <font-awesome-icon :icon="['fa', 'angle-double-left']" />
+                </span>
+                <ul class="page-list">
+                    <li v-for="(page, i) in pageSetting(total, limit, block, page).list" :key="i" @click="paging(page)">
+                        {{page}}
+                    </li>
+                </ul>
+                <span v-if="pageSetting(total, limit, block, page).end != null"  class="next-btn">
+                    <font-awesome-icon :icon="['fa', 'angle-double-right']" />
+                </span>
             </div>
         </div>
     </div>
@@ -57,13 +70,11 @@ export default {
         let searchArr = ref([]);
         let searchOriginal = ref([]);
 
-        let cateArr = ref([]);
-
         let pageArr = ref([]);
         
         let data = reactive({
             limit : 6,
-            block : 5,
+            block : 10,
             page : 1,
         });
 
@@ -72,39 +83,11 @@ export default {
         })
         
         onMounted(()=>{
-            searchArr.value = store.state.item;
-            searchOriginal.value = [...store.state.item]
-
-            let category = store.state.item.map(a => a.category);
-            cateArr.value = new Set(category);
+            searchArr.value = store.state.notice;
+            searchOriginal.value = [...store.state.notice]
 
             paging(data.page);
         });
-
-        function search(text){
-            let searchTxt = searchOriginal.value.filter((b)=>{
-                return b.title.indexOf(text) != -1
-            });
-            searchArr.value = [...searchTxt]
-
-            paging(data.page);
-        }
-
-        function select(cate){
-            let selectTxt = searchOriginal.value.filter((c)=>{
-                return c.category.indexOf(cate) != -1
-            });
-            searchArr.value = [...selectTxt]
-
-            paging(data.page);
-        }
-        
-        function undo(){
-            searchArr.value = store.state.item;
-            store.state.value = null;
-
-            paging(data.page);
-        }
 
         function paging(page){
             let pageList = searchArr.value.slice(
@@ -142,8 +125,7 @@ export default {
         return {
             ...toRefs(data),
             total,
-            searchArr, cateArr, pageArr,
-            search, select, undo,
+            searchArr, pageArr,
             paging, pageSetting
         }
     },
