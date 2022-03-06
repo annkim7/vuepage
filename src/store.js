@@ -18,7 +18,7 @@ const store = createStore({
       moId: 0,
       description: {},
       notice : {},
-      // find : {},
+      findData : {},
     }
   },
   mutations :{
@@ -89,10 +89,14 @@ const store = createStore({
     setNotice(state, data){
       state.notice = data
     },
-    // find(state){
+    find(state, data){
+      let findArray = data.substr(8).slice(0,2);
+      let findId = data.substr(11);
+      if(findArray == '21'){
+        state.findData = state.notice.find(x => x.id === findId);
+      }
       
-    //   state.find = state.notice.find(x => x.id === data);
-    // }
+    }
   },
   actions : {
     getData(context){

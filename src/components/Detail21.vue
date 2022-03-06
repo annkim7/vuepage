@@ -139,7 +139,6 @@ export default {
                 });
             }
             searchArr.value = [...searchTxt]
-            searchArr.value == {} ? store.state.notice : [...searchTxt]
             order();
         }
 

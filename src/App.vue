@@ -2,8 +2,8 @@
   <div class="wrap" v-resize="onResize">
     <Header />
     
-    <router-view></router-view>   
-    
+    <router-view></router-view>
+
     <Footer />
   </div>
 </template>
@@ -16,7 +16,9 @@ import { mapActions } from 'vuex'
 export default {
   name: 'App',
   data(){
-    return {}
+    return {
+
+    }
   },
   mounted(){
     this.getData();

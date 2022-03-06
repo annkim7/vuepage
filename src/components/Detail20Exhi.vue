@@ -52,7 +52,7 @@ export default {
 
 
 .exhibitionDetail-area{
-    padding: 3.5rem 0 0;
+    padding: 3.5rem 1.66rem;
     background:#f9f9f9;
 }
 
@@ -120,7 +120,7 @@ export default {
 
 .companyIntro{
     @include layout;
-    padding: 3rem 0;
+    padding-top: 3rem;
     .title{
         @include upTitle;
         font-size: 1.5rem;

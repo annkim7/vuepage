@@ -41,7 +41,7 @@ export default {
 @import '../assets/style/root.scss';
 
 .speakerDetail-area{
-    padding: 3.5rem 0;
+    padding: 3.5rem 1.66rem;
     background:#f9f9f9;
 }
 
@@ -59,12 +59,7 @@ export default {
         
     }
     .title{
-        @include lineTitle;
-        flex-direction: row-reverse;
-        &:after{
-            margin-left:0;
-            margin-right:1rem;
-        }
+        @include lineTitleRev;
     }
 }
 
