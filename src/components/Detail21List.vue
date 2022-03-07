@@ -8,7 +8,7 @@
                     <span class="img"><img :src="$store.state.findData.img"/></span>
                     <blockquote>{{$store.state.findData.summary}}</blockquote>
                 </div>
-                <p class="description">{{$store.state.findData.content}}</p>
+                <p v-html="$store.state.description" class="description"></p>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@ export default {
     },
     mounted(){
         this.$store.commit('find', this.$route.path);
-        this.$store.commit('lineBreak', this.$route.params.id);
+        this.$store.commit('lineBreak', this.$route.path);
     },
     methods:{
     }

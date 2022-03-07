@@ -82,9 +82,15 @@ const store = createStore({
       state.isOpen = false;
     },
     lineBreak(state, data){
-      let b = state.schedule[data].description;
-      state.description = b.split('\n').join('<br><br>');
-      // console.log(state.description);
+      let findArray = data.substr(8).slice(0,2);
+      let findId = data.substr(11);
+      if(findArray == '11'){
+        let b = state.schedule[findId].description;
+        state.description = b.split('\n').join('<br><br>');
+      }else if(findArray == '21'){
+        let b = state.notice[findId].content;
+        state.description = b.split('\n').join('<br><br>');
+      }
     },
     setNotice(state, data){
       state.notice = data
