@@ -27,7 +27,7 @@ export default {
 
     },
     mounted(){
-        this.$store.commit('find', this.$route.path);
+        // this.$store.commit('find', this.$route.path);
         this.$store.commit('lineBreak', this.$route.path);
     },
     methods:{

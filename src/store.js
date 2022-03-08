@@ -88,20 +88,13 @@ const store = createStore({
         let b = state.schedule[findId].description;
         state.description = b.split('\n').join('<br><br>');
       }else if(findArray == '21'){
+        state.findData = state.notice.find(x => x.id === findId);
         let b = state.notice[findId].content;
         state.description = b.split('\n').join('<br><br>');
       }
     },
     setNotice(state, data){
       state.notice = data
-    },
-    find(state, data){
-      let findArray = data.substr(8).slice(0,2);
-      let findId = data.substr(11);
-      if(findArray == '21'){
-        state.findData = state.notice.find(x => x.id === findId);
-      }
-      
     }
   },
   actions : {
