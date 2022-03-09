@@ -16,6 +16,7 @@ const store = createStore({
       schedule : {},
       isOpen : false,
       moId: 0,
+      title : {},
       description: {},
       notice : {},
       findData : {},
@@ -89,8 +90,14 @@ const store = createStore({
         state.description = b.split('\n').join('<br><br>');
       }else if(findArray == '21'){
         state.findData = state.notice.find(x => x.id === findId);
-        let b = state.notice[findId].content;
-        state.description = b.split('\n').join('<br><br>');
+        let b = state.findData.content;
+        let breakLine = b.split('\n').join('<br><br>');
+        let stringify = JSON.stringify(breakLine);
+        state.description = stringify.replace (/"/g,'');
+
+        let c = state.findData.title;
+        let strTitle = JSON.stringify(c);
+        state.title = strTitle.replace (/"/g,'');
       }
     },
     setNotice(state, data){
