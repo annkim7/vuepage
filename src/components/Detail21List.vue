@@ -5,8 +5,8 @@
             <div class="noticeDetail-box">
                 <h4 v-html="$store.state.title" class="title"></h4>
                 <div class="quote">
-                    <span class="img"><img :src="$store.state.findData.img"/></span>
-                    <blockquote>{{$store.state.findData.summary}}</blockquote>
+                    <span class="img"><img :src="$store.state.findArray.img"/></span>
+                    <blockquote>{{$store.state.findArray.summary}}</blockquote>
                 </div>
                 <p v-html="$store.state.description" class="description"></p>
             </div>
@@ -27,7 +27,7 @@ export default {
 
     },
     mounted(){
-        this.$store.commit('lineBreak', this.$route.path);
+        this.$store.commit('find', this.$route.path);
     },
     methods:{
     }

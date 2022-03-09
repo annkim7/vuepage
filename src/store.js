@@ -19,7 +19,11 @@ const store = createStore({
       title : {},
       description: {},
       notice : {},
-      findData : {},
+      popData : {},
+      findArray : {},
+      break : {},
+      string : {},
+      strTitle : {},
     }
   },
   mutations :{
@@ -82,26 +86,63 @@ const store = createStore({
     modalClose(state){
       state.isOpen = false;
     },
-    lineBreak(state, data){
+    // lineBreak(state, data){
+    //   let findArray = data.substr(8).slice(0,2);
+    //   let findId = data.substr(11);
+    //   if(findArray == '11'){
+    //     let b = state.schedule[findId].description;
+    //     state.description = b.split('\n').join('<br><br>');
+    //   }else if(findArray == '21'){
+    //     state.findData = state.notice.find(x => x.id === findId);
+    //     let b = state.findData.content;
+    //     let breakLine = b.split('\n').join('<br><br>');
+    //     let stringify = JSON.stringify(breakLine);
+    //     state.description = stringify.replace (/"/g,'');
+
+    //     let c = state.findData.title;
+    //     let strTitle = JSON.stringify(c);
+    //     state.title = strTitle.replace (/"/g,'');
+    //   }
+    // },
+    setNotice(state, data){
+      state.notice = data
+    },
+    find(state, data){
       let findArray = data.substr(8).slice(0,2);
       let findId = data.substr(11);
       if(findArray == '11'){
-        let b = state.schedule[findId].description;
-        state.description = b.split('\n').join('<br><br>');
+        state.findArray = state.schedule.find(x => x.id === findId);
       }else if(findArray == '21'){
-        state.findData = state.notice.find(x => x.id === findId);
-        let b = state.findData.content;
-        let breakLine = b.split('\n').join('<br><br>');
-        let stringify = JSON.stringify(breakLine);
-        state.description = stringify.replace (/"/g,'');
-
-        let c = state.findData.title;
-        let strTitle = JSON.stringify(c);
-        state.title = strTitle.replace (/"/g,'');
+        state.findArray = state.notice.find(y => y.id === findId);
+      }
+      this.commit('way', state.findArray);
+    },
+    way(state, data){
+      if(data.content != undefined){
+        state.string = data.content;
+        state.strTitle = data.title;
+      }else if(data.description != undefined){
+        state.string = data.description;
+      }
+      this.commit('lineBreak', state.string);
+      this.commit('strTitle', state.strTitle);
+    },
+    lineBreak(state, data){
+      if(isNaN(data) == false){
+        let a = state.schedule[data].description;
+        state.description = a.split('\n').join('<br><br>');
+      }else{
+        state.break = data.split('\n').join('<br><br>');
+        this.commit('stringify', state.break);
       }
     },
-    setNotice(state, data){
-      state.notice = data
+    stringify(state, data){
+      let str = JSON.stringify(data);
+      state.description = str.replace (/"/g,'');
+    },
+    strTitle(state, data){
+      let strTitle = JSON.stringify(data);
+      state.title = strTitle.replace (/"/g,'');
     }
   },
   actions : {

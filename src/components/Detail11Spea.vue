@@ -32,7 +32,7 @@ export default {
         SubHeader,
     },
     mounted(){
-        this.$store.commit('lineBreak', this.$route.path)
+        this.$store.commit('find', this.$route.path);
     },
 }
 </script>
