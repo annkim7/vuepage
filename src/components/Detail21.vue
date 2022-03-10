@@ -34,12 +34,12 @@
                     <tbody v-if="pageArr != ''" >
                         <tr v-for="(notice, i) in pageArr" :key="i">
                             <td class="no">{{indexArr[searchArr.indexOf(notice)]}}</td>
-                            <!-- <td v-html="stringify(notice.title)" class="title"></td> -->
-                            <td class="title">
+                            <td v-html="$store.state.title" class="title"></td>
+                            <!-- <td class="title">
                                 <router-link :to="{ path: `/detail/21/` + notice.id }"> 
                                     {{notice.title}}
                                 </router-link>
-                            </td>
+                            </td> -->
                             <td class="author">{{notice.author}}</td>
                             <td class="time">{{notice.time}}</td>
                         </tr>
@@ -96,6 +96,7 @@ export default {
         let total = computed(()=>{
             return searchArr.value.length;
         })
+
         
         onMounted(()=>{
             searchArr.value = store.state.notice;
@@ -104,7 +105,12 @@ export default {
             cateArr.value = ['제목', '내용'];
             
             order();
+            line();
         });
+
+        function line(){
+            store.commit("strTitle", pageArr.value[2].title);
+        }
 
         function order(){
             let sortTxt = searchArr.value.sort(function(a,b){
