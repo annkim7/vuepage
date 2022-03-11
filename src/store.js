@@ -86,24 +86,6 @@ const store = createStore({
     modalClose(state){
       state.isOpen = false;
     },
-    // lineBreak(state, data){
-    //   let findArray = data.substr(8).slice(0,2);
-    //   let findId = data.substr(11);
-    //   if(findArray == '11'){
-    //     let b = state.schedule[findId].description;
-    //     state.description = b.split('\n').join('<br><br>');
-    //   }else if(findArray == '21'){
-    //     state.findData = state.notice.find(x => x.id === findId);
-    //     let b = state.findData.content;
-    //     let breakLine = b.split('\n').join('<br><br>');
-    //     let stringify = JSON.stringify(breakLine);
-    //     state.description = stringify.replace (/"/g,'');
-
-    //     let c = state.findData.title;
-    //     let strTitle = JSON.stringify(c);
-    //     state.title = strTitle.replace (/"/g,'');
-    //   }
-    // },
     setNotice(state, data){
       state.notice = data
     },

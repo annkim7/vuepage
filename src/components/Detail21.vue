@@ -34,12 +34,11 @@
                     <tbody v-if="pageArr != ''" >
                         <tr v-for="(notice, i) in pageArr" :key="i">
                             <td class="no">{{indexArr[searchArr.indexOf(notice)]}}</td>
-                            <td v-html="$store.state.title" class="title"></td>
-                            <!-- <td class="title">
-                                <router-link :to="{ path: `/detail/21/` + notice.id }"> 
-                                    {{notice.title}}
-                                </router-link>
-                            </td> -->
+                            <td class="title">
+                                <router-link :to="{ path: `/detail/21/` + notice.id }">
+                                    <span v-html="line(notice.title)"></span>
+                                </router-link> 
+                            </td>
                             <td class="author">{{notice.author}}</td>
                             <td class="time">{{notice.time}}</td>
                         </tr>
@@ -90,7 +89,7 @@ export default {
             limit : 6,
             block : 5,
             page : 1,
-            category : ''
+            category : '',
         });
 
         let total = computed(()=>{
@@ -105,12 +104,8 @@ export default {
             cateArr.value = ['제목', '내용'];
             
             order();
-            line();
+            
         });
-
-        function line(){
-            store.commit("strTitle", pageArr.value[2].title);
-        }
 
         function order(){
             let sortTxt = searchArr.value.sort(function(a,b){
@@ -127,6 +122,11 @@ export default {
             for(var i = searchArr.value.length; i>0; i--){
                 indexArr.value.push(i);
             }
+        }
+        
+        function line(content){
+            let bef = JSON.stringify(content);
+            return bef.replace (/"/g,'');
         }
 
         function select(cate){
@@ -185,18 +185,9 @@ export default {
             ...toRefs(data),
             total,
             cateArr, searchArr, pageArr, indexArr,
-            order, index, paging, pageSetting, search, select
+            order, index, line, paging, pageSetting, search, select
         }
     },
-    // mounted(){
-        
-    // },
-    // methods:{
-    //     stringify(content){
-    //         let bef = JSON.stringify(content);
-    //         return bef.replace (/"/g,'');
-    //     }
-    // }
 }
 </script>
 
