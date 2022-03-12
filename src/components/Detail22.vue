@@ -5,8 +5,12 @@
                 <ul class="fnq-list">
                     <li>
                         <span @click="toggle()" class="q">질문있어요</span>
-                        <transition name="accordion">
-                            <span v-if="slideUp" class="a" >답해주세요</span>
+                        <transition name="accordion"
+                            @before-enter="beforeEnter"
+                            @enter="enter"
+                            @before-leave="beforeLeave"
+                        >
+                            <span v-show="slideUp" class="a" >답해주세요</span>
                         </transition>
                         
                     </li>
@@ -31,6 +35,22 @@ export default {
     methods:{
         toggle(){
             this.slideUp = !this.slideUp;
+            
+        },
+        beforeEnter(el) {
+            el.style.height = '0rem';
+            el.style.transitionProperty = 'all';
+            el.style.transitionDuration = '1s';
+        },
+        enter(el, done) {
+            setTimeout(()=>{
+                el.style.height = '5rem';
+            }, 100);
+            done();
+
+        },
+        beforeLeave(el) {
+            el.style.height = '0rem'; 
         },
     }
 }
@@ -47,22 +67,23 @@ export default {
     li{
         span{
             overflow: hidden;
-            padding: 0.8rem 0.3rem;
+            height:5rem;
             background:#f4f4f4;
         }
         .a{
             background:#ddd;
-            transition: 0.6s linear 0.3s;
         }
     }
 }
 
 
-.accordion-enter-from{ opacity:0; }
-.accordion-enter-active{ transition: all 0.8s;}
-.accordion-enter-to{opacity:1;}
+// .accordion-enter-from{ opacity:0; }
+// .accordion-enter-active{ transition: all 0.8s;}
+// .accordion-enter-to{opacity:1;}
 
-.accordion-leave-from{ opacity:1;}
-.accordion-leave-active{ transition: all 0.8s;}
-.accordion-leave-to{opacity:0;}
+// .accordion-leave-from{ opacity:1;}
+// .accordion-leave-active{ transition: all 0.8s;}
+// .accordion-leave-to{opacity:0;}
+
+
 </style>
