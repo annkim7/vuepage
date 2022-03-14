@@ -14,6 +14,17 @@
                         </transition>
                         
                     </li>
+                    <li>
+                        <span @click="toggle()" class="q">질문있어요</span>
+                        <transition name="accordion"
+                            @before-enter="beforeEnter"
+                            @enter="enter"
+                            @before-leave="beforeLeave"
+                        >
+                            <span v-show="slideUp" class="a" >답해주세요</span>
+                        </transition>
+                        
+                    </li>
                 </ul>
             </div>
         </div>
@@ -27,6 +38,7 @@ export default {
     data(){
         return{
             slideUp : false,
+            slideNum : 0,
         }
     },
     mounted(){
