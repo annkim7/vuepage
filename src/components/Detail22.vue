@@ -3,25 +3,14 @@
         <div class="fnq-wrap">
             <div class="fnq-box">
                 <ul class="fnq-list">
-                    <li>
-                        <span @click="toggle()" class="q">질문있어요</span>
+                    <li v-for="(qna, i) in this.qna" :key="i">
+                        <span @click="toggle(), i" class="q">{{qna.question}}</span>
                         <transition name="accordion"
                             @before-enter="beforeEnter"
                             @enter="enter"
                             @before-leave="beforeLeave"
                         >
-                            <span v-show="slideUp" class="a" >답해주세요</span>
-                        </transition>
-                        
-                    </li>
-                    <li>
-                        <span @click="toggle()" class="q">질문있어요</span>
-                        <transition name="accordion"
-                            @before-enter="beforeEnter"
-                            @enter="enter"
-                            @before-leave="beforeLeave"
-                        >
-                            <span v-show="slideUp" class="a" >답해주세요</span>
+                            <span v-show="slideUp" class="a" >{{qna.answer}}</span>
                         </transition>
                         
                     </li>
@@ -39,6 +28,13 @@ export default {
         return{
             slideUp : false,
             slideNum : 0,
+            qna : [
+                {"question" : "질문있어요", "answer" : "답해주세요"},
+                {"question" : "질문있어요1", "answer" : "답해주세요1"},
+                {"question" : "질문있어요2", "answer" : "답해주세요2"},
+                {"question" : "질문있어요3", "answer" : "답해주세요3"},
+                {"question" : "질문있어요4", "answer" : "답해주세요4"},
+            ],
         }
     },
     mounted(){
@@ -47,7 +43,6 @@ export default {
     methods:{
         toggle(){
             this.slideUp = !this.slideUp;
-            
         },
         beforeEnter(el) {
             el.style.height = '0rem';
