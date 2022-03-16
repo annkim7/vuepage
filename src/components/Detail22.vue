@@ -43,6 +43,7 @@ export default {
     methods:{
         toggle(){
             this.slideUp = !this.slideUp;
+            //data?
         },
         beforeEnter(el) {
             el.style.height = '0rem';
