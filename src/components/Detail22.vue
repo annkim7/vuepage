@@ -4,7 +4,7 @@
             <div class="fnq-box">
                 <ul class="fnq-list">
                     <li v-for="(qna, i) in this.qna" :key="i">
-                        <span @click="toggle(), i" class="q">{{qna.question}}</span>
+                        <span @click="toggle(qna.id)" class="q">{{qna.question}}</span>
                         <transition name="accordion"
                             @before-enter="beforeEnter"
                             @enter="enter"
@@ -26,14 +26,14 @@ export default {
     name : 'Detail22',
     data(){
         return{
-            slideUp : false,
+            // slideUp : false,
             slideNum : 0,
             qna : [
-                {"question" : "질문있어요", "answer" : "답해주세요"},
-                {"question" : "질문있어요1", "answer" : "답해주세요1"},
-                {"question" : "질문있어요2", "answer" : "답해주세요2"},
-                {"question" : "질문있어요3", "answer" : "답해주세요3"},
-                {"question" : "질문있어요4", "answer" : "답해주세요4"},
+                {"id": "0", "question" : "질문있어요", "answer" : "답해주세요", "slideUp" : false},
+                {"id": "1", "question" : "질문있어요1", "answer" : "답해주세요1", "slideUp" : false},
+                {"id": "2", "question" : "질문있어요2", "answer" : "답해주세요2", "slideUp" : false},
+                {"id": "3", "question" : "질문있어요3", "answer" : "답해주세요3", "slideUp" : false},
+                {"id": "4", "question" : "질문있어요4", "answer" : "답해주세요4", "slideUp" : false},
             ],
         }
     },
@@ -41,9 +41,13 @@ export default {
 
     },
     methods:{
-        toggle(){
-            this.slideUp = !this.slideUp;
-            //data?
+        toggle(id){
+            
+            this.slideNum = id;
+
+            if(this.slideNum == '0'){
+                this.qna[0].slideUp = !this.qna[0].slideUp;
+            }
         },
         beforeEnter(el) {
             el.style.height = '0rem';
