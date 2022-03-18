@@ -37,12 +37,15 @@ export default {
         }
     },
     mounted(){
-        this.qna.forEach((item, index) => this.$set(this.slideUp, index, false))
-        console.log(this.slideUp);
+        let array = [];
+        this.qna.forEach(function(){
+            array.push(false);
+        })
+        this.slideUp = [...array];
     },
     methods:{
         toggle(index){
-            this.$set(this.slideUp, index, !this.slideUp[index])
+            this.slideUp[index] = !this.slideUp[index];
         },
         beforeEnter(el) {
             el.style.height = '0rem';
