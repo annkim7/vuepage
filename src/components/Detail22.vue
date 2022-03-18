@@ -45,22 +45,30 @@ export default {
     },
     methods:{
         toggle(index){
+            let test = this.slideUp.map(e => {
+                e = false;
+                return e;
+            })
+            this.slideUp = [...test];
             this.slideUp[index] = !this.slideUp[index];
         },
         beforeEnter(el) {
             el.style.height = '0rem';
+            el.style.opacity = '0';
             el.style.transitionProperty = 'all';
             el.style.transitionDuration = '1s';
         },
         enter(el, done) {
             setTimeout(()=>{
                 el.style.height = '5rem';
+                el.style.opacity = '1';
             }, 100);
             done();
 
         },
         beforeLeave(el) {
-            el.style.height = '0rem'; 
+            el.style.height = '0rem';
+            el.style.opacity = '0'; 
         },
     }
 }
@@ -86,14 +94,6 @@ export default {
     }
 }
 
-
-// .accordion-enter-from{ opacity:0; }
-// .accordion-enter-active{ transition: all 0.8s;}
-// .accordion-enter-to{opacity:1;}
-
-// .accordion-leave-from{ opacity:1;}
-// .accordion-leave-active{ transition: all 0.8s;}
-// .accordion-leave-to{opacity:0;}
 
 
 </style>
