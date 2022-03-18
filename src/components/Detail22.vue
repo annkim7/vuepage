@@ -4,13 +4,13 @@
             <div class="fnq-box">
                 <ul class="fnq-list">
                     <li v-for="(qna, i) in this.qna" :key="i">
-                        <span @click="toggle(qna.id)" class="q">{{qna.question}}</span>
+                        <span @click="toggle(i)" class="q">{{qna.question}}</span>
                         <transition name="accordion"
                             @before-enter="beforeEnter"
                             @enter="enter"
                             @before-leave="beforeLeave"
                         >
-                            <span v-show="slideUp" class="a" >{{qna.answer}}</span>
+                            <span v-show="this.slideUp[i] == true" class="a" >{{qna.answer}}</span>
                         </transition>
                         
                     </li>
@@ -26,28 +26,23 @@ export default {
     name : 'Detail22',
     data(){
         return{
-            // slideUp : false,
-            slideNum : 0,
+            slideUp : [],
             qna : [
-                {"id": "0", "question" : "질문있어요", "answer" : "답해주세요", "slideUp" : false},
-                {"id": "1", "question" : "질문있어요1", "answer" : "답해주세요1", "slideUp" : false},
-                {"id": "2", "question" : "질문있어요2", "answer" : "답해주세요2", "slideUp" : false},
-                {"id": "3", "question" : "질문있어요3", "answer" : "답해주세요3", "slideUp" : false},
-                {"id": "4", "question" : "질문있어요4", "answer" : "답해주세요4", "slideUp" : false},
+                {"id": "0", "question" : "질문있어요", "answer" : "답해주세요"},
+                {"id": "1", "question" : "질문있어요1", "answer" : "답해주세요1"},
+                {"id": "2", "question" : "질문있어요2", "answer" : "답해주세요2"},
+                {"id": "3", "question" : "질문있어요3", "answer" : "답해주세요3"},
+                {"id": "4", "question" : "질문있어요4", "answer" : "답해주세요4"},
             ],
         }
     },
     mounted(){
-
+        this.qna.forEach((item, index) => this.$set(this.slideUp, index, false))
+        console.log(this.slideUp);
     },
     methods:{
-        toggle(id){
-            
-            this.slideNum = id;
-
-            if(this.slideNum == '0'){
-                this.qna[0].slideUp = !this.qna[0].slideUp;
-            }
+        toggle(index){
+            this.$set(this.slideUp, index, !this.slideUp[index])
         },
         beforeEnter(el) {
             el.style.height = '0rem';
