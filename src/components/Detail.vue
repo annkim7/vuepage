@@ -9,6 +9,7 @@
         <Detail20 v-if="$route.params.id == '20'" />
         <Detail21 v-if="$route.params.id == '21'" />
         <Detail22 v-if="$route.params.id == '22'" />
+        <Detail23 v-if="$route.params.id == '23'" />
     </div>
 </template>
 
@@ -21,6 +22,7 @@ import Detail11 from './Detail11'
 import Detail20 from './Detail20'
 import Detail21 from './Detail21'
 import Detail22 from './Detail22'
+import Detail23 from './Detail23'
 
 export default {
     name : 'Detail',
@@ -32,7 +34,8 @@ export default {
         Detail11,
         Detail20,
         Detail21,
-        Detail22
+        Detail22,
+        Detail23
     }
 }
 </script>

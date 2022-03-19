@@ -4,7 +4,7 @@
             <div class="fnq-box">
                 <ul class="fnq-list">
                     <li v-for="(qna, i) in this.qna" :key="i">
-                        <span @click="toggle(i)" class="q">{{qna.question}}</span>
+                        <span @click="toggle(i)" class="q" :class="{ active: this.slideUp[i] == true }">{{qna.question}}</span>
                         <transition name="accordion"
                             @before-enter="beforeEnter"
                             @enter="enter"
@@ -53,6 +53,16 @@ export default {
                     "question" : "예약취소 요청드립니다.",
                     "answer" : "우리는 이와 같은 고객과의 약속을 반드시 지키기 위한 구체적인 이행표준을 마련하고, 이를 성실히 준수하겠습니다."
                 },
+                {
+                    "id": "5",
+                    "question" : "영수증요청합니다",
+                    "answer" : "운동장 이용방법 문의, 입금확인, 예약취소 및 사용료 반환 요청 등 운동장 이용에 관한 문의 및 답변 게시판입니다."
+                },
+                {
+                    "id": "6",
+                    "question" : "예약취소 요청드립니다.",
+                    "answer" : "우리는 이와 같은 고객과의 약속을 반드시 지키기 위한 구체적인 이행표준을 마련하고, 이를 성실히 준수하겠습니다."
+                },
             ],
         }
     },
@@ -62,6 +72,7 @@ export default {
             array.push(false);
         })
         this.slideUp = [...array];
+
     },
     methods:{
         toggle(index){
@@ -123,6 +134,7 @@ export default {
     }
     .q{
         position: relative;
+        cursor:pointer;
         &:before{
             @include bef;
             left:auto;
@@ -132,6 +144,11 @@ export default {
             height:0.667rem;
             background: url('../assets/icon_arrow_gr.png') no-repeat center center/cover;
             transform: translateY(-50%) rotate(90deg);
+        }
+    }
+    .q.active{
+        &:before{
+            transform: translateY(-50%) rotate(-90deg);
         }
     }
     .a{
