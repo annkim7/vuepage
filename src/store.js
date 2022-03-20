@@ -24,6 +24,7 @@ const store = createStore({
       break : {},
       string : {},
       strTitle : {},
+      video : {}
     }
   },
   mutations :{
@@ -125,7 +126,10 @@ const store = createStore({
     strTitle(state, data){
       let strTitle = JSON.stringify(data);
       state.title = strTitle.replace (/"/g,'');
-    }
+    },
+    setVideo(state, data){
+      state.video = data
+    },
   },
   actions : {
     getData(context){
@@ -156,6 +160,13 @@ const store = createStore({
         context.commit('setNotice', d.data);
       })
     },
+    getVideo(context){
+      axios.get('https://annkim7.github.io/vuepage/src/assets/data/video.json')
+      .then((e)=>{
+        console.log(e.data);
+        context.commit('setVideo', e.data);
+      })
+    }
   },
 })
 

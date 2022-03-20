@@ -25,13 +25,14 @@ export default {
     this.getItem();
     this.getSchedule();
     this.getNotice();
+    this.getVideo();
   },  
   methods: {
     onResize() {
       this.$store.commit('handleResize')
     },
     ...mapActions([
-      'getData', 'getItem', 'getSchedule', 'getNotice'
+      'getData', 'getItem', 'getSchedule', 'getNotice', 'getVideo'
     ]),
   },
   components: {
