@@ -21,16 +21,14 @@
                     </span>
                 </form>
             </div>
-            <div class="notice-box">
-                <table class="notice-table">
-                    <thead>
-                        <tr>
-                            <th class="no">번호</th>
-                            <th class="title">제목</th>
-                            <th class="author">작성자</th>
-                            <th class="time">작성일</th>
-                        </tr>
-                    </thead>
+            <div class="video-box">
+                <ul class="video-list">
+                    <li v-for="(video, i) in pageArr" :key="i">
+                        <span class="img"><img :src="video.poster"/></span>
+                        <strong class="title">{{video.title}}</strong>
+                    </li>
+                </ul>
+                <!-- <table class="notice-table">
                     <tbody v-if="pageArr != ''" >
                         <tr v-for="(notice, i) in pageArr" :key="i">
                             <td class="no">{{indexArr[searchArr.indexOf(notice)]}}</td>
@@ -48,7 +46,7 @@
                             <td colspan="4" style="width:100%;text-align:center;">no result</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </div>
             <div class="page-box">
                 <span v-if="pageSetting(total, limit, block, page).first != null" class="prev-btn">
@@ -98,8 +96,8 @@ export default {
 
         
         onMounted(()=>{
-            searchArr.value = store.state.notice;
-            searchOriginal.value = [...store.state.notice]
+            searchArr.value = store.state.video;
+            searchOriginal.value = [...store.state.video]
             
             cateArr.value = ['제목', '내용'];
             
@@ -209,7 +207,7 @@ export default {
     .search-box{
         margin-left:0.5rem;
     }
-    .notice-box{
+    .video-box{
         width:100%;
         margin-top:2.5rem;
     }
