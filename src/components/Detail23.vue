@@ -24,8 +24,10 @@
             <div class="video-box">
                 <ul class="video-list">
                     <li v-for="(video, i) in pageArr" :key="i">
-                        <span class="img"><img :src="video.poster"/></span>
-                        <strong class="title">{{video.title}}</strong>
+                        <router-link :to="{ path: `/detail/23/` + video.id }">
+                            <span class="image"><img :src="video.poster"/></span>
+                            <strong class="title">{{video.title}}</strong>
+                        </router-link> 
                     </li>
                 </ul>
                 <!-- <table class="notice-table">
@@ -210,7 +212,12 @@ export default {
     .video-box{
         width:100%;
         margin-top:2.5rem;
+        padding-left:0;
     }
+}
+
+.video-list{
+    @include gallary(2rem,3);
 }
 
 </style>
