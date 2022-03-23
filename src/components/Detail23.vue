@@ -218,6 +218,12 @@ export default {
 
 .video-list{
     @include gallary(2rem,3);
+    li{
+        .title{
+            @include ellipse;
+            margin-top:0.8rem;
+        }
+    }
 }
 
 </style>
