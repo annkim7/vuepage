@@ -3,8 +3,8 @@
     <div class="videoDetail-area">
         <div class="videoDetail-wrap">
             <div class="videoDetail-box">
-                <video muted autoplay controls :poster="$store.state.video[$route.params.id].poster">
-                    <source :src="$store.state.video[$route.params.id].src" type="video/mp4">
+                <video muted autoplay controls :poster="$store.state.findArray.poster">
+                    <source :src="$store.state.findArray.src" type="video/mp4">
                 </video>
             </div>
             
@@ -20,6 +20,14 @@ export default {
     components: {
         SubHeader,
     },
+    data(){
+
+    },
+    mounted(){
+        this.$store.commit('find', this.$route.path);
+    },
+    methods:{
+    }
 }
 </script>
 
