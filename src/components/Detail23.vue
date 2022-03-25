@@ -30,6 +30,9 @@
                         </router-link> 
                     </li>
                 </ul>
+                <div v-if="pageArr == ''" class="noResult">
+                    no result
+                </div>
                 <!-- <table class="notice-table">
                     <tbody v-if="pageArr != ''" >
                         <tr v-for="(notice, i) in pageArr" :key="i">
