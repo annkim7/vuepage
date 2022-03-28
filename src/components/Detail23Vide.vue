@@ -7,7 +7,10 @@
                     <source :src="$store.state.findArray.src" type="video/mp4">
                 </video>
             </div>
-            
+            <div class="videoDetail-head">
+                <h4 v-html="$store.state.title" class="title"></h4>
+            </div>
+            <p v-html="$store.state.description" class="description"></p>
         </div>
     </div>
 </template>
@@ -41,9 +44,17 @@ export default {
 
 .videoDetail-wrap{
     @include layout;
+    .title{
+        @include upTitle;
+        margin:2rem 0 1rem;
+    }
+    .description{
+        line-height: 1.3;
+    }
 }
 
 .videoDetail-box{
     @include videoSrc;
+    
 }
 </style>

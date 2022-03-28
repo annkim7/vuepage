@@ -203,9 +203,16 @@ export default {
 .video-list{
     @include gallary(2rem,3);
     li{
+        border:1px solid #f4f4f4;
+        background:#fff;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
         .title{
             @include ellipse;
-            margin-top:0.8rem;
+            margin:0.8rem 0;
+            padding: 0 0.8rem;
+            font-size: 0.9rem;
+            line-height: 1.05;
+            color: var(--key-color);
         }
     }
 }
