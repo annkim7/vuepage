@@ -33,25 +33,6 @@
                 <div v-if="pageArr == ''" class="noResult">
                     no result
                 </div>
-                <!-- <table class="notice-table">
-                    <tbody v-if="pageArr != ''" >
-                        <tr v-for="(notice, i) in pageArr" :key="i">
-                            <td class="no">{{indexArr[searchArr.indexOf(notice)]}}</td>
-                            <td class="title">
-                                <router-link :to="{ path: `/detail/21/` + notice.id }">
-                                    <span v-html="line(notice.title)"></span>
-                                </router-link> 
-                            </td>
-                            <td class="author">{{notice.author}}</td>
-                            <td class="time">{{notice.time}}</td>
-                        </tr>
-                    </tbody>
-                    <tbody v-if="pageArr == ''" >
-                        <tr>
-                            <td colspan="4" style="width:100%;text-align:center;">no result</td>
-                        </tr>
-                    </tbody>
-                </table> -->
             </div>
             <div class="page-box">
                 <span v-if="pageSetting(total, limit, block, page).first != null" class="prev-btn">

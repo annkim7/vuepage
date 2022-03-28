@@ -95,15 +95,14 @@ const store = createStore({
       let findId = data.substr(11);
       if(findArray == '11'){
         state.findArray = state.schedule.find(x => x.id === findId);
-        this.commit('way', state.findArray);
+        
       }else if(findArray == '21'){
         state.findArray = state.notice.find(y => y.id === findId);
-        this.commit('way', state.findArray);
+        
       }else if(findArray == '23'){
         state.findArray = state.video.find(z => z.id === findId);
-        console.log(state.findArray);
       }
-      // this.commit('way', state.findArray);
+      this.commit('way', state.findArray);
     },
     way(state, data){
       if(data.content != undefined){
