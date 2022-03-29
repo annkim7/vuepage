@@ -1,6 +1,21 @@
 <template>
     <div class="video-area">
         <div class="video-wrap">
+            <div class="filter-box">
+                <span @click="$store.commit('pop')" class="filter-btn"><font-awesome-icon :icon="['fas', 'bars']" /></span>
+                <div v-if="$store.state.pop" class="filter">
+                    <ul class="filter-list">
+                        <li>
+                            <input type="checkbox" id="check01">
+                            <label for="check01">체크!</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="check02">
+                            <label for="check02">체크!</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="select-box">
                 <div class="select">
                     <span @click="$store.commit('toggleList')" class="select-btn">
@@ -184,11 +199,25 @@ export default {
 
 .video-wrap{
     display:flex;
+    position:relative;
     flex-flow: row wrap;
     align-items: center;
     justify-content: flex-end;
+    .filter-box{
+        .filter-btn{
+            @include center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            cursor:pointer;
+            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
+        }
+    }
     .select-box{
         min-width:9rem;
+        margin-left:auto;
     }
     .search-box{
         margin-left:0.5rem;
@@ -199,6 +228,24 @@ export default {
         padding-left:0;
     }
 }
+
+
+.filter{
+    position:absolute;
+    width:100%;
+    height:10rem;
+    padding: 1.2rem;
+    top:3rem;
+    left:0;
+    background-color: var(--white);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
+    .filter-list{
+        @include check;
+        position:absolute;
+    }
+}
+
 
 .video-list{
     @include gallary(2rem,3);
@@ -216,5 +263,6 @@ export default {
         }
     }
 }
+
 
 </style>

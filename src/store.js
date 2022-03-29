@@ -24,7 +24,8 @@ const store = createStore({
       break : {},
       string : {},
       strTitle : {},
-      video : {}
+      video : {},
+      pop : false,
     }
   },
   mutations :{
@@ -132,6 +133,9 @@ const store = createStore({
     setVideo(state, data){
       state.video = data
     },
+    pop(state){
+      state.pop = !state.pop;
+    }
   },
   actions : {
     getData(context){
