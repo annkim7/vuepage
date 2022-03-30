@@ -5,33 +5,21 @@
                 <span @click="$store.commit('pop')" class="filter-btn"><font-awesome-icon :icon="['fas', 'bars']" /></span>
                 <div v-if="$store.state.pop" class="filter">
                     <ul class="filter-list">
-                        <li>
-                            <input type="checkbox" id="check01">
-                            <label for="check01">한국</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="check02">
-                            <label for="check02">일본</label>
+                        <li v-for="(filter, i) in 5" :key="i">
+                            <input type="checkbox" :id="`checkA`+i">
+                            <label :for="`checkA`+i">한국</label>
                         </li>
                     </ul>
                     <ul class="filter-list">
-                        <li>
-                            <input type="checkbox" id="check01">
-                            <label for="check01">한국</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="check02">
-                            <label for="check02">일본</label>
+                        <li v-for="(filter, i) in 5" :key="i">
+                            <input type="checkbox" :id="`checkB`+i">
+                            <label :for="`checkB`+i">식물</label>
                         </li>
                     </ul>
                     <ul class="filter-list">
-                        <li>
-                            <input type="checkbox" id="check01">
-                            <label for="check01">한국</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="check02">
-                            <label for="check02">일본</label>
+                        <li v-for="(filter, i) in 5" :key="i">
+                            <input type="checkbox" :id="`checkC`+i">
+                            <label :for="`checkC`+i">트래킹</label>
                         </li>
                     </ul>
                 </div>
@@ -167,6 +155,10 @@ export default {
             order();
         }
 
+        function filter(text){
+            console.log(text);
+        }
+
         function paging(page){
             let pageList = searchArr.value.slice(
                 (page - 1) * data.limit,
@@ -204,7 +196,7 @@ export default {
             ...toRefs(data),
             total,
             cateArr, searchArr, pageArr, indexArr,
-            order, index, line, paging, pageSetting, search, select
+            order, index, line, paging, pageSetting, search, select, filter
         }
     },
 }
