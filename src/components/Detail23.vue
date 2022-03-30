@@ -7,11 +7,31 @@
                     <ul class="filter-list">
                         <li>
                             <input type="checkbox" id="check01">
-                            <label for="check01">체크!</label>
+                            <label for="check01">한국</label>
                         </li>
                         <li>
                             <input type="checkbox" id="check02">
-                            <label for="check02">체크!</label>
+                            <label for="check02">일본</label>
+                        </li>
+                    </ul>
+                    <ul class="filter-list">
+                        <li>
+                            <input type="checkbox" id="check01">
+                            <label for="check01">한국</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="check02">
+                            <label for="check02">일본</label>
+                        </li>
+                    </ul>
+                    <ul class="filter-list">
+                        <li>
+                            <input type="checkbox" id="check01">
+                            <label for="check01">한국</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="check02">
+                            <label for="check02">일본</label>
                         </li>
                     </ul>
                 </div>
@@ -232,17 +252,24 @@ export default {
 
 .filter{
     position:absolute;
+    display:flex;
     width:100%;
     height:10rem;
-    padding: 1.2rem;
+    padding: 1.5rem 0;
     top:3rem;
     left:0;
+    justify-content: space-between;
     background-color: var(--white);
     border-radius: 0.5rem;
     box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
     .filter-list{
         @include check;
-        position:absolute;
+        width:33.33%;
+        padding-left:1rem;
+        border-left:1px dashed #ccc;
+    }
+    .filter-list:first-child{
+        border-left:0;
     }
 }
 
