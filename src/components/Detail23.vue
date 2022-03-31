@@ -192,7 +192,7 @@ export default {
                 beforeArr.value.push(...beforeTxt);
             }
             let befTxt = beforeArr.value;
-
+            
             let filterTxt = searchOriginal.value.filter((d)=>{
                 return d.tag.indexOf(text) != -1
             });
