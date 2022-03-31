@@ -5,21 +5,21 @@
                 <span @click="$store.commit('pop')" class="filter-btn"><font-awesome-icon :icon="['fas', 'bars']" /></span>
                 <div v-if="$store.state.pop" class="filter">
                     <ul class="filter-list">
-                        <li v-for="(filter, i) in 5" :key="i">
-                            <input type="checkbox" :id="`checkA`+i">
-                            <label :for="`checkA`+i">한국</label>
+                        <li v-for="(country, i) in countryArr" :key="i">
+                            <input v-model="filterArr" type="checkbox" :id="`checkA`+i" :value="country">
+                            <label @click="filter(country)" :for="`checkA`+i">{{country}}</label>
                         </li>
                     </ul>
                     <ul class="filter-list">
-                        <li v-for="(filter, i) in 5" :key="i">
-                            <input type="checkbox" :id="`checkB`+i">
-                            <label :for="`checkB`+i">식물</label>
+                        <li v-for="(classify, i) in classifyArr" :key="i">
+                            <input v-model="filterArr" type="checkbox" :id="`checkB`+i" :value="classify">
+                            <label @click="filter(classify)" :for="`checkB`+i">{{classify}}</label>
                         </li>
                     </ul>
                     <ul class="filter-list">
-                        <li v-for="(filter, i) in 5" :key="i">
-                            <input type="checkbox" :id="`checkC`+i">
-                            <label :for="`checkC`+i">트래킹</label>
+                        <li v-for="(activity, i) in activityArr" :key="i">
+                            <input v-model="filterArr" type="checkbox" :id="`checkC`+i" :value="activity">
+                            <label @click="filter(activity)" :for="`checkC`+i">{{activity}}</label>
                         </li>
                     </ul>
                 </div>
@@ -91,6 +91,14 @@ export default {
         let pageArr = ref([]);
 
         let indexArr = ref([]);
+
+        let filterArr = ref([]);
+
+        let beforeArr = ref([]);
+
+        let countryArr = ref([]);
+        let classifyArr = ref([]);
+        let activityArr = ref([]);
         
         let data = reactive({
             limit : 6,
@@ -109,9 +117,9 @@ export default {
             searchOriginal.value = [...store.state.video]
             
             cateArr.value = ['제목', '내용'];
-            
+
             order();
-            
+            check();
         });
 
         function order(){
@@ -155,8 +163,45 @@ export default {
             order();
         }
 
+        function check(){
+            let countryTxt = searchOriginal.value.map((d)=>{
+                return d.tag[0]
+            });
+            let setCountry = new Set(countryTxt)
+            countryArr.value = [...setCountry]
+
+            let classifyTxt = searchOriginal.value.map((d)=>{
+                return d.tag[1]
+            });
+            let setClassify = new Set(classifyTxt)
+            classifyArr.value = [...setClassify]
+
+            let activityTxt = searchOriginal.value.map((d)=>{
+                return d.tag[2]
+            });
+            let setActivity = new Set(activityTxt)
+            activityArr.value = [...setActivity]
+        }
+
         function filter(text){
-            console.log(text);
+            beforeArr.value.length = 0;
+            for(var i = 0; i<filterArr.value.length; i++){
+                let beforeTxt = searchOriginal.value.filter((d)=>{
+                    return d.tag.indexOf(filterArr.value[i]) != -1
+                });
+                beforeArr.value.push(...beforeTxt);
+            }
+            let befTxt = beforeArr.value;
+
+            let filterTxt = searchOriginal.value.filter((d)=>{
+                return d.tag.indexOf(text) != -1
+            });
+
+            let array = [...befTxt, ...filterTxt];
+            let setting = new Set(array)
+
+            searchArr.value = [...setting];
+            order();
         }
 
         function paging(page){
@@ -195,8 +240,8 @@ export default {
         return {
             ...toRefs(data),
             total,
-            cateArr, searchArr, pageArr, indexArr,
-            order, index, line, paging, pageSetting, search, select, filter
+            cateArr, searchArr, pageArr, indexArr, countryArr, classifyArr, activityArr, filterArr, beforeArr,
+            order, index, line, paging, pageSetting, search, select, check, filter
         }
     },
 }
