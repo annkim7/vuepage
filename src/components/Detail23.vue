@@ -205,25 +205,25 @@ export default {
             let filterTxt = searchOriginal.value.filter((d)=>{
                 return d.tag.indexOf(text) != -1
             });
-            console.log(filterArr.value);
             
             let array = {}
+
             if(checkedArr.value[index] == false){
                 checkedArr.value[index] = !checkedArr.value[index];
                 array = [...befTxt, ...filterTxt];
                 console.log('+'+index);
+                console.log(array);
             }else{
                 checkedArr.value[index] = !checkedArr.value[index];
                 let befoTxt = beforeArr.value.filter((d)=>{
                     return d.tag.indexOf(text) == -1
                 });
-                console.log(befoTxt);
                 array = [...befoTxt];
                 console.log('-'+index);
+                console.log(array);
             }
             
             let setting = new Set(array)
-
             searchArr.value = [...setting];
             order();
         }
