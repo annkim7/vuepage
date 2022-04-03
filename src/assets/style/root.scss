@@ -400,6 +400,58 @@
     }
 }
 
+@mixin radio(){
+    input[type=radio]{
+        display:none;
+    }
+    input[type=radio] + label{
+        display: inline-block;
+        position: relative;
+        padding-left: 1.5rem;
+        font-size: 0.933rem;
+        line-height: 1.25;
+        color:#333;
+        cursor: pointer;
+        &:before{
+            content:"\f0c8";
+            position: absolute;
+            top:0;
+            left:0;
+            font-family: 'Font Awesome 5 Free';
+        }
+    }
+    input[type=radio]:checked + label:before{
+        content: "\f14a";
+    }
+}
+
+@mixin radioBtn(){
+    input[type=radio]{
+        display:none;
+    }
+    input[type=radio] + label{
+        position: relative;
+        em{
+            width: 100%;
+            height: auto;
+            padding: 1rem 0.3rem;
+            cursor:pointer;
+        }
+        span{
+            position: absolute;
+            top:0;
+            left:0;
+            text-align: center;
+            background: skyblue;
+        }
+    }
+    input[type=radio]:checked + label{
+        span{
+            background: blue;
+        }
+    }  
+}
+
 @mixin tab(){
     display:flex;
     flex-flow: row wrap;
