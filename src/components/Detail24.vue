@@ -4,7 +4,8 @@
             <div class="question-box">
                 <div class="write">
                     <strong>From.</strong>
-                    <input type="text" name="search-input" placeholder="이름">
+                    <input :value="write" @keyup="wirteTxt" type="text" name="search-input" placeholder="이름">
+                    {{write}}
                 </div>
                 <div class="write">
                     <strong>Position.</strong>
@@ -31,6 +32,16 @@
 <script>
 export default {
     name : 'Detail24',
+    data(){
+        return{
+            write : ''
+        }
+    },
+    methods: {
+        irteTxt(event){
+            this.write = event.target.value;
+        }
+    }
 }
 </script>
 
