@@ -39,6 +39,10 @@
                 <span class="member">{{this.inputVal}}</span>
             </div>
             <div class="modal-content">{{this.array.content}}</div>
+            <div class="modal-confirm">
+                <span class="confirm-txt">이대로 전송하시겠습니까?</span>
+                <span @click="confirm" class="confirm-btn">확인</span>
+            </div>
         </div>
     </div>
 </template>
@@ -80,6 +84,12 @@ export default {
         },
         close(){
             this.popOpen = false;
+        },
+        confirm(){
+            alert('전달 완료되었습니다');
+            setTimeout(()=>{
+                this.popOpen = false;
+            }, 600);
         }
     }
 }
@@ -150,5 +160,25 @@ export default {
     }
 }
 
+.modal-confirm{
+    text-align: center;
+    .confirm-txt{
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #0e0e0e;
+    }
+    .confirm-btn{
+        width:5rem;
+        margin: 1rem auto 0;
+        padding: 0.3rem;
+        background: #D3D3D3;
+        border-radius: 2rem;
+        cursor: pointer;
+        &:hover{
+            color: var(--white);
+            background: var(--key-color);
+        }
+    }
+}
 
 </style>

@@ -250,6 +250,7 @@ export default {
 }
 
 .modal-content{
+    min-height:5rem;
     padding: 1.2rem 0 0;
     font-size:0.95rem;
     line-height:1.3;

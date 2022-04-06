@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap" v-resize="onResize">
+  <div class="wrap" v-resize="onResize" :class="{'scrollBg' : $route.params.id == '01'}">
     <Header />
     
     <router-view></router-view>

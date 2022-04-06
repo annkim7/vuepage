@@ -3,6 +3,7 @@
 
     <div class="sub-container">
         <Detail00 v-if="$route.params.id == '00'" />
+        <Detail01 v-if="$route.params.id == '01'" />
         <Detail02 v-if="$route.params.id == '02'" />
         <Detail10 v-if="$route.params.id == '10'" />
         <Detail11 v-if="$route.params.id == '11'" />
@@ -17,6 +18,7 @@
 <script>
 import SubHeader from './SubHeader'
 import Detail00 from './Detail00'
+import Detail01 from './Detail01'
 import Detail02 from './Detail02'
 import Detail10 from './Detail10'
 import Detail11 from './Detail11'
@@ -31,6 +33,7 @@ export default {
     components: {
         SubHeader,
         Detail00,
+        Detail01,
         Detail02,
         Detail10,
         Detail11,

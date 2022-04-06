@@ -111,14 +111,13 @@ export default {
 
 
 .history .list{
-    @include list(10rem);
+    @include list(8rem);
     li{
-        padding: 0.3rem 0;
         b{
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         span{
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
     }
     li ~ li{
