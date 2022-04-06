@@ -1,10 +1,20 @@
 <template>
     <div class="host-area">
         <div class="host-wrap">
-            <div class="host-box">
-                <div class="host-img"><span></span></div>
+            <div class="hostHead-box">
+                <div class="host-inner">안녕하십니까, 세미나에 오신 것을 환영합니다.</div>
+            </div>
+            <div class="hostBg-box">
+                <div class="host-bg">
+                    <div class="host-img"><span></span></div>
+                </div>
+                
+            </div>
+            <div class="hostCon-box">
+                <div class="host-inner">text</div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -38,19 +48,43 @@ export default {
     background: var(--default-bg);
 }
 
-.host-area{
+.wrap.scrollBg .subHeader-wrap{
+    max-width:100%;
+    margin: 0;
+    margin-top:60px;
+}
+
+.wrap.scrollBg .subHeader-box{
     @include layout;
 }
 
-.host-wrap{
+.wrap.scrollBg .sub-container{
+    padding:0;
+}
+
+.host-area{
+    overflow:hidden;
+}
+
+.host-inner{
+    @include layout;
+    padding: 3.5rem 0;
+}
+
+
+.hostHead-box,
+.hostCon-box{
+    background: #f9f9f9;
+}
+
+.hostBg-box{
     overflow:hidden;
     position:relative;
     height: 18rem;
-    border:1px solid red;
     
 }
 
-.host-box{
+.host-bg{
     overflow: hidden;
     position: fixed;
     width: auto;
@@ -70,6 +104,7 @@ export default {
         position:absolute;
         width:100%;
         height:100%;
+        transform: translate(-5%, -5%) scale(1.1);
         &:after{
             overflow:hidden;
             display: block;
@@ -79,9 +114,13 @@ export default {
             content: '';
             left: 0;
             right: 0;
-            background: url('../assets/host.jpg') no-repeat center;
+            background: url('../assets/host.jpg') no-repeat center center/cover;
         }
     }
+}
+
+.hostCon-box{
+    height:100vh;
 }
 
 </style>
