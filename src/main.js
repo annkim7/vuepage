@@ -19,5 +19,7 @@ library.add(fab, far, fas)
 app.use(store);
 app.use(router);
 app.use(VueResizeObserver);
+// app.use(VueApexCharts);
+// app.component('apexchart', VueApexCharts);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount('#app');

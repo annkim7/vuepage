@@ -11,6 +11,9 @@
             </div>
             <div v-if="$store.state.step == 0" class="history-box">
                 <h4 class="title">The Title 2021</h4>
+                <div>
+                    <apexchart height="350" type="bar" :options="chartOptions" :series="series"></apexchart>
+                </div>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2021. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -22,9 +25,13 @@
                         <li><b>후원</b><span>환경부, 환경보전협회, 한국대기환경학회, 에코맘코리아, 미대촉, 경기도환경기술인협회, 경기도환경산업협회, 한국막학회, 한국냉동공조산업협회, 한국실내환경학회, 한국공기청정협회/연구조합, 대한의사협회, 한국환경보건학회</span></li>
                     </ul>
                 </div>
+                
             </div>
             <div v-if="$store.state.step == 1" class="history-box">
                 <h4 class="title">The Title 2020</h4>
+                <div id="chart">
+                    <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+                </div>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2020. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -90,8 +97,31 @@
 </template>
 
 <script>
+import VueApexCharts from "vue3-apexcharts";
+
 export default {
     name : 'Detail02',
+    components: {
+        apexchart: VueApexCharts,
+    },
+    data(){
+        return{
+            chartOptions: {
+                chart: {
+                    id: "vuechart-example",
+                },
+                xaxis: {
+                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+                },
+            },
+            series: [
+                {
+                    name: "series-1",
+                    data: [30, 40, 35, 50, 49, 60, 70, 91],
+                },
+            ],
+        }
+    }
 }
 </script>
 
@@ -112,6 +142,7 @@ export default {
 
 .history .list{
     @include list(8rem);
+    margin-top:3.4rem;
     li{
         b{
             font-size: 1.05rem;
