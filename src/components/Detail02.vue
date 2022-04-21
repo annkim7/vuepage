@@ -11,10 +11,10 @@
             </div>
             <div v-if="$store.state.step == 0" class="history-box">
                 <h4 class="title">The Title 2021</h4>
-                <div>
-                    <apexchart height="350" type="bar" :options="chartOptions" :series="series"></apexchart>
+                <div class="chart">
+                    <apexchart height="350" :options="chartOptions2021" :series="series2021"></apexchart>
                 </div>
-                <div class="history">
+                <div class="history"> 
                     <ul class="list">
                         <li><b>일시</b><span>2021. 10. 01(화) ~ 02(수) / 2일간</span></li>
                         <li><b>장소</b><span>KINTEX 제 1전시장 5홀</span></li>
@@ -29,8 +29,8 @@
             </div>
             <div v-if="$store.state.step == 1" class="history-box">
                 <h4 class="title">The Title 2020</h4>
-                <div id="chart">
-                    <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+                <div class="chart">
+                    <apexchart height="350" :options="chartOptions2020" :series="series2020"></apexchart>
                 </div>
                 <div class="history">
                     <ul class="list">
@@ -46,6 +46,9 @@
             </div>
             <div v-if="$store.state.step == 2" class="history-box">
                 <h4 class="title">The Title 2019</h4>
+                <div class="chart">
+                    <apexchart height="350" :options="chartOptions2019" :series="series2019"></apexchart>
+                </div>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2019. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -70,6 +73,9 @@
             </div>
             <div v-if="$store.state.step == 3" class="history-box">
                 <h4 class="title">The Title 2018</h4>
+                <div class="chart">
+                    <apexchart height="350" type="bar" :options="chartOptions2018" :series="series2018"></apexchart>
+                </div>
                 <div class="history">
                     <ul class="list">
                         <li><b>일시</b><span>2018. 10. 01(화) ~ 02(수) / 2일간</span></li>
@@ -106,18 +112,76 @@ export default {
     },
     data(){
         return{
-            chartOptions: {
+            chartOptions2021: {
                 chart: {
-                    id: "vuechart-example",
+                    id : 'chart2021',
+                    type: 'bar',
                 },
                 xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+                    categories: ['10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm'],
                 },
+                colors: ['#D3D3D3'],
             },
-            series: [
+            series2021: [
                 {
-                    name: "series-1",
-                    data: [30, 40, 35, 50, 49, 60, 70, 91],
+                    name: "series2021",
+                    data: [60, 40, 20, 70, 86, 50, 30, 20],
+                },
+            ],
+            chartOptions2020: {
+                chart: {
+                    id : 'chart2020',
+                    type: 'line',
+                },
+                xaxis: {
+                    categories: ['10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm'],
+                },
+                colors: ['#D3D3D3'],
+            },
+            series2020: [
+                {
+                    name: "series2020",
+                    data: [80, 50, 10, 40, 26, 40, 30, 10],
+                },
+            ],
+            chartOptions2019: {
+                chart: {
+                    id : 'chart2019',
+                    type: 'area',
+                    stacked: false,
+                    zoom: {
+                        type: 'x',
+                        enabled: true,
+                        autoScaleYaxis: true
+                    },
+                    toolbar: {
+                        autoSelected: 'zoom'
+                    },
+                },
+                xaxis: {
+                    categories: ['10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm'],
+                },
+                colors: ['#D3D3D3'],
+            },
+            series2019: [
+                {
+                    name: "series2019",
+                    data: [60, 70, 20, 30, 26, 15, 60, 10],
+                },
+            ],
+            chartOptions2018: {
+                chart: {
+                    id : 'chart2018',
+                },
+                xaxis: {
+                    categories: ['10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm'],
+                },
+                colors: ['#D3D3D3'],
+            },
+            series2018: [
+                {
+                    name: "series2018",
+                    data: [65, 45, 10, 35, 46, 50, 10, 10],
                 },
             ],
         }
@@ -131,6 +195,7 @@ export default {
 .history-area{
     @include layout;
 }
+
 
 .history-box{
     .title{
