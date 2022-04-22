@@ -15,6 +15,9 @@
                     by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham. by Cicero are also reproduced in their exact original form, accompanied.
                 </p>
             </div>
+            <div class="counter">
+                <animated-number :value="7000" :duration="duration" :formatValue="formatToPrice" v-if="this.period==1"/>
+            </div>
             <!-- <div class="abridge-box">
                 <div class="abridge">
                     <ul class="abridge-list">
@@ -71,8 +74,25 @@
 </template>
 
 <script>
+import AnimatedNumber from "animated-number-vue";
+
 export default {
     name : 'Detail00',
+    components: {
+        AnimatedNumber,
+    },
+    data(){
+		return{
+			duration:600,
+		}
+	},
+	methods:{
+        formatToPrice(value) {
+            var num=Number(value).toFixed(0)
+            return `${Number(num).toLocaleString()}`;
+        }
+	}
+
 }
 </script>
 
