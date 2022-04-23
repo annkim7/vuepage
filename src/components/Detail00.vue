@@ -16,7 +16,9 @@
                 </p>
             </div>
             <div class="counter">
-                <animated-number :value="7000" :duration="duration" :formatValue="formatToPrice" v-if="this.period==1"/>
+                <div class="years"><span>27</span><b>Years</b></div>
+                <div class="visitors"><span>180,000</span><b>Visitors</b></div>
+                <div class="brands"><span>300</span><b>Brands</b></div>
             </div>
             <!-- <div class="abridge-box">
                 <div class="abridge">
@@ -74,23 +76,18 @@
 </template>
 
 <script>
-import AnimatedNumber from "animated-number-vue";
+
 
 export default {
     name : 'Detail00',
     components: {
-        AnimatedNumber,
     },
     data(){
 		return{
-			duration:600,
 		}
 	},
 	methods:{
-        formatToPrice(value) {
-            var num=Number(value).toFixed(0)
-            return `${Number(num).toLocaleString()}`;
-        }
+
 	}
 
 }
@@ -132,6 +129,29 @@ export default {
         margin-bottom: 2rem;
     }
 }
+
+
+.counter{
+    display:flex;
+    width:100%;
+    margin: 3.5rem 0;
+    padding: 2.4rem 6rem;
+    border-top:1px solid #0e0e0e;
+    border-bottom:1px solid #0e0e0e;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    span{
+        font-size: 4rem;
+        font-weight:600;
+        color:#D1D1D1;
+    }
+    b{
+        margin-top:0.8rem;
+        
+    }
+}
+
 
 
 .abridge-box{
