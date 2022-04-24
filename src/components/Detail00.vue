@@ -16,11 +16,30 @@
                 </p>
             </div>
             <div class="counter">
-                <div class="years"><span>27</span><b>Years</b></div>
-                <div class="visitors"><span>180,000</span><b>Visitors</b></div>
-                <div class="brands"><span>300</span><b>Brands</b></div>
+                <div class="years">
+                    <vue3-autocounter ref='counter' :startAmount='0' :endAmount='27' :duration='3'  separator=',' decimalSeparator='.' :decimals='0' :autoinit='true' />
+                    <b>Years</b>
+                </div>
+                <div class="visitors">
+                    <vue3-autocounter ref='counter' :startAmount='0' :endAmount='180000' :duration='3'  separator=',' decimalSeparator='.' :decimals='0' :autoinit='true' />
+                    <b>Visitors</b>
+                </div>
+                <div class="brands">
+                    <vue3-autocounter ref='counter' :startAmount='0' :endAmount='300' :duration='3'  separator=',' decimalSeparator='.' :decimals='0' :autoinit='true' />
+                    <b>Brands</b>
+                </div>
             </div>
-            <!-- <div class="abridge-box">
+            <div class="summary-box">
+                <p class="text">
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum"
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="abridge-box">
                 <div class="abridge">
                     <ul class="abridge-list">
                         <li><b>title</b><span>Lorem Ipsum passage</span></li>
@@ -71,26 +90,18 @@
                     </li>
                 </ul>
             </div> -->
-        </div>
-    </div>
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+import Vue3autocounter from 'vue3-autocounter';
 
-
-export default {
+export default defineComponent({
     name : 'Detail00',
     components: {
+        'vue3-autocounter': Vue3autocounter
     },
-    data(){
-		return{
-		}
-	},
-	methods:{
-
-	}
-
-}
+});
 </script>
 
 <style lang="scss" >
@@ -136,19 +147,19 @@ export default {
     width:100%;
     margin: 3.5rem 0;
     padding: 2.4rem 6rem;
-    border-top:1px solid #0e0e0e;
-    border-bottom:1px solid #0e0e0e;
     align-items: center;
     justify-content: space-between;
-    text-align: center;
+    border-top:1px solid #0e0e0e;
+    border-bottom:1px solid #0e0e0e;
     span{
-        font-size: 4rem;
+        font-size: 4.3rem;
         font-weight:600;
         color:#D1D1D1;
     }
     b{
         margin-top:0.8rem;
-        
+        text-align: center;
+        font-size: 0.85rem;
     }
 }
 

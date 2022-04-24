@@ -74,7 +74,7 @@
             <div v-if="$store.state.step == 3" class="history-box">
                 <h4 class="title">The Title 2018</h4>
                 <div class="chart">
-                    <apexchart height="350" type="bar" :options="chartOptions2018" :series="series2018"></apexchart>
+                    <apexchart type="line" height="350" :options="chartOptions2018" :series="series2018"></apexchart>
                 </div>
                 <div class="history">
                     <ul class="list">
@@ -172,17 +172,76 @@ export default {
             chartOptions2018: {
                 chart: {
                     id : 'chart2018',
+                    height: 350,
+                    type: 'line',
+                    stacked: false,
+                },
+                stroke: {
+                    width: [0, 2, 5],
+                    curve: 'smooth'
+                },
+                plotOptions: {
+                    bar: {
+                        columnWidth: '50%'
+                    }
+                },
+                fill: {
+                    opacity: [0.85, 0.25, 1],
+                    gradient: {
+                        inverseColors: false,
+                        shade: 'light',
+                        type: "vertical",
+                        opacityFrom: 0.85,
+                        opacityTo: 0.55,
+                        stops: [0, 100, 100, 100]
+                    }
+                },
+                labels: [
+                    '01/01/2018', '02/01/2018', '03/01/2018', '04/01/2018', '05/01/2018', '06/01/2018', '07/01/2018',
+                    '08/01/2018', '09/01/2018', '10/01/2018', '11/01/2018'
+                ],
+                markers: {
+                    size: 0
                 },
                 xaxis: {
-                    categories: ['10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm'],
+                    type: 'datetime'
                 },
-                colors: ['#D3D3D3'],
+                yaxis: {
+                    title: {
+                        text: 'Points',
+                    },
+                    min: 0
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false,
+                    y: {
+                        formatter: function (y) {
+                            if (typeof y !== "undefined") {
+                                return y.toFixed(0) + " points";
+                            }
+                            return y;
+                        }
+                    }
+                },
+                colors: ['#D3D3D3','#dedede','#ccc'],
             },
             series2018: [
                 {
-                    name: "series2018",
-                    data: [65, 45, 10, 35, 46, 50, 10, 10],
+                    name: 'TEAM A',
+                    type: 'column',
+                    data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
                 },
+                {
+                    name: 'TEAM B',
+                    type: 'area',
+                    data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+                },
+                {
+                    name: 'TEAM C',
+                    type: 'line',
+                    data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+                }
             ],
         }
     }
