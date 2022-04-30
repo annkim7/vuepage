@@ -80,7 +80,7 @@ export default {
 .hostBg-box{
     overflow:hidden;
     position:relative;
-    height: 18rem;
+    height: 33rem;
     
 }
 

@@ -299,17 +299,18 @@ export default {
     @include center;
     flex-flow: row wrap;
     li{
-        min-width: 6rem;
-        padding: 0.6rem 0.5rem;
-        background: #D3D3D3;
+        min-width: 7rem;
+        padding: 0.85rem 0.5rem;
+        background: #fff;
         border-radius: 2rem;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         text-align: center;
         cursor:pointer;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 6%);
     }
     li.active{
-        color: var(--white);
-        background: var(--key-color);
+        color: #0e0e0e;
+        background: #dedede;
     }
     li ~ li{
         margin-left: 0.5rem;
