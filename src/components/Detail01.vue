@@ -11,7 +11,14 @@
                 
             </div>
             <div class="hostCon-box">
-                <div class="host-inner">text</div>
+                <div class="inner">
+                    <h4 class="title">추구 방향</h4>
+                    <ul class="icon-list">
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                    </ul>
+                </div>
             </div>
         </div>
         
@@ -121,6 +128,36 @@ export default {
 
 .hostCon-box{
     height:100vh;
+    .inner{
+        @include layout;
+        padding-top:4rem;
+        .title{
+            @include upTitle;
+            
+        }
+    }
+    
+}
+
+.icon-list{
+    @include center;
+    li{
+        margin: 2.6rem;
+        padding: 3rem;
+        background: #f4f4f4;
+        border-radius: 50%;
+        span{
+            width:4rem;
+            height:4rem;
+            background: url('../assets/icon_01.png') no-repeat center center/cover;
+        }
+        
+    }
+    @for $i from 1 to 4{
+        li:nth-of-type(#{$i}) span{
+            background-image: url('../assets/icon_0#{$i}.png');
+        }
+    }    
 }
 
 </style>
