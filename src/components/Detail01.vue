@@ -2,7 +2,10 @@
     <div class="host-area">
         <div class="host-wrap">
             <div class="hostHead-box">
-                <div class="host-inner">안녕하십니까, 세미나에 오신 것을 환영합니다.</div>
+                <div class="host-inner">
+                    <strong>첨단소재로 고객과 함께<br>성장해 나가겠습니다</strong>
+                    <p>고객과 파트너사의 신뢰와 협력으로 지속적으로 성장했으며, 끊임없는 연구개발과 혁신으로 새로운 가치를 창조해 나가겠습니다.<br><br>자체 연구역량 강화와 관계기관과의 파트너십 및 User와의 네트워크를 통해 경쟁력 제고에 심혈을 기울이고 있습니다.</p>
+                </div>
             </div>
             <div class="hostBg-box">
                 <div class="host-bg">
@@ -11,12 +14,12 @@
                 
             </div>
             <div class="hostCon-box">
-                <div class="inner">
+                <div class="host-inner">
                     <h4 class="title">추구 방향</h4>
                     <ul class="icon-list">
-                        <li><span></span></li>
-                        <li><span></span></li>
-                        <li><span></span></li>
+                        <li>혁신성</li>
+                        <li>친환경</li>
+                        <li>종합 기술력</li>
                     </ul>
                 </div>
             </div>
@@ -84,6 +87,42 @@ export default {
     background: #f9f9f9;
 }
 
+.hostHead-box .host-inner{
+    display:flex;
+    strong{
+        position:relative;
+        width:29%;
+        max-height:7.6rem;
+        margin-right:16%;
+        padding:1.8rem;
+        font-size:1.6rem;
+        line-height:1.3;
+        color:#0e0e0e;
+        &:before, &:after{
+            display:block;
+            position:absolute;
+            top:1.5rem;
+            left:0.2rem;
+            content: "\f10d";
+            font-size:1.2rem;
+            font-family:"fontAwesome";
+        }
+        &:after{
+            top:auto;
+            bottom:1.5rem;
+            left:auto;
+            right:1.8rem;
+            content: "\f10e";
+        }
+    }
+    p{
+        width:55%;
+        padding-top:1.8rem;
+        font-size:1.05rem;
+        line-height:1.4;
+    }
+}
+
 .hostBg-box{
     overflow:hidden;
     position:relative;
@@ -128,9 +167,7 @@ export default {
 
 .hostCon-box{
     height:100vh;
-    .inner{
-        @include layout;
-        padding-top:4rem;
+    .host-inner{
         .title{
             @include upTitle;
             
@@ -142,20 +179,30 @@ export default {
 .icon-list{
     @include center;
     li{
+        position: relative;
+        width:10rem;
         margin: 2.6rem;
-        padding: 3rem;
-        background: #f4f4f4;
-        border-radius: 50%;
-        span{
-            width:4rem;
-            height:4rem;
-            background: url('../assets/icon_01.png') no-repeat center center/cover;
+        padding-top:12rem;
+        font-size:1.05rem;
+        color:#0e0e0e;
+        text-align: center;        
+        &:before{
+            @include bef;
+            width:10rem;
+            height:10rem;
+            left:50%;
+            transform: translate(-50%, 0);
+            border-radius: 50%;
+            background: #f4f4f4 url('../assets/icon_01.png') no-repeat center center/4rem 4rem;
         }
         
     }
     @for $i from 1 to 4{
-        li:nth-of-type(#{$i}) span{
-            background-image: url('../assets/icon_0#{$i}.png');
+        li:nth-of-type(#{$i}){
+            &:before{
+                background-image: url('../assets/icon_0#{$i}.png');
+            }
+            
         }
     }    
 }
