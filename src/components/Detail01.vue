@@ -1,31 +1,33 @@
 <template>
-    <div class="host-area">
-        <div class="host-wrap">
-            <div class="hostHead-box">
-                <div class="host-inner">
-                    <strong>첨단소재로 고객과 함께<br>성장해 나가겠습니다</strong>
-                    <p>고객과 파트너사의 신뢰와 협력으로 지속적으로 성장했으며, 끊임없는 연구개발과 혁신으로 새로운 가치를 창조해 나가겠습니다.<br><br>자체 연구역량 강화와 관계기관과의 파트너십 및 User와의 네트워크를 통해 경쟁력 제고에 심혈을 기울이고 있습니다.</p>
+    <div id="scrollEvent">
+        <div v-scroll:#scrollEvent="handleScroll" class="host-area">
+            <div class="host-wrap">
+                <div class="hostHead-box">
+                    <div class="host-inner">
+                        <strong>첨단소재로 고객과 함께<br>성장해 나가겠습니다</strong>
+                        <p>고객과 파트너사의 신뢰와 협력으로 지속적으로 성장했으며, 끊임없는 연구개발과 혁신으로 새로운 가치를 창조해 나가겠습니다.<br><br>자체 연구역량 강화와 관계기관과의 파트너십 및 User와의 네트워크를 통해 경쟁력 제고에 심혈을 기울이고 있습니다.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="hostBg-box">
-                <div class="host-bg">
-                    <div class="host-img"><span></span></div>
+                <div class="hostBg-box">
+                    <div class="host-bg">
+                        <div class="host-img"><span></span></div>
+                    </div>
+                    
                 </div>
-                
-            </div>
-            <div class="hostCon-box">
-                <div class="host-inner">
-                    <h4 class="title">추구 방향</h4>
-                    <ul class="icon-list">
-                        <li>혁신성</li>
-                        <li>친환경</li>
-                        <li>종합 기술력</li>
-                    </ul>
+                <div class="hostCon-box">
+                    <div class="host-inner">
+                        <h4 class="title">추구 방향</h4>
+                        <ul class="icon-list">
+                            <li>혁신성</li>
+                            <li>친환경</li>
+                            <li>종합 기술력</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
+    
 </template>
 
 <script>
@@ -33,14 +35,22 @@ export default {
     name : 'Detail01',
     data(){
         return{
-
+            showdiv : false,
+            scrollPostion : 0
         }
     },
     mounted(){
 
     },
     methods:{
-
+        handleScroll(e){ 
+            this.scrollPostion = e.target.scrollTop;
+            if(this.scrollPosition > 100){ 
+                console.log("UP") 
+            } else { 
+                console.log("DOWN")
+            } 
+        }
     }
 }
 </script>
