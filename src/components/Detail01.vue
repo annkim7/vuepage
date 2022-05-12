@@ -2,19 +2,19 @@
     <div class="host-area">
         <div class="host-wrap">
             <div class="hostHead-box">
-                <div class="host-inner">
+                <div class="host-inner" :class="{ on : active[0] }">
                     <strong>첨단소재로 고객과 함께<br>성장해 나가겠습니다</strong>
                     <p>고객과 파트너사의 신뢰와 협력으로 지속적으로 성장했으며, 끊임없는 연구개발과 혁신으로 새로운 가치를 창조해 나가겠습니다.<br><br>자체 연구역량 강화와 관계기관과의 파트너십 및 User와의 네트워크를 통해 경쟁력 제고에 심혈을 기울이고 있습니다.</p>
                 </div>
             </div>
-            <div class="hostBg-box">
+            <div class="hostBg-box" :class="{ on : active[1] }">
                 <div class="host-bg">
                     <div class="host-img"><span></span></div>
                 </div>
                 
             </div>
             <div class="hostCon-box">
-                <div class="host-inner">
+                <div class="host-inner" :class="{ on : active[2] }">
                     <h4 class="title">추구 방향</h4>
                     <ul class="icon-list">
                         <li>혁신성</li>
@@ -34,19 +34,35 @@ export default {
     data(){
         return{
             scrollTop : 0,
+            active : [false, false, false],
         }
     },
     mounted(){
         document.addEventListener('scroll', this.scroll, true);
+        this.active[0] = true;
+        this.active[1] = true;
     },
     unmounted(){
         document.removeEventListener('scroll', this.scroll, true);
     },
     methods:{
         scroll(e){
-        this.scrollTop = e.target.scrollTop;
+            this.scrollTop = e.target.scrollTop;
+            const eventTop = document.querySelector('.hostCon-box').offsetTop - window.outerHeight/4;
 
-        console.log('scroll', this.scrollTop);
+            if(this.scrollTop < eventTop){
+                this.active[0] = true;
+                this.active[1] = true;
+                this.active[2] = false;
+            }else if(this.scrollTop > eventTop){
+                this.active[0] = false;
+                this.active[1] = false;
+                this.active[2] = true;
+            }else{
+                this.active[0] = false;
+                this.active[1] = true;
+                this.active[2] = false;
+            }
 
         },
     }
@@ -89,9 +105,18 @@ export default {
     padding: 3.5rem 0;
 }
 
+.hostHead-box .host-inner.on strong,
+.hostHead-box .host-inner.on p,
+.hostCon-box .host-inner.on .title,
+.host-inner.on .icon-list li{
+    opacity:1;
+    transform: translateY(0%);
+}
+
 
 .hostHead-box,
 .hostCon-box{
+    overflow:hidden;
     background: #f9f9f9;
 }
 
@@ -106,6 +131,9 @@ export default {
         font-size:1.6rem;
         line-height:1.3;
         color:#0e0e0e;
+        opacity:0;
+        transform: translateY(100%);
+        transition: all 0.3s;
         &:before, &:after{
             display:block;
             position:absolute;
@@ -128,6 +156,9 @@ export default {
         padding-top:1.8rem;
         font-size:1.05rem;
         line-height:1.4;
+        opacity:0;
+        transform: translateY(100%);
+        transition: all 0.3s 0.3s;
     }
 }
 
@@ -136,6 +167,16 @@ export default {
     position:relative;
     height: 33rem;
     
+}
+
+.hostBg-box:before{
+    @include bef;
+    background: #f9f9f9;
+    transition: all 1.2s;
+}
+
+.hostBg-box.on:before{
+    width:0;
 }
 
 .host-bg{
@@ -178,7 +219,9 @@ export default {
     .host-inner{
         .title{
             @include upTitle;
-            
+            opacity:0;
+            transform: translateY(100%);
+            transition: all 0.3s;
         }
     }
     
@@ -193,7 +236,9 @@ export default {
         padding-top:12rem;
         font-size:1.05rem;
         color:#0e0e0e;
-        text-align: center;        
+        text-align: center;
+        opacity:0;
+        transform: translateY(100%);      
         &:before{
             @include bef;
             width:10rem;
@@ -207,6 +252,8 @@ export default {
     }
     @for $i from 1 to 4{
         li:nth-of-type(#{$i}){
+            $second : $i * 0.1;
+            transition: all 0.6s $second + s;    
             &:before{
                 background-image: url('../assets/icon_0#{$i}.png');
             }
