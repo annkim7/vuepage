@@ -104,8 +104,23 @@
       <div class="inner-wrap">
         <div class="content">
           <h2 class="main-title">Notice</h2>
+          <div class="con">
+            <div class="mainNotice-list">
+              <ul>
+                <li v-for="(notice, i) in noticeArr" :key="i">
+                  <strong v-html="line(notice.title)" class="mainTitle"></strong>
+                  <span class="mainDate">{{notice.time}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mainVideo-list">
+              <li v-for="(video, i) in videoArr" :key="i">
+                <img :src="video.poster"/>
+              </li>
+            </div>
+          </div>
+            
         </div>
-        
       </div>
     </section>
   </div>
@@ -148,6 +163,8 @@ export default {
       this.waveBg();
       this.sort();
       this.fade();
+      this.notice();
+      this.video();
     },
     unmounted() {
       document.removeEventListener('scroll', this.scroll, true);
@@ -275,6 +292,30 @@ export default {
         this.unfade();
         this.prev();
         setTimeout(()=>{ this.fade(); }, 100);
+      },
+      notice(){
+        setTimeout(()=>{
+          let noticeOriginal = [...this.$store.state.notice];
+          let notice = noticeOriginal.sort(function(a,b){
+            return b.date - a.date
+          });
+          this.noticeArr = notice.slice(0,4);
+          console.log(this.noticeArr)
+        }, 2000);
+      },
+      line(content){
+        let bef = JSON.stringify(content);
+        return bef.replace (/"/g,'');
+      },
+      video(){
+        setTimeout(()=>{
+          let videoOriginal = [...this.$store.state.video];
+          let video = videoOriginal.sort(function(a,b){
+            return b.date - a.date
+          });
+          this.videoArr = video.slice(0,4);
+          console.log(this.videoArr)
+        }, 2000);
       }
     }
 }
@@ -301,6 +342,7 @@ section {
 // section.active .inner-wrap{opacity: 1; transform:translateY(0);}
 
 .content{
+  overflow:hidden;
   @include center;
   position:relative;
   width: 80%;
@@ -520,6 +562,44 @@ section .item-list{
 .opacity-leave-active{ transition: all 0.8s;}
 .opacity-leave-to{opacity:0;}
 
+
+.con{
+  display:flex;
+  margin: 0 -1rem;
+}
+.mainNotice-list,
+.mainVideo-list{
+  width: calc((100% - 2rem)/2);
+  margin: 0 1rem;
+}
+
+.mainNotice-list li{
+  width:100%;
+  margin-top:1rem;
+  display:flex;
+  align-items: center;
+  
+  strong{
+    overflow:hidden;
+    width:80%;
+    padding-right:1.2rem;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    font-size:1.25rem;
+  }
+  span{
+    width:20%;
+    font-size:1.1rem;
+    color:#0e0e0e;
+    text-align:right;
+  }
+}
+.mainNotice-list li ~ li{
+}
+
+.mainVideo-list li{
+  width:25%;
+}
 
 @include tablet{
     section .item-list{

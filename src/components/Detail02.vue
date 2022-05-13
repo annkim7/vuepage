@@ -265,18 +265,27 @@ export default {
 
 
 .history .list{
-    @include list(8rem);
+    @include list(10rem);
     margin-top:3.4rem;
+    padding: 2rem 0;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
     li{
-        b{
-            font-size: 1.05rem;
+        b{  
+            height:2rem;
+            padding:0.5rem 1.6rem 0.5rem 2rem;
+            font-size: 0.95rem;
+            font-weight:100;
+            color:#0e0e0e;
+            background: #dedede;
         }
         span{
-            font-size: 1.05rem;
+            padding:0.3rem 0 0.4rem 1.6rem;
+            font-size: 1rem;
         }
     }
     li ~ li{
-        margin-top:0.4rem;
+        margin-top:1rem;
     }
 }
 
