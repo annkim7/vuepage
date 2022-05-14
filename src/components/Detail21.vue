@@ -237,7 +237,8 @@ export default {
             flex: 1 1 0;
         }
         td.title{
-            padding-left:2rem;
+            min-width:71%;
+            padding:1.3rem 2rem;
             text-align: left;
         }
         .author{
@@ -245,7 +246,29 @@ export default {
         }
         .time{
             min-width:12%;
+            font-size:0.95rem;
         }
+    }
+}
+
+.notice-table tr td.title span{
+    overflow:hidden; white-space:nowrap;text-overflow: ellipsis;
+}
+
+@include tablet{
+    .notice-table tr .no,
+    .notice-table tr .author{
+        display:none;
+    }
+}
+
+@include mobile{
+    .notice-wrap .select-box{
+        width:100%;
+    }
+
+    .notice-table tr .time{
+        display:none;
     }
 }
 </style>

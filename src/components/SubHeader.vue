@@ -64,10 +64,14 @@ export default {
     font-size: 2.3rem;
 }
 
-.pageList{
+.subList-box{
     @include layout;
-    display:flex;
     border-top: 1px solid #DEDEDE;
+}
+.pageList{
+    
+    display:flex;
+    
     li{
         padding: 1.4rem 0;
         font-size: 0.8rem;
@@ -107,4 +111,23 @@ export default {
     
 }
 
+
+@include tablet{
+    .subHeader-box{
+        padding: 3.5rem 0.66rem 3.5rem;
+    }
+    .pageList{
+        padding:0 0.66rem;
+    }
+}
+
+@include mobile{
+    .subList-box{
+        overflow:auto;
+        
+    }
+    .pageList{
+        width:400px;
+    }
+}
 </style>

@@ -104,7 +104,7 @@
       <div class="inner-wrap">
         <div class="content">
           <h2 class="main-title">Notice</h2>
-          <div class="con">
+          <div class="mainCon">
             <div class="mainNotice-list">
               <ul>
                 <li v-for="(notice, i) in noticeArr" :key="i">
@@ -114,9 +114,11 @@
               </ul>
             </div>
             <div class="mainVideo-list">
-              <li v-for="(video, i) in videoArr" :key="i">
-                <img :src="video.poster"/>
-              </li>
+              <ul>
+                <li v-for="(video, i) in videoArr" :key="i">
+                  <img :src="video.poster"/>
+                </li>
+              </ul>
             </div>
           </div>
             
@@ -230,31 +232,31 @@ export default {
             break;
           }
         }
-        // this.pageChangeFunc();
+        this.pageChangeFunc();
       },
-      // pageChangeFunc(){
-      //     const inner = document.querySelectorAll(".inner-wrap");
-      //     const el = inner[this.pageNum];
-      //     CustomEase.create("custom", "M0,0 C0.266,0.412 0.571,0.079 0.7,0.2 0.744,0.241 0.78,1 1,1 ");
+      pageChangeFunc(){
+          const inner = document.querySelectorAll(".inner-wrap");
+          const el = inner[this.pageNum];
+          CustomEase.create("custom", "M0,0 C0.266,0.412 0.571,0.079 0.7,0.2 0.744,0.241 0.78,1 1,1 ");
 
-      //     for(var i=0; i<inner.length; i++){
-      //         const notEl = inner[i];
-      //         gsap.to(notEl, {
-      //           duration: 1,
-      //           transform: 'translateY(-100%)',
-      //           opacity: 0,
-      //           ease : "custom",
+          for(var i=0; i<inner.length; i++){
+              const notEl = inner[i];
+              gsap.to(notEl, {
+                duration: 1,
+                transform: 'translateY(-100%)',
+                opacity: 0,
+                ease : "custom",
                 
-      //         })
-      //     }
+              })
+          }
 
-      //     gsap.to(el, {
-      //       duration: 1,
-      //       transform: 'translateY(0%)',
-      //       opacity: 1,
-      //       ease : "custom",
-      //     })
-      // },
+          gsap.to(el, {
+            duration: 1,
+            transform: 'translateY(0%)',
+            opacity: 1,
+            ease : "custom",
+          })
+      },
       prev(){
         this.fadeNum--;
         if(this.fadeNum < 0){
@@ -342,7 +344,6 @@ section {
 // section.active .inner-wrap{opacity: 1; transform:translateY(0);}
 
 .content{
-  overflow:hidden;
   @include center;
   position:relative;
   width: 80%;
@@ -563,9 +564,9 @@ section .item-list{
 .opacity-leave-to{opacity:0;}
 
 
-.con{
+.mainCon{
   display:flex;
-  margin: 0 -1rem;
+  margin: 0.6rem -1rem 0;
 }
 .mainNotice-list,
 .mainVideo-list{
@@ -573,12 +574,17 @@ section .item-list{
   margin: 0 1rem;
 }
 
-.mainNotice-list li{
-  width:100%;
-  margin-top:1rem;
+.mainNotice-list ul,
+.mainVideo-list ul{
   display:flex;
   align-items: center;
-  
+  flex-flow:row wrap;
+}
+
+.mainNotice-list li{
+  display:flex;
+  width:100%;
+  margin-top:1rem;
   strong{
     overflow:hidden;
     width:80%;
@@ -594,11 +600,14 @@ section .item-list{
     text-align:right;
   }
 }
-.mainNotice-list li ~ li{
+
+.mainVideo-list ul{
+  margin: -0.5rem;
 }
 
 .mainVideo-list li{
-  width:25%;
+  width:calc((100% - 2rem)/2);
+  margin: 0.5rem;
 }
 
 @include tablet{

@@ -181,4 +181,18 @@ export default {
     }
 }
 
+
+@include tablet{
+    .write{
+        flex-direction: column;
+        div{
+            width:100%;
+            input{
+                width:100%;
+                margin-top:1rem;
+            }
+        }
+    }
+    
+}
 </style>

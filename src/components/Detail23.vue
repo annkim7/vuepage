@@ -353,4 +353,10 @@ export default {
 }
 
 
+@include tablet{
+    .video-list{
+        @include gallary(2rem,1);
+    }
+}
+
 </style>
