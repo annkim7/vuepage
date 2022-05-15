@@ -262,4 +262,38 @@ export default {
     }    
 }
 
+@include tablet{
+    .hostHead-box .host-inner{
+        flex-direction: column;
+        strong{
+            width:19rem;
+            margin-right:0;
+            margin: 0 auto;
+        }
+        p{
+            width:100%;
+            padding: 0 0.66rem;
+            text-align: center;
+        }
+    }
+    .hostCon-box .host-inner{
+        padding:0 0.66rem;
+    }
+}
+
+@include mobile{
+    .icon-list{
+        flex-direction: column;
+        li{
+            width:8rem;
+            margin: 1.6rem;
+            padding-top:9rem;
+            &:before{
+                width:8rem;
+                height:8rem;
+            }
+        }
+    }
+}
+
 </style>

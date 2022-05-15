@@ -257,4 +257,58 @@ export default {
     white-space: pre-line;
 }
 
+@include tablet{
+    .schedule-area{
+        margin: 0 -1.66rem;
+    }
+
+    .schedule-list li .belong{
+        flex-direction: column;
+        span ~ span{
+            margin-left: 0;
+            padding-left: 0;
+            margin-top:0.3rem;
+            &:before{
+                display:none;
+            }
+        }
+    }
+    
+}
+
+@include mobile{
+    .schedule-box{
+         .date{
+             font-size:1.2rem;
+         }
+    }
+
+    .schedule-list li{
+        flex-direction: column;
+        .img{
+            width:8rem;
+        }
+        .con{
+            width:100%;
+            margin-top:1.1rem;
+            padding-left:0;
+            text-align: center;
+            .subject{
+                font-size:1.2rem;
+            }
+        }
+    }
+
+    .modal-wrap{
+        width:88%;
+    }
+    .modal-header{
+        padding-bottom:0.6rem;
+        justify-content: flex-start;
+        .title{
+            width:100%;
+        }
+        
+    }
+}
 </style>

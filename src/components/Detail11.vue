@@ -92,6 +92,30 @@ export default {
     }
 }
 
+@include mobile{
+    @for $i from 1 through 16{
+        $idx : ($i % 9);
 
+        .speaker-list li:nth-of-type(#{$i}){
+            order: $idx;
+        }
+    }
+    .speaker-list li{
+        width:50%;
+        &:nth-of-type(3){
+            order:3;
+        }
+        &:nth-of-type(10){
+            order:2;
+        }
+        &:nth-of-type(12){
+            order:4;
+        }
+        &:nth-of-type(14),
+        &:nth-of-type(15){
+            order:6;
+        }
+    }
+}
 
 </style>

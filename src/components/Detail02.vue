@@ -307,8 +307,10 @@ export default {
 .tab-list{
     @include center;
     flex-flow: row wrap;
+    margin: -0.5rem;
     li{
         min-width: 7rem;
+        margin: 0.5rem;
         padding: 0.85rem 0.5rem;
         background: #fff;
         border-radius: 2rem;
@@ -321,9 +323,7 @@ export default {
         color: #0e0e0e;
         background: #dedede;
     }
-    li ~ li{
-        margin-left: 0.5rem;
-    }
+
 }
 
 @include mobile{

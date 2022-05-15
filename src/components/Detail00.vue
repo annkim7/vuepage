@@ -227,4 +227,13 @@ export default defineComponent({
         padding-left:0;
     }
 }
+
+@include mobile{
+    .counter{
+        flex-direction: column;
+        div{
+            margin: 0.4rem 0;
+        }
+    }
+}
 </style>
