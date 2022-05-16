@@ -78,16 +78,40 @@ export default {
     
 }
 
-
-
-
 .record{
-    @include list(auto);
+    // @include list(auto);
     width:70%;
     padding-left:3rem;
     .list li{
+        display:flex;
+        width:100%;
         b{
+            width: auto;
+            padding-right:2rem;
+            font-size:1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--default-color);
             padding-right:1rem;
+        }
+        span{
+            width: auto;
+            font-size:1.1rem;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+    }
+}
+
+@include mobile{
+    .speakerDetail-box{
+        .img{
+            width:100%;
+        }
+        .record{
+            width:100%;
+            margin-top:1.8rem;
+            padding-left:0;
         }
     }
 }
