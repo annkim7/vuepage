@@ -1,6 +1,6 @@
 <template>
     <header class="header-wrap">
-        <router-link to="/vuepage/">
+        <router-link to="/">
             <h1 class="logo"><img src="../assets/logo.png"/></h1>
         </router-link>
         <transition name="slideIn">
@@ -11,12 +11,12 @@
                         <ul class="nav-list">
                             <li v-for="(menu, i) in $store.state.menu" :key="i">
                                     <strong @click="$store.commit('toggle', $store.state.num=i);" class="navTit">
-                                        <router-link :to="{ path: `/vuepage/detail/` + i + `0`}">{{menu.bigTitle}}</router-link>
+                                        <router-link :to="{ path: `/detail/` + i + `0`}">{{menu.bigTitle}}</router-link>
                                     </strong>
                                 <transition name="slideDown">
                                     <ul v-if="$store.state.show == $store.state.num" class="navTit-list">
                                         <li v-for="(sub, j) in menu.subTitle" :key="j">
-                                            <router-link :to="{ path: `/vuepage/detail/` + i + j}">{{sub}}</router-link>
+                                            <router-link :to="{ path: `/detail/` + i + j}">{{sub}}</router-link>
                                         </li>
                                     </ul>
                                 </transition>
