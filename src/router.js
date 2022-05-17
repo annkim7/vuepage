@@ -12,26 +12,26 @@ const routes = [
     component: Main,
   },
   {
-    path: "/detail/:id(\\d+)",
+    path: "/vuepage/detail/:id(\\d+)",
     component: Detail,
   },
   {
-    path: "/detail/20/:id(\\d+)",
+    path: "/vuepage/detail/20/:id(\\d+)",
     component: Detail20Exhi,
     
   },
   {
-    path: "/detail/11/:id(\\d+)",
+    path: "/vuepage/detail/11/:id(\\d+)",
     component: Detail11Spea,
     
   },
   {
-    path: "/detail/21/:id(\\d+)",
+    path: "/vuepage/detail/21/:id(\\d+)",
     component: Detail21List,
     
   },
   {
-    path: "/detail/23/:id(\\d+)",
+    path: "/vuepage/detail/23/:id(\\d+)",
     component: Detail23Vide,
     
   },
