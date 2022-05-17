@@ -2,7 +2,7 @@
     <div class="subHeader-wrap">
         <div class="subHeader-box">
             <h3 class="pageTitle">
-                <router-link :to="{ path: `/detail/` + $route.path.substr(8) }">
+                <router-link :to="{ path: `/vuepage/detail/` + $route.path.substr(8) }">
                     {{$store.state.menu[$route.path.substr(8).charAt(0)].subTitle[$route.path.substr(8).charAt(1)]}}
                 </router-link>
             </h3>
@@ -15,13 +15,13 @@
                         <font-awesome-icon :icon="['fas', 'angle-right']" />
                     </li>
                     <li class="main-category">
-                        <router-link :to="{ path: `/detail/` + $route.path.substr(8).charAt(0) + `0`}">
+                        <router-link :to="{ path: `/vuepage/detail/` + $route.path.substr(8).charAt(0) + `0`}">
                             {{$store.state.menu[$route.path.substr(8).charAt(0)].bigTitle}}
                         </router-link>
                         <font-awesome-icon :icon="['fas', 'angle-right']" />
                     </li>
                     <li class="sub-category">
-                        <router-link :to="{ path: `/detail/` + $route.path.substr(8) }">
+                        <router-link :to="{ path: `/vuepage/detail/` + $route.path.substr(8) }">
                             {{$store.state.menu[$route.path.substr(8).charAt(0)].subTitle[$route.path.substr(8).charAt(1)]}}
                         </router-link>
                     </li>
@@ -31,7 +31,7 @@
         <div class="subList-box">
             <ul class="pageList">
                 <li v-for="(sub, j) in $store.state.menu[$route.path.substr(8).charAt(0)].subTitle" :key="j" :class="{ active: $route.path.substr(8).charAt(1) == j }">
-                    <router-link :to="{ path: `/detail/` + $route.path.substr(8).charAt(0) + j}">
+                    <router-link :to="{ path: `/vuepage/detail/` + $route.path.substr(8).charAt(0) + j}">
                         {{sub}}
                     </router-link>
                 </li>
