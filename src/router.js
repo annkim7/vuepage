@@ -8,7 +8,7 @@ import Main from "./components/Main.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/vuepage",
     component: Main,
   },
   {
