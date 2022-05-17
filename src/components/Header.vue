@@ -1,6 +1,6 @@
 <template>
     <header class="header-wrap">
-        <router-link to="/vuepage">
+        <router-link to="/">
             <h1 class="logo"><img src="../assets/logo.png"/></h1>
         </router-link>
         <transition name="slideIn">
