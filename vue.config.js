@@ -1,3 +1,4 @@
 module.exports = {
-    publicPath: '/vuepage/',
+    //publicPath: '/vuepage/',
+    publicPath: ''
 }
