@@ -8,30 +8,30 @@ import Main from "./components/Main.vue";
 
 const routes = [
   {
-    path: "/vuepage",
+    path: "/",
     component: Main,
   },
   {
-    path: "/vuepage/detail/:id(\\d+)",
+    path: "/detail/:id(\\d+)",
     component: Detail,
   },
   {
-    path: "/vuepage/detail/20/:id(\\d+)",
+    path: "/detail/20/:id(\\d+)",
     component: Detail20Exhi,
     
   },
   {
-    path: "/vuepage/detail/11/:id(\\d+)",
+    path: "/detail/11/:id(\\d+)",
     component: Detail11Spea,
     
   },
   {
-    path: "/vuepage/detail/21/:id(\\d+)",
+    path: "/detail/21/:id(\\d+)",
     component: Detail21List,
     
   },
   {
-    path: "/vuepage/detail/23/:id(\\d+)",
+    path: "/detail/23/:id(\\d+)",
     component: Detail23Vide,
     
   },
