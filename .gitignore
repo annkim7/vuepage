@@ -2,6 +2,7 @@
 node_modules
 /dist
 gsap-bonus.tgz
+app.yaml
 
 # local env files
 .env.local
